@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Migrator.View.SRTRView.SrtrGroupGusView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             DataContext="{Binding SrtrGroupGusViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Wczytanie pliku kartoteki" Height="50" IsEnabled="False"/>
+            <Button Content="Konwersja identyfikatorów użytkowników" IsEnabled="False" Height="50"/>
+            <Button Content="Przypisanie grup GUS" Height="50" IsHitTestVisible="False"/>
+            <Button Content="Wczytanie pliku wykazu ilościowego" Height="50" IsEnabled="False"/>
+            <Button Content="Pobranie danych z SI JIM" Height="50" IsEnabled="False"/>
+            <Button Content="Generowanie pliku wynikowego" Height="50" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 3:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Do znajdujących się w kartotece grup rodzajowych SR-TR<LineBreak/>    przypisz odpowiadające im grupy rodzajowe ZWSI RON</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Jeżeli nazwy grup rodzajowych SR-TR są puste możesz uzupełnić bazę danych <LineBreak/>
+                        programu Mogrator wczytując plik SL_GUS.DBF<LineBreak/>
+                        Jednak nie jest to wymagane ponieważ dane te są tylko danymi pomocniczymi <LineBreak/>
+                        i nie będą wykorzystywane w procesie migracji.</TextBlock>
+                </StackPanel>
+            </Border>
+            <Button Grid.Row="1"  Content="Wyczyść" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Command="{Binding WyczyscDaneCommand}" ToolTip="Wyczyść dane użytkowników" />
+            <TextBox  Grid.Row="1"  Width="200" Height="23" Text="{Binding GrupaGusPath}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="310,0,105,0" />
+            <Button Grid.Row="1"  Content="Przeglądaj" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Command="{Binding WczytajPlikGrupGusCommand}" ToolTip="Przeglądaj w poszukiwaniu pliku słownika" />
+            <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListGrGusSRTR}"
+                      SelectionMode="Single" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding NazwaGrRodzSRTR}" ClipboardContentBinding="{Binding NazwaGrRodzSRTR}" Header="Nazwa grupy SRTR" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="2,2,2,2" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding KodGrRodzSRTR}" ClipboardContentBinding="{Binding KodGrRodzSRTR}" Header="Kod grupy SRTR" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="2,2,2,2" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <!--<DataGridComboBoxColumn ClipboardContentBinding="{Binding KodGrRodzZWSIRON}" Header="Grupa rodzajowa ZWSIRON" 
+                                            SelectedItemBinding="{Binding SrtrGroupGusViewModel.GrGusZWSIRON, Source={StaticResource Locator}}"
+                                            SelectedValuePath="KodGrRodzZWSIRON"
+                                            SelectedValueBinding="{Binding KodGrRodzZWSIRON, UpdateSourceTrigger=PropertyChanged}"
+                                            DisplayMemberPath="KodNazwaGrRodzZWSIRON"
+                                            ItemsSource="{Binding SrtrGroupGusViewModel.ListGrGusZWSIRON, Source={StaticResource Locator}}"
+                                            >
+                        
+                    </DataGridComboBoxColumn>-->
+                    <DataGridTemplateColumn ClipboardContentBinding="{Binding KodGrRodzZWSIRON}" Header="Grupa rodzajowa ZWSIRON">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox DisplayMemberPath="KodNazwaGrRodzZWSIRON"
+                                          SelectedValue="{Binding KodGrRodzZWSIRON, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValuePath="KodGrRodzZWSIRON"
+                                          ItemsSource="{Binding SrtrGroupGusViewModel.ListGrGusZWSIRON, Source={StaticResource Locator}}">
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

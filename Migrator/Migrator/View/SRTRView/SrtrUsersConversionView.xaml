@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Migrator.View.SRTRView.SrtrUsersConversionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             mc:Ignorable="d"
+             DataContext="{Binding SrtrUsersConversionViewModel, Mode=OneWay, Source={StaticResource Locator}}"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Wczytanie pliku kartoteki" Height="50" IsEnabled="False"/>
+            <Button Content="Konwersja identyfikatorów użytkowników" IsHitTestVisible="False" Height="50"/>
+            <Button Content="Przypisanie grup GUS" Height="50" IsEnabled="False"/>
+            <Button Content="Wczytanie pliku wykazu ilościowego" Height="50" IsEnabled="False"/>
+            <Button Content="Pobranie danych z SI JIM" Height="50" IsEnabled="False"/>
+            <Button Content="Generowanie pliku wynikowego" Height="50" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 2:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Do znajdujących się w kartotece użytkowników SR-TR<LineBreak/>    przypisz odpowiadające im identyfikatory MPK<LineBreak/>    oraz identyfikatory użytkowników ZWSI RON</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Jeżeli inne dane użytkowników są puste możesz uzupełnić bazę danych <LineBreak/>
+                        programu Mogrator wczytując plik SL_UZY.DBF <LineBreak/>
+                        Jednak nie jest to wymagane ponieważ dane te są tylko danymi pomocniczymi <LineBreak/>
+                        i nie będą wykorzystywane w procesie migracji.</TextBlock>
+                </StackPanel>
+            </Border>
+            <Button Grid.Row="1"  Content="Wyczyść" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Command="{Binding WyczyscDaneCommand}" ToolTip="Wyczyść dane użytkowników" />
+            <TextBox  Grid.Row="1"  Width="200" Height="23" Text="{Binding SlUserPath}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="310,0,105,0" />
+            <Button Grid.Row="1"  Content="Przeglądaj" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Command="{Binding WczytajPlikSlUserCommand}" ToolTip="Przeglądaj w poszukiwaniu pliku słownika użytkowników" />
+            <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListUzytkownicy}"
+                      SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <cmd:EventToCommand Command="{Binding SelectedCellsChangedCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="KeyDown">
+                        <cmd:EventToCommand Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding IdSrtr}" ClipboardContentBinding="{Binding IdSrtr}" Header="ID użytkownika SRTR" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Mpk, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Mpk}" Header="MPK"/>
+                    <DataGridTextColumn Binding="{Binding IdZwsiron, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding IdZwsiron}" Header="ID użytkownika ZWSI RON"/>
+                    <DataGridTextColumn Binding="{Binding NazwaUzytkownika, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding NazwaUzytkownika}" Header="Nazwa użytkownika"/>
+                    <DataGridTextColumn Binding="{Binding KodJednostki, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding KodJednostki}" Header="Kod jednostki"/>
+                    <DataGridTextColumn Binding="{Binding TypUzytkownika, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding TypUzytkownika}" Header="Typ użytkownika"/>
+                    <DataGridTextColumn Binding="{Binding OsobaUpowazniona, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding OsobaUpowazniona}" Header="Osoba upoważniona"/>
+                    <DataGridTextColumn Binding="{Binding Poczta, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Poczta}" Header="Poczta"/>
+                    <DataGridTextColumn Binding="{Binding Ulica, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Ulica}" Header="Ulica"/>
+                    <DataGridTextColumn Binding="{Binding Telefon, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Telefon}" Header="Telefon"/>
+                    <DataGridTextColumn Binding="{Binding Telefax, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Telefax}" Header="Telefax"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

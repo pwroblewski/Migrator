@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Migrator.View.SRTRView.SrtrPlikWynikowyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             DataContext="{Binding SrtrPlikWynikowyViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Wczytanie pliku kartoteki" Height="50" IsEnabled="False"/>
+            <Button Content="Konwersja identyfikatorów użytkowników" IsEnabled="False" Height="50"/>
+            <Button Content="Przypisanie grup GUS" Height="50" IsEnabled="False"/>
+            <Button Content="Wczytanie pliku wykazu ilościowego" Height="50" IsEnabled="False"/>
+            <Button Content="Pobranie danych z SI JIM" Height="50" IsEnabled="False"/>
+            <Button Content="Generowanie pliku wynikowego" Height="50" IsHitTestVisible="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 6:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Utwórz plik wynikowy z danymi, który zostanie <LineBreak/>    zmigrowany do ZWSI RON.</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Wyświetlona poniżej struktura jest obrazem pliku, który będzie wykorzystany <LineBreak/>
+                        przez ZWSI RON w procesie migracji. W tym momencie należy dokładnie <LineBreak/>
+                        zweryfikować poprawność wszystkich wprowadzonych wcześniej danych.</TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Button Grid.Row="1" Width="150" Content="Utwórz plik wynikowy" Height="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" 
+                    Command="{Binding UtworzPlikCommand}" ToolTip="Utwórz plik z indeksami materiałowymi /n potrzebnymi do pobrania danych z SI JIM" />
+
+            <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListSrtrToZwsiron}"
+                      SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
+                      >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <cmd:EventToCommand Command="{Binding SelectedCellsChangedCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding GrupaAktywow}" ClipboardContentBinding="{Binding GrupaAktywow}" Header="Grupa aktywów" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding JednostkaGospodarcza}" ClipboardContentBinding="{Binding JednostkaGospodarcza}" Header="Jedn gosp." IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding IndeksMaterialowy}" ClipboardContentBinding="{Binding IndeksMaterialowy}" Header="Indeks materiałowy" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Nazwa}" ClipboardContentBinding="{Binding Nazwa}" Header="Nazwa materiału" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding JednostkaMiary}" ClipboardContentBinding="{Binding JednostkaMiary}" Header="Jednostka miary" />
+                    <DataGridTextColumn Binding="{Binding Jeden}" ClipboardContentBinding="{Binding Jeden}" Header="" />
+                    <DataGridTextColumn Binding="{Binding KatSprzetu}" ClipboardContentBinding="{Binding KatSprzetu}" Header="Kat. sprzętu" />
+                    <DataGridTextColumn Binding="{Binding NrSeryjny}" ClipboardContentBinding="{Binding NrSeryjny}" Header="Nr seryjny" />
+                    <DataGridTextColumn Binding="{Binding NrInwentarzowy}" ClipboardContentBinding="{Binding NrInwentarzowy}" Header="Nr inwentarzowy" />
+                    <DataGridTextColumn Binding="{Binding DataNabycia2}" ClipboardContentBinding="{Binding DataNabycia2}" Header="Data nabycia 2" />
+                    <DataGridTextColumn Binding="{Binding WartoscPoczatkowa}" ClipboardContentBinding="{Binding WartoscPoczatkowa}" Header="Wart poczatkowa" />
+                    <DataGridTextColumn Binding="{Binding Umorzenie}" ClipboardContentBinding="{Binding Umorzenie}" Header="Umorzenie" />
+                    <DataGridTextColumn Binding="{Binding Zero}" ClipboardContentBinding="{Binding Zero}" Header="" />
+                    <DataGridTextColumn Binding="{Binding StawkaAmor}" ClipboardContentBinding="{Binding StawkaAmor}" Header="Stawka amor" />
+                    <DataGridTextColumn Binding="{Binding GrupaGus}" ClipboardContentBinding="{Binding GrupaGus}" Header="Grupa GUS" />
+                    <DataGridTextColumn Binding="{Binding DataNabycia}" ClipboardContentBinding="{Binding DataNabycia}" Header="Data nabycia" />
+                    <DataGridTextColumn Binding="{Binding DataNabycia2}" ClipboardContentBinding="{Binding DataNabycia2}" Header="Data nabycia 2" />
+                    <DataGridTextColumn Binding="{Binding Mpk}" ClipboardContentBinding="{Binding Mpk}" Header="MPK" />
+                    <DataGridTextColumn Binding="{Binding AmorCzasLata}" ClipboardContentBinding="{Binding AmorCzasLata}" Header="Czas amor. (lata)" />
+                    <DataGridTextColumn Binding="{Binding AmorCzasMisiace}" ClipboardContentBinding="{Binding AmorCzasMisiace}" Header="Czas amor. (m-ce)" />
+                    <DataGridTextColumn Binding="{Binding Kwo}" ClipboardContentBinding="{Binding Kwo}" Header="KWO" />
+                    <DataGridTextColumn Binding="{Binding IdUzytZwsiron}" ClipboardContentBinding="{Binding IdUzytZwsiron}" Header="ID użytkownika ZWSIRON" />
+                    <DataGridTextColumn Binding="{Binding Zaklad}" ClipboardContentBinding="{Binding Zaklad}" Header="Zakład" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

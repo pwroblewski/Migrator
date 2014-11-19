@@ -1,0 +1,84 @@
+﻿<Controls:MetroWindow x:Class="Migrator.View.DictionariesView.DictionaryManagementWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      x:Name="dmWidnow"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      WindowStartupLocation="CenterScreen"
+                      WindowStyle="ToolWindow"
+                      Title="Zarządzanie słownikami"
+                      MinHeight="600"
+                      Height="768"
+                      MinWidth="800"
+                      Width="1024"
+                      DataContext="{Binding DictionaryManagementViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Skins/MainSkin.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ItemsControl  Grid.Column="0" ItemsSource="{Binding Pages}" Background="#FFB6B6B6">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:Name="ItemTemplate">
+                        <StackPanel>
+                            <Button Margin="2,1,1,0"  Content="{Binding Name}" Height="50" Command="{Binding ElementName=dmWidnow, Path=DataContext.ShowDictionaryCommand}"  CommandParameter="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <!-- CURRENT PAGE AREA -->
+            <Border Background="#FFEAEAEA" Grid.Column="1">
+                <ContentControl Content="{Binding CurrentPage}" />
+            </Border>
+        </Grid>
+        <Border Grid.Row="1"
+                Background="LightGray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- PRICE -->
+                <TextBlock FontWeight="Bold"
+                           Text="{Binding Komunikat}"
+                           Margin="4,0,7,0"
+                           VerticalAlignment="Center" Width="500"/>
+
+                <!-- NAVIGATION BUTTONS -->
+                <Grid Grid.Column="2"
+                      Grid.IsSharedSizeScope="True"
+                      HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="Buttons" />
+                        <ColumnDefinition SharedSizeGroup="Buttons" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition SharedSizeGroup="Buttons" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>

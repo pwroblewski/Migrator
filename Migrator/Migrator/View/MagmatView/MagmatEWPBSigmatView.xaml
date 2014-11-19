@@ -1,0 +1,285 @@
+﻿<UserControl x:Class="Migrator.View.MagmatView.MagmatEWPBSigmatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Migrator.Helpers"
+             mc:Ignorable="d"
+             DataContext="{Binding MagmatEWPBSigmatViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisConv" />
+        <FrameworkElement x:Key="ProxyElement"
+                         DataContext="{Binding}"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Wybór wydruku" Height="50" IsEnabled="False"/>
+            <Button Content="Uzupełnienie wydruku" Height="50" IsEnabled="False"/>
+            <Button Content="Konwersja danych identyfikacyjnych" Height="50" IsEnabled="False"/>
+            <Button Content="Porównanie danych z danymi SI JIM" Height="50" IsEnabled="False"/>
+            <Button Content="ZWSI RON" Height="50" IsHitTestVisible="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 5:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Sprawdź dane dla poszczególnych kategorii.<LineBreak/>2. Zapisz kategorie w osobnych plikach.</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Przed zapisaniem należy dokonać analizy danych pod względem <LineBreak/>
+                        ich poprawności. Sposób nazewnictwa plików opisany jest w dokumentacji</TextBlock>
+                </StackPanel>
+            </Border>
+            <ContentControl Visibility="Collapsed"
+                Content="{StaticResource ProxyElement}"/>
+            <Button Grid.Row="1" Width="100" Content="Zapisz plik" Height="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" 
+                    Command="{Binding UtworzPlikCommand}" ToolTip="Zapisz plik " />
+            <TabControl Grid.Row="2"  HorizontalAlignment="Stretch" Margin="5,10,5,5" VerticalAlignment="Stretch" SelectedItem="{Binding SelectedItem}">
+                <TabItem Header="ŻYWNOŚC (LEKARSTWA)">
+                    <Grid Background="#FFE5E5E5">
+                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListZywnosc}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA WAŻNOŚCI" Binding="{Binding DataWaznosci}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="NR PARTI PROD" Binding="{Binding NrPartiiProducenta}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="OPAKOWANIE" Binding="{Binding Opakowanie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="AMUNICJA">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListAmunicja}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KATEGORIA2" Binding="{Binding Kategoria2}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="NR PARTII" Binding="{Binding NrPartii}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA ZABLOKOWANIA" Binding="{Binding DataZablokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WYRÓŻNIK" Binding="{Binding Wyroznik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ZNACZNIK BLOKOWANIA" Binding="{Binding ZnacznikBlokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA GWARANCJI JBR" Binding="{Binding DataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPALNIK" Binding="{Binding Zapalnik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPALNIK DAWA GWAR." Binding="{Binding ZapalnikDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPALNIK DATA GWAR. JBR" Binding="{Binding ZapalnikDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPŁONNIK" Binding="{Binding Zaplonnik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPŁONNIK DATA GWAR." Binding="{Binding ZaplonnikDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ZAPŁONNIK DATA GWAR. JBR" Binding="{Binding ZaplonnikDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŁADUNEK" Binding="{Binding Ladunek}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŁADUNEK DATA GWAR." Binding="{Binding LadunekDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŁADUNEK DATA GWAR. JBR" Binding="{Binding LadunekDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="POCISK" Binding="{Binding Pocisk}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="POCISK DATA GWAR." Binding="{Binding PociskDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="POCISK DATA GWAR. JBR" Binding="{Binding PociskDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA" Binding="{Binding Zrodlo}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA DATA GWAR." Binding="{Binding ZrodloDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA DATA GWAR. JBR" Binding="{Binding ZrodloDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="SMUGACZ" Binding="{Binding Smugacz}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="SMUGACZ DATA GWAR." Binding="{Binding SmugaczDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="SMUGACZ DATA GWAR. JBR" Binding="{Binding SmugaczDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="KAT">
+                    <Grid Background="#FFE5E5E5">
+                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListKat}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA NABYCIA" Binding="{Binding DataNabycia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ POCZĄTKOWA" Binding="{Binding WartoscPoczatkowa}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ UMORZENIA" Binding="{Binding WartoscUmorzenia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="STAWKA AMORTYZACJI" Binding="{Binding StawkaAmortyzacji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KLASYFIKACJA SRTR" Binding="{Binding KlasSrodkowTrwalych}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KOD STAN" Binding="{Binding KodStan}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="PODODDZIAL" Binding="{Binding Pododdzial}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="PALIWA">
+                    <Grid Background="#FFE5E5E5">
+                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListPaliwa}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="TYP OPAKOWANIA" Binding="{Binding TypOpakowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WYCENA" Binding="{Binding Wycena}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ORZECZENIE" Binding="{Binding Orzeczenie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="MUND">
+                    <Grid Background="#FFE5E5E5">
+                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListMund}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ROZMIAR" Binding="{Binding Rozmiar}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ROK PRODUKCJI" Binding="{Binding RokProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="ROK GWARANCJI" Binding="{Binding RokGwarancji}" ClipboardContentBinding="{x:Null}"  IsReadOnly="false"/>
+                                <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieInduwidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="PODODDZIAŁ" Binding="{Binding Pododdzial}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="OKRES UŻYWAL." Binding="{Binding OkresUzywalnosci}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                <DataGridTextColumn Header="TYP POZ. PODZEST." Binding="{Binding TypPozycjiPodzestawu}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

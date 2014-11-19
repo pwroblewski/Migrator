@@ -1,0 +1,15 @@
+﻿<Controls:MetroWindow x:Class="Migrator.View.SRTRView.KartotekaWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Kartoteka Środków Trwałych"
+                      Height="600"
+                      Width="800"
+                      DataContext="{Binding KartotekaWindowViewModel, Mode=OneWay, Source={StaticResource Locator}}"
+                      >
+    <Grid>
+        <DataGrid x:Name="dg_kartoteka"
+                  ItemsSource="{Binding KartotekaSRTRList}"
+                  IsReadOnly="True" />
+    </Grid>
+</Controls:MetroWindow>

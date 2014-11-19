@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{769C00CA-1176-4B2A-B88F-AB2C80FF4B33}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Migrator</RootNamespace>
+    <AssemblyName>Migrator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Migrator.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>DC9991C7343EDBCAF85B3739A58CE8FF0E025D0C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Migrator_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>RCZPI.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.165.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Helpers\MyWpfExtensions.cs" />
+    <Compile Include="Helpers\Serializator.cs" />
+    <Compile Include="Helpers\SQLite.cs" />
+    <Compile Include="Helpers\SQLiteAsync.cs" />
+    <Compile Include="Helpers\StringToVisibilityConverter.cs" />
+    <Compile Include="Helpers\GrupaGusComparer.cs" />
+    <Compile Include="Helpers\Message.cs" />
+    <Compile Include="Helpers\UsersComparer.cs" />
+    <Compile Include="Interfaces\IDBAmorService.cs" />
+    <Compile Include="Interfaces\IDBGrRodzGusSRTRService.cs" />
+    <Compile Include="Interfaces\IDBGrRodzGusZWSIRONService.cs" />
+    <Compile Include="Interfaces\IDBGrupaAktywowService.cs" />
+    <Compile Include="Interfaces\IDBJmService.cs" />
+    <Compile Include="Interfaces\IDBService.cs" />
+    <Compile Include="Interfaces\IDBUserService.cs" />
+    <Compile Include="Interfaces\IFileGrGusService.cs" />
+    <Compile Include="Interfaces\IFileJednostkaService.cs" />
+    <Compile Include="Interfaces\IFileJimService.cs" />
+    <Compile Include="Interfaces\IFileKartotekaService.cs" />
+    <Compile Include="Interfaces\IFileMagazynService.cs" />
+    <Compile Include="Interfaces\IFileMagmatEwpbService.cs" />
+    <Compile Include="Interfaces\IFileService.cs" />
+    <Compile Include="Interfaces\IFileSigmatService.cs" />
+    <Compile Include="Interfaces\IFileUserService.cs" />
+    <Compile Include="Interfaces\IFileWykazIlosciowyService.cs" />
+    <Compile Include="Interfaces\IFileZestawienieService.cs" />
+    <Compile Include="Interfaces\ISRTRService.cs" />
+    <Compile Include="Model\Amortyzacja.cs" />
+    <Compile Include="Model\GrupaAktywow.cs" />
+    <Compile Include="Model\GrupaRodzajowaGusSRTR.cs" />
+    <Compile Include="Model\GrupaRodzajowaGusZWSIRON.cs" />
+    <Compile Include="Model\Jednostka.cs" />
+    <Compile Include="Model\JednostkaMiary.cs" />
+    <Compile Include="Model\KartotekaSRTR.cs" />
+    <Compile Include="Model\Magazyn.cs" />
+    <Compile Include="Model\MagmatEwpb.cs" />
+    <Compile Include="Model\Sigmat\Sigmat.cs" />
+    <Compile Include="Model\Sigmat\SigmatAmunicja.cs" />
+    <Compile Include="Model\Sigmat\SigmatKat.cs" />
+    <Compile Include="Model\Sigmat\SigmatMund.cs" />
+    <Compile Include="Model\Sigmat\SigmatPaliwa.cs" />
+    <Compile Include="Model\Sigmat\SigmatZywnosc.cs" />
+    <Compile Include="Model\SrtrToZwsiron.cs" />
+    <Compile Include="Model\State\MagmatEwpbState.cs" />
+    <Compile Include="Model\State\SrtrState.cs" />
+    <Compile Include="Model\State\ZestawienieState.cs" />
+    <Compile Include="Model\Uzytkownik.cs" />
+    <Compile Include="Model\WykazIlosciowy.cs" />
+    <Compile Include="Model\Zestawienie.cs" />
+    <Compile Include="Model\ZestawienieKlas.cs" />
+    <Compile Include="Services\DBAmorService.cs" />
+    <Compile Include="Services\DBGrRodzGusSRTRService.cs" />
+    <Compile Include="Services\DBGrRodzGusZWSIRONService.cs" />
+    <Compile Include="Services\DBGrupaAktywowService.cs" />
+    <Compile Include="Services\DBJmService.cs" />
+    <Compile Include="Services\DBUserService.cs" />
+    <Compile Include="Services\FileGrGusService.cs" />
+    <Compile Include="Services\FileJednostkaService.cs" />
+    <Compile Include="Services\FileJimService.cs" />
+    <Compile Include="Services\FileKartotekaService.cs" />
+    <Compile Include="Services\FileMagazynService.cs" />
+    <Compile Include="Services\FileMagmatEwpbService.cs" />
+    <Compile Include="Services\FileSigmatService.cs" />
+    <Compile Include="Services\FileUserService.cs" />
+    <Compile Include="Services\FileWykazIlosciowyService.cs" />
+    <Compile Include="Services\FileZestawienieService.cs" />
+    <Compile Include="Services\SRTRService.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryAmortyzacjaViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryGrupyGusViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryJednostkiMiaryViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryJednostkiViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryMagazynyViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryManagementViewModel.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryPageViewModelBase.cs" />
+    <Compile Include="ViewModel\DictionariesViewModel\DictionaryUzytkownicyViewModel.cs" />
+    <Compile Include="ViewModel\MagmatViewModel\MagmatEWPBChooseTypeViewModel.cs" />
+    <Compile Include="ViewModel\MagmatViewModel\MagmatEWPBFillDataViewModel.cs" />
+    <Compile Include="ViewModel\MagmatViewModel\MagmatEWPBFillDictionaryViewModel.cs" />
+    <Compile Include="ViewModel\MagmatViewModel\MagmatEWPBJimDataViewModel.cs" />
+    <Compile Include="ViewModel\MagmatViewModel\MagmatEWPBSigmatViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrGroupGusViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrJimViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrLoadWykazViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrPlikWynikowyViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrUsersConversionViewModel.cs" />
+    <Compile Include="Helpers\CleanUp.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\KodowanieZnakow.cs" />
+    <Compile Include="ViewModel\ZestawienieViewModel\ZestawienieJimViewModel.cs" />
+    <Compile Include="ViewModel\ZestawienieViewModel\ZestawienieLoadFilesViewModel.cs" />
+    <Compile Include="ViewModel\ZestawienieViewModel\ZestawieniePlikWynikowyViewModel.cs" />
+    <Compile Include="View\DictionariesView\DictionaryManagementWindow.xaml.cs">
+      <DependentUpon>DictionaryManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryAmortyzacjaView.xaml.cs">
+      <DependentUpon>DictionaryAmortyzacjaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryGrupyGusView.xaml.cs">
+      <DependentUpon>DictionaryGrupyGusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryJednostkiMiaryView.xaml.cs">
+      <DependentUpon>DictionaryJednostkiMiaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryJednostkiView.xaml.cs">
+      <DependentUpon>DictionaryJednostkiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryMagazynyView.xaml.cs">
+      <DependentUpon>DictionaryMagazynyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DictionariesView\DictionaryUzytkownicyView.xaml.cs">
+      <DependentUpon>DictionaryUzytkownicyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MagmatView\MagmatEWPBFillDataView.xaml.cs">
+      <DependentUpon>MagmatEWPBFillDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MagmatView\MagmatEWPBFillDictionaryView.xaml.cs">
+      <DependentUpon>MagmatEWPBFillDictionaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MagmatView\MagmatEWPBJimDataView.xaml.cs">
+      <DependentUpon>MagmatEWPBJimDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MagmatView\MagmatEWPBSigmatView.xaml.cs">
+      <DependentUpon>MagmatEWPBSigmatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrGroupGusView.xaml.cs">
+      <DependentUpon>SrtrGroupGusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWizardWindow.xaml.cs">
+      <DependentUpon>MainWizardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MainWizardPageViewModelBase.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\Windows\KartotekaWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainWizardViewModel.cs" />
+    <Compile Include="ViewModel\SRTRViewModel\SrtrLoadFilesViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\MagmatView\MagmatEWPBChooseTypeView.xaml.cs">
+      <DependentUpon>MagmatEWPBChooseTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrJimView.xaml.cs">
+      <DependentUpon>SrtrJimView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrLoadWykazView.xaml.cs">
+      <DependentUpon>SrtrLoadWykazView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrPlikWynikowyView.xaml.cs">
+      <DependentUpon>SrtrPlikWynikowyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\Windows\KartotekaWindow.xaml.cs">
+      <DependentUpon>KartotekaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrUsersConversionView.xaml.cs">
+      <DependentUpon>SrtrUsersConversionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SRTRView\SrtrLoadFilesView.xaml.cs">
+      <DependentUpon>SrtrLoadFilesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZestawienieView\ZestawienieJimView.xaml.cs">
+      <DependentUpon>ZestawienieJimView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZestawienieView\ZestawienieLoadFilesView.xaml.cs">
+      <DependentUpon>ZestawienieLoadFilesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZestawienieView\ZestawieniePlikWynikowyView.xaml.cs">
+      <DependentUpon>ZestawieniePlikWynikowyView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryAmortyzacjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryGrupyGusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryJednostkiMiaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryJednostkiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryMagazynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DictionariesView\DictionaryUzytkownicyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MagmatView\MagmatEWPBFillDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MagmatView\MagmatEWPBFillDictionaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MagmatView\MagmatEWPBJimDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MagmatView\MagmatEWPBSigmatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrGroupGusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWizardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MagmatView\MagmatEWPBChooseTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrJimView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrLoadWykazView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrPlikWynikowyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\Windows\KartotekaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrUsersConversionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SRTRView\SrtrLoadFilesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZestawienieView\ZestawienieJimView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZestawienieView\ZestawienieLoadFilesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZestawienieView\ZestawieniePlikWynikowyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="MigratorDB.s3db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ZnakRCZPI.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="RCZPI.ico" />
+    <Content Include="sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

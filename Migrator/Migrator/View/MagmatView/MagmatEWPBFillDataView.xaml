@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="Migrator.View.MagmatView.MagmatEWPBFillDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:converters="clr-namespace:Migrator.Helpers"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             DataContext="{Binding MagmatEWPBFillDataViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisConv" />
+        <FrameworkElement x:Key="ProxyElement"
+                         DataContext="{Binding}"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Wybór wydruku" Height="50" IsEnabled="False"/>
+            <Button Content="Uzupełnienie wydruku" Height="50" IsHitTestVisible="False"/>
+            <Button Content="Konwersja danych identyfikacyjnych" Height="50" IsEnabled="False"/>
+            <Button Content="Porównanie danych z danymi SI JIM" Height="50" IsEnabled="False"/>
+            <Button Content="ZWSI RON" Height="50" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 2:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Uzupełnij kategorię oraz numer seryjny dla każdego <LineBreak/>    wyświetlonego materiału.</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Jeżeli dany materiał posiada profil seryjny, należy rozdzielić go w celu wpisania<LineBreak/>
+                        kategorii oraz numeru seryjnego dla każdego egzemplarza. <LineBreak/>
+                        W tym celu należy zaznaczyć materiały, dla których istnieje potrzeba rozdzielenia <LineBreak/>
+                        (wystarczy wybrać dowolną komórkę) a następnie wybrać przycisk "Rozdziel dane".</TextBlock>
+                </StackPanel>
+            </Border>
+            <ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"/>
+            <Button Grid.Row="1"  Content="Rozdziel dane" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Command="{Binding RozdzielDaneCommand}" ToolTip="Rozdziel dane na podstawie ilości" />
+            <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListMaterialy}"
+                      SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <cmd:EventToCommand Command="{Binding SelectedCellsChangedCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="KeyDown">
+                        <cmd:EventToCommand Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Lp}" ClipboardContentBinding="{Binding Lp}" Header="Lp" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Jim}" ClipboardContentBinding="{Binding Jim}" Header="JIM" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Material}" ClipboardContentBinding="{Binding Material}" Header="Materiał" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Jm}" ClipboardContentBinding="{Binding Jm}" Header="Jm" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Ilosc}" ClipboardContentBinding="{Binding Ilosc}" Header="Ilość" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Wartosc}" ClipboardContentBinding="{Binding Wartosc}" Header="Wartość" IsReadOnly="False" 
+                                        Visibility="{Binding DataContext.WartoscVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                    <DataGridTextColumn Binding="{Binding Cena}" ClipboardContentBinding="{Binding Cena}" Header="Cena" IsReadOnly="True" 
+                                        Visibility="{Binding DataContext.CenaVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                    <DataGridTextColumn Binding="{Binding Kategoria}" ClipboardContentBinding="{Binding Kategoria}" Header="Kategoria" IsReadOnly="False"/>
+                    <DataGridTextColumn Binding="{Binding NrSeryjny}" ClipboardContentBinding="{Binding NrSeryjny}" Header="Nr seryjny" IsReadOnly="False"/>
+                    <DataGridTextColumn Binding="{Binding Info}" ClipboardContentBinding="{Binding Info}" Header="Info" IsReadOnly="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

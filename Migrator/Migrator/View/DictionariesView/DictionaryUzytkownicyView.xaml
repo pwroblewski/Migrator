@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Migrator.View.DictionariesView.DictionaryUzytkownicyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             mc:Ignorable="d"
+             DataContext="{Binding DictionaryUzytkownicyViewModel, Mode=OneWay, Source={StaticResource Locator}}"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <Label Content="{Binding Name}"
+                   Height="40"
+                   FontSize="20"
+                   Margin="30,0,0,0"
+                   HorizontalAlignment="Left"
+                    />
+            <TextBox Width="300"
+                     Height="23"
+                     Text="{Binding KartotekaPath}" 
+                     HorizontalAlignment="Right"
+                     Margin="300,0,110,0" />
+            <Button Content="Przeglądaj"
+            	Height="23"
+            	Width="100"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+            	Command="{Binding WczytajSlownikUzytkownikowCommand}" />
+        </Grid>
+        <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListUzytkownicy}"
+                      SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="RowEditEnding">
+                    <cmd:EventToCommand Command="{Binding UpdateCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="SelectedCellsChanged">
+                    <cmd:EventToCommand Command="{Binding SelectedCellsChangedCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="KeyDown">
+                    <cmd:EventToCommand Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding IdSrtr}" ClipboardContentBinding="{Binding IdSrtr}" Header="ID użytkownika SRTR" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Mpk, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Mpk}" Header="MPK"/>
+                <DataGridTextColumn Binding="{Binding IdZwsiron, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding IdZwsiron}" Header="ID użytkownika ZWSI RON"/>
+                <DataGridTextColumn Binding="{Binding NazwaUzytkownika, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding NazwaUzytkownika}" Header="Nazwa użytkownika"/>
+                <DataGridTextColumn Binding="{Binding KodJednostki, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding KodJednostki}" Header="Kod jednostki"/>
+                <DataGridTextColumn Binding="{Binding TypUzytkownika, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding TypUzytkownika}" Header="Typ użytkownika"/>
+                <DataGridTextColumn Binding="{Binding OsobaUpowazniona, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding OsobaUpowazniona}" Header="Osoba upoważniona"/>
+                <DataGridTextColumn Binding="{Binding Poczta, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Poczta}" Header="Poczta"/>
+                <DataGridTextColumn Binding="{Binding Ulica, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Ulica}" Header="Ulica"/>
+                <DataGridTextColumn Binding="{Binding Telefon, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Telefon}" Header="Telefon"/>
+                <DataGridTextColumn Binding="{Binding Telefax, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ClipboardContentBinding="{Binding Telefax}" Header="Telefax"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

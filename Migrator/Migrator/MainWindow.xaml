@@ -1,0 +1,158 @@
+﻿<Controls:MetroWindow x:Class="Migrator.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:ignore="http://www.ignore.com"
+                      xmlns:local="clr-namespace:Migrator.Helpers"
+                      mc:Ignorable="d ignore"
+                      Height="600"
+                      Width="800"
+                      Title="Migrator"
+                      WindowStartupLocation="CenterScreen"
+                      DataContext="{Binding Main, Source={StaticResource Locator}}" ResizeMode="CanMinimize"
+                      >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+    			<GradientStop Color="#FF41B1E1" Offset="0.004"/>
+    			<GradientStop Color="#FFAACBD6" Offset="0.75"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
+        <DockPanel HorizontalAlignment="Stretch"
+                   Margin="25"
+                   x:Name="dockPan_Menu"
+                   VerticalAlignment="Stretch"
+                   Width="Auto">
+
+            <StackPanel DockPanel.Dock="Left"
+                        Orientation="Vertical"
+                        Margin="0"
+                        VerticalAlignment="Center" Width="300">
+                <Button Content="SI SRTR"
+                        Width="250"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        FontWeight="Bold"
+                        Command="{Binding OpenSrtrWizardCommad}"
+                        CommandParameter="{x:Static local:Modul.SRTR}"
+                        FontSize="18.667" 
+                        BorderBrush="{x:Null}" >
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFBEBEBE"/>
+                			<GradientStop Color="Gainsboro" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
+                <Button Content="SI MAGMAT / SI EWPB"
+                        Height="50"
+                        FontSize="18.667"
+                        Margin="0,30,0,0"
+                        FontWeight="Bold"
+                        Command="{Binding OpenSrtrWizardCommad}" 
+                        CommandParameter="{x:Static local:Modul.MAGMAT_EWPB}"
+                        Width="250" HorizontalAlignment="Center" BorderBrush="{x:Null}" >
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFBEBEBE"/>
+                			<GradientStop Color="Gainsboro" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
+                <Button Content="ZESTAWIENIE"
+                        Height="50"
+                        FontSize="18.667"
+                        Margin="0,30,0,0"
+                        FontWeight="Bold"
+                        Command="{Binding OpenSrtrWizardCommad}" 
+                        CommandParameter="{x:Static local:Modul.ZESTAWIENIE}"
+                        HorizontalAlignment="Center" Width="250" BorderBrush="{x:Null}" >
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFBEBEBE"/>
+                			<GradientStop Color="Gainsboro" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
+                <Button Content="Zarządzanie słownikami"
+                        Height="50"
+                        FontSize="13.333"
+                        Margin="0,80,0,0"
+                        FontWeight="Normal"
+                        FontFamily="Segoe UI"
+                        Command="{Binding OpenDictionariesManagementCommand}" Width="200" BorderBrush="{x:Null}" 
+                        Visibility="Collapsed">
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFBEBEBE"/>
+                			<GradientStop Color="Gainsboro" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
+            </StackPanel>
+
+            <Grid>
+                <Image HorizontalAlignment="Center"
+                       x:Name="LogoImage"
+                       VerticalAlignment="Center"
+                       Source="Resources/Images/ZnakRCZPI.gif"
+                       Stretch="Fill"
+                       Width="350"
+                       Height="350"
+                       Margin="0,-130,0,0" />
+                <Label Content="PRZYGOTOWANIE DANYCH DO MIGRACJI"
+                       Height="35"
+                       HorizontalAlignment="Center"
+                       Margin="0,320,0,0"
+                       x:Name="label_main2"
+                       VerticalAlignment="Center"
+                       Width="400"
+                       Padding="5"
+                       FontFamily="Tahoma"
+                       FontWeight="Normal"
+                       FontSize="20"
+                       HorizontalContentAlignment="Center" />
+                <Label Content="DO SYSTEMU ZWSI RON"
+                       Height="35"
+                       HorizontalAlignment="Center"
+                       Margin="0,400,0,0"
+                       x:Name="label_main3"
+                       VerticalAlignment="Center"
+                       Width="300"
+                       Padding="5"
+                       FontFamily="Tahoma"
+                       FontWeight="Normal"
+                       FontSize="20"
+                       HorizontalContentAlignment="Center" />
+                <Label Content="v. 3.09"
+                       Height="25"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,0,0"
+                       x:Name="label_main4"
+                       VerticalAlignment="Bottom"
+                       Width="300"
+                       Padding="5"
+                       FontFamily="Tahoma"
+                       FontWeight="Normal"
+                       FontSize="14"
+                       HorizontalContentAlignment="Right" />
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Controls:MetroWindow>

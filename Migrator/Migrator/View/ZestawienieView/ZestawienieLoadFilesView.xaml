@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="Migrator.View.ZestawienieView.ZestawienieLoadFilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:converters="clr-namespace:Migrator.Helpers"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             DataContext="{Binding ZestawienieLoadFilesViewModel, Mode=OneWay, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#FFB6B6B6">
+            <Button Content="Materiały" Height="50" IsHitTestVisible="False"/>
+            <Button Content="Jim" Height="50" IsEnabled="False"/>
+            <Button Content="Plik wynikowy" Height="50" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="27" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"  BorderBrush="#FF41E641" BorderThickness="2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Background="LightGray">
+                <StackPanel>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">KROK 1:</TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="14"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap"
+                        xml:space="preserve"
+                        >1. Wczytaj przygotowane wcześniej pliki z MAGMAT i EWPB.<LineBreak/>2. Uzupełnij pola MATERIAŁ PROF, MATERIAŁ KONTO, DZIAŁ
+                    </TextBlock>
+                    <TextBlock
+                        Margin="5,5,20,0"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch" 
+                        TextWrapping="Wrap" FontWeight="Bold">UWAGA:</TextBlock>
+                    <TextBlock
+                        Margin="20,5,20,10"
+                        FontSize="10"
+                        HorizontalAlignment="Stretch"
+                        TextWrapping="Wrap">
+                        Dział można uzupełnić korzystając z przycisku "Uzupelnij dział".<LineBreak/>
+                        Jeżeli w liście rozwijalnej wybierzemy "Zaznaczone komórki" to zamin użyjemy <LineBreak/>
+                        przycisku należy wcześniej zaznaczyć komórki w tabeli które chcemy wypełnić.</TextBlock>
+                </StackPanel>
+            </Border>
+            <ComboBox x:Name="comboBox" Grid.Row="1" Width="150" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" >
+                <ComboBoxItem Content="Wszystkie komórki" IsSelected="True"/>
+                <ComboBoxItem Content="Zaznaczone komórki"/>
+            </ComboBox>
+
+            <TextBox  Grid.Row="1"  Width="70" Height="23" Text="{Binding DzialText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="155,0,0,0" />
+            <Button Grid.Row="1"  Content="Uzupełnij dział" Height="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="225,0,0,0" Command="{Binding WypelnijDzialCommand}" CommandParameter="{Binding SelectedItem, ElementName=comboBox}" ToolTip="Uzupełnij dział w wybranych komórkach" />
+            <Button Grid.Row="1" Content="Uzupełnij Materiał-konto" Height="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="311,0,0,0" Command="{Binding WypelnijMaterialKontoCommand}" CommandParameter="{Binding SelectedItem, ElementName=comboBox}" ToolTip="Uzupełnij materiał-konto w wybranych komórkach" />
+            <Button Grid.Row="1"  Content="Wczytaj pliki" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Command="{Binding WczytajPlikiCommand}" ToolTip="Wczytaj pliki" />
+            <Button Grid.Row="1"  Content="Wyczyść" Height="23" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,110,0" Command="{Binding CzyscCommand}" ToolTip="Wyczyśli listę" />
+            <DataGrid Grid.Row="2"  Margin="5,5,5,5" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListZestawienie, UpdateSourceTrigger=PropertyChanged}"
+                      SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <cmd:EventToCommand Command="{Binding SelectedCellsChangedCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="KeyDown">
+                        <cmd:EventToCommand Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Jim" Binding="{Binding Jim}" ClipboardContentBinding="{Binding Jim}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Materiał" Binding="{Binding Material}" ClipboardContentBinding="{Binding Material}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Materiał prof" Binding="{Binding MaterialProf}" ClipboardContentBinding="{Binding MaterialProf}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Materiał konto" Binding="{Binding MaterialKonto}" ClipboardContentBinding="{Binding MaterialKonto}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Zakład" Binding="{Binding Zaklad}" ClipboardContentBinding="{Binding Zaklad}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Skład" Binding="{Binding Sklad}" ClipboardContentBinding="{Binding Sklad}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Użytkownik" Binding="{Binding Uzytkownik}" ClipboardContentBinding="{Binding Uzytkownik}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Dział" Binding="{Binding Dzial, UpdateSourceTrigger=PropertyChanged}" ClipboardContentBinding="{Binding Dzial}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Symbol Kat" Binding="{Binding SymbolKat}" ClipboardContentBinding="{Binding SymbolKat}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Wskaźnik" Binding="{Binding Wskaznik}" ClipboardContentBinding="{Binding Wskaznik}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Zapas bezp" Binding="{Binding ZapasBezp}" ClipboardContentBinding="{Binding ZapasBezp}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Typ wyceny" Binding="{Binding TypWyceny}" ClipboardContentBinding="{Binding TypWyceny}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj}" ClipboardContentBinding="{Binding Rodzaj}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Star cena" Binding="{Binding StarCena}" ClipboardContentBinding="{Binding StarCena}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Jedn cena" Binding="{Binding JednCena}" ClipboardContentBinding="{Binding JednCena}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Cena średnia" Binding="{Binding CenaSrednia}" ClipboardContentBinding="{Binding CenaSrednia}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Cena stand" Binding="{Binding CenaStand}" ClipboardContentBinding="{Binding CenaStand}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Zakład dost" Binding="{Binding ZakladDost}" ClipboardContentBinding="{Binding ZakladDost}" IsReadOnly="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
+

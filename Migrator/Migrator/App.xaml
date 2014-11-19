@@ -1,0 +1,103 @@
+﻿<Application x:Class="Migrator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Migrator.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vSrtr="clr-namespace:Migrator.View.SRTRView"
+             xmlns:vMagmat="clr-namespace:Migrator.View.MagmatView"
+             xmlns:vZestawienie="clr-namespace:Migrator.View.ZestawienieView"
+             xmlns:vDict="clr-namespace:Migrator.View.DictionariesView"
+             xmlns:vmSrtr="clr-namespace:Migrator.ViewModel.SRTRViewModel"
+             xmlns:vmMagmat="clr-namespace:Migrator.ViewModel.MagmatViewModel"
+             xmlns:vmZestawienie="clr-namespace:Migrator.ViewModel.ZestawienieViewModel"
+             xmlns:vmDict="clr-namespace:Migrator.ViewModel.DictionariesViewModel"
+             StartupUri="MainWindow.xaml"
+             mc:Ignorable="d">
+
+    <Application.Resources >
+        <vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True" />
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrLoadFilesViewModel}">
+            <vSrtr:SrtrLoadFilesView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrUsersConversionViewModel}">
+            <vSrtr:SrtrUsersConversionView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrGroupGusViewModel}">
+            <vSrtr:SrtrGroupGusView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrLoadWykazViewModel}">
+            <vSrtr:SrtrLoadWykazView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrJimViewModel}">
+            <vSrtr:SrtrJimView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmSrtr:SrtrPlikWynikowyViewModel}">
+            <vSrtr:SrtrPlikWynikowyView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMagmat:MagmatEWPBChooseTypeViewModel}">
+            <vMagmat:MagmatEWPBChooseTypeView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMagmat:MagmatEWPBFillDataViewModel}">
+            <vMagmat:MagmatEWPBFillDataView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMagmat:MagmatEWPBFillDictionaryViewModel}">
+            <vMagmat:MagmatEWPBFillDictionaryView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMagmat:MagmatEWPBJimDataViewModel}">
+            <vMagmat:MagmatEWPBJimDataView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMagmat:MagmatEWPBSigmatViewModel}">
+            <vMagmat:MagmatEWPBSigmatView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmZestawienie:ZestawienieLoadFilesViewModel}">
+            <vZestawienie:ZestawienieLoadFilesView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmZestawienie:ZestawienieJimViewModel}">
+            <vZestawienie:ZestawienieJimView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmZestawienie:ZestawieniePlikWynikowyViewModel}">
+            <vZestawienie:ZestawieniePlikWynikowyView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryUzytkownicyViewModel}">
+            <vDict:DictionaryUzytkownicyView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryJednostkiViewModel}">
+            <vDict:DictionaryJednostkiView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryMagazynyViewModel}">
+            <vDict:DictionaryMagazynyView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryGrupyGusViewModel}">
+            <vDict:DictionaryGrupyGusView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryJednostkiMiaryViewModel}">
+            <vDict:DictionaryJednostkiMiary />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmDict:DictionaryAmortyzacjaViewModel}">
+            <vDict:DictionaryAmortyzacjaView />
+        </DataTemplate>
+
+    </Application.Resources>
+</Application>
