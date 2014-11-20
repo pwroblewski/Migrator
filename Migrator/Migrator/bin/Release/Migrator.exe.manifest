@@ -127,14 +127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Migrator.exe" size="1566208">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Migrator.exe" size="1570304">
       <assemblyIdentity name="Migrator" version="0.0.0.1" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>QPzJqOfWgGJAz061xOoNFCSzYek=</dsig:DigestValue>
+        <dsig:DigestValue>WJlPaCBJq/WeBMP40UqBPfmFAuY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

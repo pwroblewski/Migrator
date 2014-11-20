@@ -169,7 +169,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                 {
                     // Czytanie pliku
                     _fSrtrToZwsironService.LoadWykazData(WykazIlosciowyPath);
-                    ListWykazIlosciowySRTR = _fSrtrToZwsironService.WykazIlosciowy;
+                    ListWykazIlosciowySRTR = _fSrtrToZwsironService.Wykaz;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }

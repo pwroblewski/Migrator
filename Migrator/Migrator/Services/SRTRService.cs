@@ -41,7 +41,7 @@ namespace Migrator.Services
             get { return stan.ListGrupaGus; }
             set { stan.ListGrupaGus = value; }
         }
-        public List<WykazIlosciowy> WykazIlosciowy
+        public List<WykazIlosciowy> Wykaz
         {
             get { return stan.ListWykazIlosciowy; }
             set { stan.ListWykazIlosciowy = value; }
@@ -87,7 +87,22 @@ namespace Migrator.Services
         }
         public void LoadWykazData(string path)
         {
-            WykazIlosciowy = SRTR_WykazIlosciowy.LoadData(path);
+            Wykaz = SRTR_WykazIlosciowy.LoadData(path);
+        }
+        #endregion
+        #region Jim
+        public string OpenJimFile()
+        {
+            return SRTR_Jim.OpenFileDialog();
+        }
+        public void AddJimData(string fileJimPath)
+        {
+            var wykaz = SRTR_Jim.AddJimData(fileJimPath, Wykaz);
+            Wykaz = wykaz;
+        }
+        public string SaveJimFile()
+        {
+            return SRTR_Jim.SaveFileDialog(Wykaz);
         }
         #endregion
 
@@ -334,7 +349,7 @@ namespace Migrator.Services
             KartotekaZlik.Clear();
             Users.Clear();
             GrGus.Clear();
-            WykazIlosciowy.Clear();
+            Wykaz.Clear();
         }
     }
 }

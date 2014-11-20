@@ -35,7 +35,7 @@ namespace Migrator.Services
             get;
             set;
         }
-        List<WykazIlosciowy> WykazIlosciowy
+        List<WykazIlosciowy> Wykaz
         {
             get;
             set;
@@ -57,6 +57,11 @@ namespace Migrator.Services
         #region WYkazIlosciowy
         string OpenWykazFile();
         void LoadWykazData(string path);
+        #endregion
+        #region Jim
+        string OpenJimFile();
+        void AddJimData(string fileJimPath);
+        string SaveJimFile();
         #endregion
 
         void AddKartotekaFile(List<KartotekaSRTR> listKartoteka);

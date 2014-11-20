@@ -200,6 +200,7 @@
     <Compile Include="Services\FileZestawienieService.cs" />
     <Compile Include="Services\SRTRService.cs" />
     <Compile Include="Services\SRTR\SRTR_GrGus.cs" />
+    <Compile Include="Services\SRTR\SRTR_Jim.cs" />
     <Compile Include="Services\SRTR\SRTR_Kartoteka.cs" />
     <Compile Include="Services\SRTR\SRTR_Users.cs" />
     <Compile Include="Services\SRTR\SRTR_WykazIlosciowy.cs" />

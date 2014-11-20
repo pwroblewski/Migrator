@@ -16,16 +16,15 @@ namespace Migrator.ViewModel.SRTRViewModel
     {
         #region Fields
 
-        private readonly IFileJimService _fJimService;
         private readonly ISRTRService _fSrtrToZwsironService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public SrtrJimViewModel(IFileJimService fJimService, ISRTRService fSrtrToZwsironService)
+        public SrtrJimViewModel(ISRTRService fSrtrToZwsironService)
         {
-            _fJimService = fJimService;
+            //_fJimService = fJimService;
             _fSrtrToZwsironService = fSrtrToZwsironService;
             
             Messenger.Default.Register<Message>(this, HandleMessage);
@@ -105,15 +104,14 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private void WczytajPlikJim()
         {
-            WynikJimPath = _fJimService.OpenFileDialog();
+            WynikJimPath = _fSrtrToZwsironService.OpenJimFile();
             if (!string.IsNullOrEmpty(WynikJimPath))
             {
                 try
                 {
                     // Czytanie pliku
-                    var list = _fJimService.AddJimData(WynikJimPath, ListWykazIlosciowySRTR);
-                    ListWykazIlosciowySRTR = null;
-                    ListWykazIlosciowySRTR = list;
+                    _fSrtrToZwsironService.AddJimData(WynikJimPath);
+                    ListWykazIlosciowySRTR = _fSrtrToZwsironService.Wykaz;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }
@@ -127,7 +125,7 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private void UtworzPlik()
         {
-            string msg = _fJimService.SaveFileDialog(ListWykazIlosciowySRTR);
+            string msg = _fSrtrToZwsironService.SaveJimFile();
             
             Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msg));
         }
