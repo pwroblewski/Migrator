@@ -9,8 +9,56 @@ namespace Migrator.Services
 {
     public interface ISRTRService
     {
-        //void LoadKartoteka();
-        string SaveFile();
+        #region Properties
+        List<SrtrToZwsiron> SrtrToZwsiron
+        {
+            get;
+            set;
+        }
+        List<KartotekaSRTR> Kartoteka
+        {
+            get;
+            set;
+        }
+        List<KartotekaSRTR> KartotekaZlik
+        {
+            get;
+            set;
+        }
+        List<Uzytkownik> Users
+        {
+            get;
+            set;
+        }
+        List<GrupaRodzajowaGusSRTR> GrGus
+        {
+            get;
+            set;
+        }
+        List<WykazIlosciowy> WykazIlosciowy
+        {
+            get;
+            set;
+        }
+        #endregion
+
+        #region Kartoteka
+        string OpenKartotekaFile();
+        void LoadKartotekaData(string path);
+        #endregion
+        #region Uzytkownik
+        string OpenUserFile();
+        void LoadUserData(string path);
+        #endregion
+        #region GrGus
+        string OpenGrGusFile();
+        void LoadGrGusData(string path);
+        #endregion
+        #region WYkazIlosciowy
+        string OpenWykazFile();
+        void LoadWykazData(string path);
+        #endregion
+
         void AddKartotekaFile(List<KartotekaSRTR> listKartoteka);
         void AddJednosktaGospodarcza(string JednsotkaGosp);
         void AddJednostkiMiary(List<JednostkaMiary> listJM);
@@ -21,8 +69,7 @@ namespace Migrator.Services
         void AddWykaz(List<WykazIlosciowy> listWykaz);
         List<Uzytkownik> GetUsersID();
         List<GrupaRodzajowaGusSRTR> GetGrupaGus();
-        List<SrtrToZwsiron> GetSrtrToZwsiron();
-        void SetSrtrToZwsiron(List<SrtrToZwsiron> listSrtrToZwsiron);
+        string SaveFile();
         void Clean();
     }
 }

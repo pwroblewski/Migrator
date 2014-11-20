@@ -10,7 +10,7 @@ namespace Migrator.Model.State
     {
         public string ViewName { get; set; }
         public List<KartotekaSRTR> ListKartoteka { get; set; }
-        public List<KartotekaSRTR> ListNKartoteka { get; set; }
+        public List<KartotekaSRTR> ListKartotekaZlik { get; set; }
         public List<Uzytkownik> ListUzytkownik { get; set; }
         public List<GrupaRodzajowaGusSRTR> ListGrupaGus { get; set; }
         public List<WykazIlosciowy> ListWykazIlosciowy { get; set; }

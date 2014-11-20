@@ -6,25 +6,99 @@ using System.IO;
 using Microsoft.Win32;
 using Migrator.Helpers;
 using System.Linq;
+using Migrator.Model.State;
+using Migrator.Services.SRTR;
 
 namespace Migrator.Services
 {
     public class SRTRService : ISRTRService
     {
-        private List<SrtrToZwsiron> _listSrtrToZwsiron = new List<SrtrToZwsiron>();
+        private SrtrState stan = new SrtrState();
 
-        public List<SrtrToZwsiron> GetSrtrToZwsiron()
+        #region Properties
+        public List<SrtrToZwsiron> SrtrToZwsiron
         {
-            return _listSrtrToZwsiron;
+            get { return stan.ListWynik; }
+            set { stan.ListWynik = value; }
         }
+        public List<KartotekaSRTR> Kartoteka
+        {
+            get { return stan.ListKartoteka; }
+            set { stan.ListKartoteka = value; }
+        }
+        public List<KartotekaSRTR> KartotekaZlik
+        {
+            get { return stan.ListKartotekaZlik; }
+            set { stan.ListKartotekaZlik = value; }
+        }
+        public List<Uzytkownik> Users
+        {
+            get { return stan.ListUzytkownik; }
+            set { stan.ListUzytkownik = value; }
+        }
+        public List<GrupaRodzajowaGusSRTR> GrGus
+        {
+            get { return stan.ListGrupaGus; }
+            set { stan.ListGrupaGus = value; }
+        }
+        public List<WykazIlosciowy> WykazIlosciowy
+        {
+            get { return stan.ListWykazIlosciowy; }
+            set { stan.ListWykazIlosciowy = value; }
+        }
+        #endregion
 
+        #region Kartoteka
+        public string OpenKartotekaFile()
+        {
+            return SRTR_Kartoteka.OpenFileDialog();
+        }
+        public void LoadKartotekaData(string path)
+        {
+            var ret = SRTR_Kartoteka.LoadData(path);
+            Kartoteka = ret[0];
+            KartotekaZlik = ret[1];
+        }
+        #endregion
+        #region Uzytkownicy
+        public string OpenUserFile()
+        {
+            return SRTR_Users.OpenFileDialog();
+        }
+        public void LoadUserData(string path)
+        {
+            Users = SRTR_Users.LoadData(path);
+        }
+        #endregion
+        #region GrGus
+        public string OpenGrGusFile()
+        {
+            return SRTR_GrGus.OpenFileDialog();
+        }
+        public void LoadGrGusData(string path)
+        {
+            GrGus = SRTR_GrGus.LoadData(path);
+        }
+        #endregion
+        #region WykazIlosciowy
+        public string OpenWykazFile()
+        {
+            return SRTR_WykazIlosciowy.OpenFileDialog();
+        }
+        public void LoadWykazData(string path)
+        {
+            WykazIlosciowy = SRTR_WykazIlosciowy.LoadData(path);
+        }
+        #endregion
+
+        #region Uzupelnianie
         public void AddKartotekaFile(List<KartotekaSRTR> listKartoteka)
         {
             Clean();
 
             foreach (var kartoteka in listKartoteka)
             {
-                _listSrtrToZwsiron.Add(new SrtrToZwsiron
+                SrtrToZwsiron.Add(new SrtrToZwsiron
                 {
                     Nazwa = kartoteka.Nazwa_sr,
                     Jeden = "1",
@@ -46,35 +120,26 @@ namespace Migrator.Services
             }
         }
 
-        public string UzupelnijKWO(string indeks)
-        {
-            // jeżeli indeks materiałowy jest poprawny
-            if (indeks.Length > 7 && indeks.Substring(4, 2).Equals("PL"))
-                return indeks.Substring(0, 4);
-            else
-                return "9999";
-        }
-
         public void AddJednosktaGospodarcza(string jednostka)
         {
-            _listSrtrToZwsiron.ForEach(x => x.JednostkaGospodarcza = jednostka);
+            SrtrToZwsiron.ForEach(x => x.JednostkaGospodarcza = jednostka);
         }
 
         public void AddJednostkiMiary(List<JednostkaMiary> listJM)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 listJM.ForEach(y =>
-                    {
-                        if (x.JednsotkaMiarySRTR.Equals(y.KodJmSrtr))
-                            x.JednostkaMiary = y.KodJmZwsiron;
-                    });
+                {
+                    if (x.JednsotkaMiarySRTR.Equals(y.KodJmSrtr))
+                        x.JednostkaMiary = y.KodJmZwsiron;
+                });
             });
         }
 
         public void AddGrupaAktywow(List<GrupaAktywow> listGrupaAktywow)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 listGrupaAktywow.ForEach(y =>
                 {
@@ -86,7 +151,7 @@ namespace Migrator.Services
 
         public void AddAmortyzacja(List<Amortyzacja> listAmortyzacja)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 if (string.IsNullOrEmpty(x.WartoscPoczatkowaSRTR))
                 {
@@ -111,7 +176,7 @@ namespace Migrator.Services
 
         public void AddUzytkownicy(List<Uzytkownik> listUzytkownicy)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 listUzytkownicy.ForEach(y =>
                 {
@@ -126,7 +191,7 @@ namespace Migrator.Services
 
         public void AddGrupaGus(List<GrupaRodzajowaGusSRTR> listGrupaGus)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 listGrupaGus.ForEach(y =>
                 {
@@ -138,7 +203,7 @@ namespace Migrator.Services
 
         public void AddWykaz(List<WykazIlosciowy> listWykaz)
         {
-            _listSrtrToZwsiron.ForEach(x =>
+            SrtrToZwsiron.ForEach(x =>
             {
                 listWykaz.ForEach(y =>
                 {
@@ -154,10 +219,20 @@ namespace Migrator.Services
                 });
             });
         }
+        #endregion
 
+        #region Helpers
+        public string UzupelnijKWO(string indeks)
+        {
+            // jeżeli indeks materiałowy jest poprawny
+            if (indeks.Length > 7 && indeks.Substring(4, 2).Equals("PL"))
+                return indeks.Substring(0, 4);
+            else
+                return "9999";
+        }
         public List<Uzytkownik> GetUsersID()
         {
-            var q = (from p in _listSrtrToZwsiron
+            var q = (from p in SrtrToZwsiron
                      select
                          new Uzytkownik
                          {
@@ -167,10 +242,9 @@ namespace Migrator.Services
 
             return (List<Uzytkownik>)q;
         }
-
         public List<GrupaRodzajowaGusSRTR> GetGrupaGus()
         {
-            var q = (from p in _listSrtrToZwsiron
+            var q = (from p in SrtrToZwsiron
                      select
                          new GrupaRodzajowaGusSRTR
                          {
@@ -180,6 +254,17 @@ namespace Migrator.Services
 
             return (List<GrupaRodzajowaGusSRTR>)q;
         }
+        private bool CzyJimPoprawny(SrtrToZwsiron srtrToZwsiron)
+        {
+            if (srtrToZwsiron.IndeksMaterialowy == null || srtrToZwsiron.IndeksMaterialowy.Length != 13 || !srtrToZwsiron.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
+                return false;
+
+            if (string.IsNullOrEmpty(srtrToZwsiron.GrupaAktywow))
+                return false;
+
+            return true;
+        }
+        #endregion
 
         public string SaveFile()
         {
@@ -195,7 +280,7 @@ namespace Migrator.Services
                     {
                         StreamWriter writer = new StreamWriter(writeStream);
 
-                        foreach (SrtrToZwsiron srtrToZwsiron in _listSrtrToZwsiron)
+                        foreach (SrtrToZwsiron srtrToZwsiron in SrtrToZwsiron)
                         {
                             if (CzyJimPoprawny(srtrToZwsiron))
                             {
@@ -244,23 +329,12 @@ namespace Migrator.Services
 
         public void Clean()
         {
-            _listSrtrToZwsiron.Clear();
-        }
-
-        private bool CzyJimPoprawny(SrtrToZwsiron srtrToZwsiron)
-        {
-            if (srtrToZwsiron.IndeksMaterialowy == null || srtrToZwsiron.IndeksMaterialowy.Length != 13 || !srtrToZwsiron.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
-                return false;
-
-            if (string.IsNullOrEmpty(srtrToZwsiron.GrupaAktywow))
-                return false;
-
-            return true;
-        }
-
-        public void SetSrtrToZwsiron(List<SrtrToZwsiron> listSrtrToZwsiron)
-        {
-            _listSrtrToZwsiron = listSrtrToZwsiron;
+            SrtrToZwsiron.Clear();
+            Kartoteka.Clear();
+            KartotekaZlik.Clear();
+            Users.Clear();
+            GrGus.Clear();
+            WykazIlosciowy.Clear();
         }
     }
 }

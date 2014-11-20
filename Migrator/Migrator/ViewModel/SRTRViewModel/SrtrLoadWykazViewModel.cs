@@ -19,17 +19,15 @@ namespace Migrator.ViewModel.SRTRViewModel
     {
         #region Fields
 
-        private readonly IFileWykazIlosciowyService _fWykazIlosciowyService;
         private readonly ISRTRService _fSrtrToZwsironService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public SrtrLoadWykazViewModel(IFileWykazIlosciowyService fWykazIlosciowyService, ISRTRService fSrtrToZwsironService)
+        public SrtrLoadWykazViewModel(ISRTRService fSrtrToZwsironService)
         {
-            _fWykazIlosciowyService = fWykazIlosciowyService;
-            //_fSrtrToZwsironService = fSrtrToZwsironService;
+            _fSrtrToZwsironService = fSrtrToZwsironService;
 
             SelectedCells = new List<DataGridCellInfo>();
             
@@ -164,13 +162,14 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private void WczytajPlikWykazu()
         {
-            WykazIlosciowyPath = _fWykazIlosciowyService.OpenFileDialog();
+            WykazIlosciowyPath = _fSrtrToZwsironService.OpenWykazFile();
             if (!string.IsNullOrEmpty(WykazIlosciowyPath))
             {
                 try
                 {
                     // Czytanie pliku
-                    ListWykazIlosciowySRTR = _fWykazIlosciowyService.GetAll(WykazIlosciowyPath);
+                    _fSrtrToZwsironService.LoadWykazData(WykazIlosciowyPath);
+                    ListWykazIlosciowySRTR = _fSrtrToZwsironService.WykazIlosciowy;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }
@@ -296,7 +295,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (ZakladText != null) ZakladText = string.Empty;
             if (SelectedCells != null) SelectedCells.Clear();
             if (ListWykazIlosciowySRTR != null) ListWykazIlosciowySRTR.Clear();
-            _fWykazIlosciowyService.Clean();
+            _fSrtrToZwsironService.Clean();
         }
 
         #endregion //Private Methods

@@ -15,19 +15,15 @@ namespace Migrator.ViewModel.SRTRViewModel
     {
         #region Fields
 
-        private readonly IFileUserService _fUserService;
         private readonly ISRTRService _fSrtrToZwsironService;
-        //private readonly IDBUserService _dbUserService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public SrtrUsersConversionViewModel(IFileUserService fUserService, ISRTRService fSrtrToZwsironService, IDBUserService dbUserService)
+        public SrtrUsersConversionViewModel(ISRTRService fSrtrToZwsironService)
         {
-            _fUserService = fUserService;
             _fSrtrToZwsironService = fSrtrToZwsironService;
-            //_dbUserService = dbUserService;
 
             SelectedCells = new List<DataGridCellInfo>();
 
@@ -147,7 +143,7 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         #region Private Methods
 
-        private async void HandleMessage(Message msg)
+        private void HandleMessage(Message msg)
         {
             try
             {
@@ -169,13 +165,13 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private void WczytajSlownikUzytkownikow()
         {
-            SlUserPath = _fUserService.OpenFileDialog();
+            SlUserPath = _fSrtrToZwsironService.OpenUserFile();
             if (!string.IsNullOrEmpty(SlUserPath))
             {
                 try
                 {
-                    var filaData = _fUserService.GetAll(SlUserPath);
-                    ListUzytkownicy = _fUserService.SyncData(filaData, ListUzytkownicy);
+                    _fSrtrToZwsironService.LoadUserData(SlUserPath);
+                    ListUzytkownicy = _fSrtrToZwsironService.Users;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie zsynchronizowano plik z bazą danych."));    // komunikaty o statusie wczytania pliku
                 }
@@ -303,7 +299,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             if (SlUserPath != null) SlUserPath = string.Empty;
             if (ListUzytkownicy != null) ListUzytkownicy.Clear();
-            _fUserService.Clean();
+            _fSrtrToZwsironService.Clean();
         }
 
         #endregion //Private Methods

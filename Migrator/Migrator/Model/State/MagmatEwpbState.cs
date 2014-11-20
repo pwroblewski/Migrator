@@ -1,11 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using Migrator.Helpers;
-using Migrator.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Migrator.Helpers;
 
 namespace Migrator.Model.State
 {

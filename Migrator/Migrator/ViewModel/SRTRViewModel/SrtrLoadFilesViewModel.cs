@@ -16,7 +16,6 @@ namespace Migrator.ViewModel.SRTRViewModel
         #region Fields
 
         private KartotekaWindow kartotekaWindow;
-        private readonly IFileKartotekaService _fKartotekaService;
         private readonly ISRTRService _fSrtrToZwsironService;
         private readonly IDBJmService _dbJmService;
         private readonly IDBGrupaAktywowService _dbGrupaAktywowService;
@@ -28,9 +27,8 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         #region Constructor
 
-        public SrtrLoadFilesViewModel(IFileKartotekaService fKartotekaService, ISRTRService fSrtrToZwsironService, IDBJmService dbJmService, IDBGrupaAktywowService dbGrupaAktywowService, IDBAmorService dbAmorService)
+        public SrtrLoadFilesViewModel(ISRTRService fSrtrToZwsironService, IDBJmService dbJmService, IDBGrupaAktywowService dbGrupaAktywowService, IDBAmorService dbAmorService)
         {
-            _fKartotekaService = fKartotekaService;
             _fSrtrToZwsironService = fSrtrToZwsironService;
             _dbJmService = dbJmService;
             _dbGrupaAktywowService = dbGrupaAktywowService;
@@ -150,11 +148,13 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             try
             {
-                KartotekaPath = _fKartotekaService.OpenFileDialog();
+                KartotekaPath = _fSrtrToZwsironService.OpenKartotekaFile();
                 if (!string.IsNullOrEmpty(KartotekaPath))
                 {
-                    ListKartoteka = _fKartotekaService.GetAll(KartotekaPath);
-                    ListNZlikKartoteka = _fKartotekaService.GetMagmatData();
+                    _fSrtrToZwsironService.LoadKartotekaData(KartotekaPath);
+                    ListKartoteka = _fSrtrToZwsironService.Kartoteka;
+                    ListNZlikKartoteka = _fSrtrToZwsironService.KartotekaZlik;
+
                     if (ListKartoteka.Count > 0)
                     {
                         // komunikaty o statusie wczytania pliku
@@ -214,7 +214,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (JednostkaGosp != null) JednostkaGosp = string.Empty;
             if (ListKartoteka != null) ListKartoteka.Clear();
             if (ListNZlikKartoteka != null) ListNZlikKartoteka.Clear();
-            _fKartotekaService.Clean();
+            _fSrtrToZwsironService.Clean();
         }
 
         #endregion // Methods

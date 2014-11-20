@@ -43,12 +43,9 @@ namespace Migrator.ViewModel
             }
             else
             {
-                SimpleIoc.Default.Register<IFileKartotekaService, FileKartotekaService>();
                 SimpleIoc.Default.Register<IFileUserService, FileUserService>();
                 SimpleIoc.Default.Register<IFileMagazynService, FileMagazynService>();
                 SimpleIoc.Default.Register<IFileJednostkaService, FileJednostkaService>();
-                SimpleIoc.Default.Register<IFileGrGusService, FileGrGusService>();
-                SimpleIoc.Default.Register<IFileWykazIlosciowyService, FileWykazIlosciowyService>();
                 SimpleIoc.Default.Register<IFileJimService, FileJimService>();
                 SimpleIoc.Default.Register<ISRTRService, SRTRService>();
                 SimpleIoc.Default.Register<IFileMagmatEwpbService, FileMagmatEwpbService>();

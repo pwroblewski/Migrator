@@ -1,18 +1,18 @@
 ﻿using Microsoft.Win32;
+using Migrator.Helpers;
 using Migrator.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.IO;
+using System.Windows;
 using System.Text;
 
-
-namespace Migrator.Services
+namespace Migrator.Services.SRTR
 {
-    public class FileWykazIlosciowyService : IFileWykazIlosciowyService
+    public static class SRTR_WykazIlosciowy
     {
-        private List<WykazIlosciowy> _listWykazIlosciowy = new List<WykazIlosciowy>();
-
-        public string OpenFileDialog()
+        public static string OpenFileDialog()
         {
             OpenFileDialog accessDialog = new OpenFileDialog() { DefaultExt = "prn", Filter = "Text files (*.prn)|*.prn|All Files (*.*)|*.*", AddExtension = true };
 
@@ -26,9 +26,9 @@ namespace Migrator.Services
                 return string.Empty;
         }
 
-        public List<WykazIlosciowy> GetAll(string path)
+        public static List<WykazIlosciowy> LoadData(string path)
         {
-            Clean();
+            List<WykazIlosciowy> list = new List<WykazIlosciowy>();
 
             using (StreamReader sr = new StreamReader(path, Encoding.GetEncoding(1250)))
             {
@@ -57,7 +57,7 @@ namespace Migrator.Services
                                     temp2 = String.Format("{0:0.00}", Convert.ToDouble(subLines2[4].Trim().Replace('.', ' ')));
                                 }
 
-                                _listWykazIlosciowy.Add(new WykazIlosciowy()
+                                list.Add(new WykazIlosciowy()
                                 {
                                     NrInwentarzowy = subLines[2].Trim(),
                                     WartoscPoczatkowa = temp,
@@ -74,13 +74,8 @@ namespace Migrator.Services
                     }
                 }
 
-                return _listWykazIlosciowy;
+                return list;
             }
-        }
-
-        public void Clean()
-        {
-            _listWykazIlosciowy.Clear();
         }
     }
 }

@@ -127,14 +127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Migrator.exe" size="1573888">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Migrator.exe" size="1568768">
       <assemblyIdentity name="Migrator" version="0.0.0.1" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ICjU6+Tm8agAbiN/AjB25UfOJOY=</dsig:DigestValue>
+        <dsig:DigestValue>/cj0pAXrCZ5QU1xInCKoxy2vsLM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -186,13 +186,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Migrator.exe.config" size="1512">
+  <file name="Migrator.exe.config" size="1764">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>9RCWp29q9sj5wckclIQBvkCI5Us=</dsig:DigestValue>
+      <dsig:DigestValue>CVinkzqrmD9jfUp9Yl1d49wmR7g=</dsig:DigestValue>
     </hash>
   </file>
   <file name="RCZPI.ico" size="370070">

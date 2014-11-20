@@ -69,7 +69,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                ListSrtrToZwsiron = _fSrtrToZwsironService.GetSrtrToZwsiron();
+                ListSrtrToZwsiron = _fSrtrToZwsironService.SrtrToZwsiron;
             }
         }
 

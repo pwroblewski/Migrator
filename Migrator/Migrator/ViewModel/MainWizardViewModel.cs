@@ -147,10 +147,10 @@ namespace Migrator.ViewModel
                 case "SrtrUserConversion":
                     st = new SrtrState
                     {
-                        ListWynik = _fSrtrToZwsironService.GetSrtrToZwsiron(),
+                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
                         ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
                         ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListNKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
+                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
                         ViewName = "SrtrUserConversion"
                     };
                     SaveSrtrProjectFile<SrtrState>(st);
@@ -158,11 +158,11 @@ namespace Migrator.ViewModel
                 case "SrtrGroupGus":
                     st = new SrtrState
                     {
-                        ListWynik = _fSrtrToZwsironService.GetSrtrToZwsiron(),
+                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
                         ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
                         ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
                         ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListNKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
+                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
                         ViewName = "SrtrGroupGus"
                     };
                     SaveSrtrProjectFile<SrtrState>(st);
@@ -170,12 +170,12 @@ namespace Migrator.ViewModel
                 case "SrtrWykaz":
                     st = new SrtrState
                     {
-                        ListWynik = _fSrtrToZwsironService.GetSrtrToZwsiron(),
+                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
                         ListWykazIlosciowy = ViewModelLocator.SrtrLoadWykazViewModel.ListWykazIlosciowySRTR,
                         ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
                         ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
                         ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListNKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
+                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
                         ViewName = "SrtrWykaz"
                     };
                     SaveSrtrProjectFile<SrtrState>(st);
@@ -183,12 +183,12 @@ namespace Migrator.ViewModel
                 case "SrtrJim":
                     st = new SrtrState
                     {
-                        ListWynik = _fSrtrToZwsironService.GetSrtrToZwsiron(),
+                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
                         ListWykazIlosciowy = ViewModelLocator.SrtrJimViewModel.ListWykazIlosciowySRTR,
                         ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
                         ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
                         ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListNKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
+                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
                         ViewName = "SrtrJim"
                     };
                     SaveSrtrProjectFile<SrtrState>(st);
@@ -298,24 +298,24 @@ namespace Migrator.ViewModel
                     case "SrtrUserConversion":
                         ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
                         ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListNKartoteka;
-                        _fSrtrToZwsironService.SetSrtrToZwsiron(stan.ListWynik);
+                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
+                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
                         break;
 
                     case "SrtrGroupGus":
                         ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
                         ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
                         ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListNKartoteka;
-                        _fSrtrToZwsironService.SetSrtrToZwsiron(stan.ListWynik);
+                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
+                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
                         break;
                     case "SrtrWykaz":
                         ViewModelLocator.SrtrLoadWykazViewModel.ListWykazIlosciowySRTR = stan.ListWykazIlosciowy;
                         ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
                         ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
                         ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListNKartoteka;
-                        _fSrtrToZwsironService.SetSrtrToZwsiron(stan.ListWynik);
+                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
+                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
                         break;
                     case "SrtrJim":
                         ViewModelLocator.SrtrJimViewModel.ListWykazIlosciowySRTR = stan.ListWykazIlosciowy;
@@ -323,8 +323,8 @@ namespace Migrator.ViewModel
                         ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
                         ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
                         ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListNKartoteka;
-                        _fSrtrToZwsironService.SetSrtrToZwsiron(stan.ListWynik);
+                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
+                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
                         break;
                     #endregion
                 }

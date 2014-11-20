@@ -16,7 +16,6 @@ namespace Migrator.ViewModel.DictionariesViewModel
     {
         #region Fields
 
-        private readonly IFileGrGusService _fGrupaGusService;
         private readonly IDBGrRodzGusSRTRService _dbGrRodzGusSRTRService;
         private readonly IDBGrRodzGusZWSIRONService _dbGrRodzGusZWSIRONService;
 
@@ -24,9 +23,8 @@ namespace Migrator.ViewModel.DictionariesViewModel
 
         #region Constructor
 
-        public DictionaryGrupyGusViewModel(IFileGrGusService fGrupaGusService, IDBGrRodzGusSRTRService dbGrRodzGusSRTRService, IDBGrRodzGusZWSIRONService dbGrRodzGusZWSIRONService)
+        public DictionaryGrupyGusViewModel(IDBGrRodzGusSRTRService dbGrRodzGusSRTRService, IDBGrRodzGusZWSIRONService dbGrRodzGusZWSIRONService)
         {
-            _fGrupaGusService = fGrupaGusService;
             _dbGrRodzGusSRTRService = dbGrRodzGusSRTRService;
             _dbGrRodzGusZWSIRONService = dbGrRodzGusZWSIRONService;
 
@@ -116,17 +114,17 @@ namespace Migrator.ViewModel.DictionariesViewModel
             ListGrGusZWSIRON = await _dbGrRodzGusZWSIRONService.GetAll();
         }
 
-        private async void WczytajSlownikGrupGus()
+        private void WczytajSlownikGrupGus()
         {
-            GrupaGusPath = _fGrupaGusService.OpenFileDialog();
+            //GrupaGusPath = _fGrupaGusService.OpenFileDialog();
             if (!string.IsNullOrEmpty(GrupaGusPath))
             {
                 try
                 {
                     // Czytanie pliku
-                    var fileData = _fGrupaGusService.GetAll(GrupaGusPath);
+                    //var fileData = _fGrupaGusService.GetAll(GrupaGusPath);
                     // Synchronizowanie pliku z bazą danych
-                    await _dbGrRodzGusSRTRService.SyncFileGusSRTRData(fileData);
+                    //await _dbGrRodzGusSRTRService.SyncFileGusSRTRData(fileData);
 
                     LoadGUSData();
 
@@ -170,7 +168,7 @@ namespace Migrator.ViewModel.DictionariesViewModel
             if (GrupaGusPath != null) GrupaGusPath = string.Empty;
             if (ListGrGusSRTR != null) ListGrGusSRTR.Clear();
             if (ListGrGusZWSIRON != null) ListGrGusZWSIRON.Clear();
-            _fGrupaGusService.Clean();
+           // _fGrupaGusService.Clean();
         }
 
         #endregion //Private Methods

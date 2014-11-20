@@ -1,21 +1,17 @@
 ﻿using Microsoft.Win32;
+using Migrator.Helpers;
 using Migrator.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows;
-using Migrator.Helpers;
-using System.IO.Compression;
 
-namespace Migrator.Services
+namespace Migrator.Services.SRTR
 {
-    public class FileKartotekaService : IFileKartotekaService
+    public static class SRTR_Kartoteka
     {
-        private List<KartotekaSRTR> _listKartoteka = new List<KartotekaSRTR>();
-        private List<KartotekaSRTR> _listKartotekaZlik = new List<KartotekaSRTR>();
-
-        public string OpenFileDialog()
+        public static string OpenFileDialog()
         {
             OpenFileDialog accessDialog = new OpenFileDialog() { DefaultExt = "dbf", Filter = "Database files (*.dbf)|*.dbf|All Files (*.*)|*.*", AddExtension = true };
 
@@ -35,12 +31,13 @@ namespace Migrator.Services
                 return string.Empty;
         }
 
-        public List<KartotekaSRTR> GetAll(string path)
+        public static List<List<KartotekaSRTR>> LoadData(string path)
         {
-            Clean();
-
             using (OleDbConnection connection = new OleDbConnection(String.Format("Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; Extended Properties=DBASE IV;", Path.GetDirectoryName(path))))
             {
+                List<List<KartotekaSRTR>> list = new List<List<KartotekaSRTR>>();
+                List<KartotekaSRTR> listKartoteka = new List<KartotekaSRTR>();
+                List<KartotekaSRTR> listKartotekaZlik = new List<KartotekaSRTR>();
                 try
                 {
                     connection.Open();
@@ -123,10 +120,13 @@ namespace Migrator.Services
                             };
 
                             if (kartoteka.Konto_wpc != null && kartoteka.Konto_wpc.Substring(0, 4).Equals("3103") && kartoteka.Data_lik == null)
-                                _listKartotekaZlik.Add(kartoteka);
+                                listKartotekaZlik.Add(kartoteka);
                             else
-                                _listKartoteka.Add(kartoteka);
+                                listKartoteka.Add(kartoteka);
                         }
+
+                        list.Add(listKartoteka);
+                        list.Add(listKartotekaZlik);
                     }
                 }
                 catch (Exception ex)
@@ -134,29 +134,9 @@ namespace Migrator.Services
                     string message = string.Format("Wystąpił błąd podczas odczytu danych - {0}", ex.Message);
                     MessageBox.Show(message, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                return list;
             }
-            return _listKartoteka;
-        }
-
-        public List<KartotekaSRTR> GetKartoteka()
-        {
-            return _listKartoteka;
-        }
-
-        public void SetKartoteka(List<KartotekaSRTR> listKartoteka)
-        {
-            _listKartoteka = listKartoteka;
-        }
-
-        public List<KartotekaSRTR> GetMagmatData()
-        {
-            return _listKartotekaZlik;
-        }
-
-        public void Clean()
-        {
-            _listKartoteka.Clear();
-            _listKartotekaZlik.Clear();
         }
     }
 }
