@@ -1,40 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Win32;
-using System.Windows;
+﻿using Microsoft.Win32;
+using Migrator.Helpers;
 using Migrator.Model;
+using System;
+using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
-using Migrator.Helpers;
+using System.Windows;
 using System.Text;
 
-namespace Migrator.Services
+namespace Migrator.Services.MAGMAT_EWPB
 {
-    public class FileMagmatEwpbService : IFileMagmatEwpbService
+    public static class MAG_EWPB_File
     {
-        private List<MagmatEwpb> _listMagmatEwpb = new List<MagmatEwpb>();
-        private List<MagmatEwpb> _listConversion = new List<MagmatEwpb>();
-
-        public string OpenFileDialog()
+        public static string OpenFileDialog(string wydruk)
         {
-            //OpenFileDialog accessDialog = new OpenFileDialog() { DefaultExt = "txt", Filter = "Text files (*.txt)|*.txt|All Files (*.*)|*.*", AddExtension = true };
+            OpenFileDialog accessDialog = new OpenFileDialog() { DefaultExt = "txt", Filter = "Text files (*.txt)|*.txt|All Files (*.*)|*.*", AddExtension = true };
 
-            //if (accessDialog.ShowDialog() == true)
-            //{
-            //    string safeFileName = accessDialog.SafeFileName;
+            if (accessDialog.ShowDialog() == true)
+            {
+                string safeFileName = accessDialog.SafeFileName;
 
-            //    return accessDialog.FileName;
-            //}
-            //else
+                if((safeFileName.Contains("305") && wydruk.Contains("305")) ||
+                    ((safeFileName.Contains("319") || safeFileName.Contains("320")) && wydruk.Contains("319_320")) ||
+                    (safeFileName.Contains("351") && wydruk.Contains("351")))
+                {
+                    return accessDialog.FileName;
+                }
+                else
+                {
+                    MessageBox.Show("Wybrano niepoprawny plik.", "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
+                }
+            }
+            else
                 return string.Empty;
         }
 
-        public List<MagmatEwpb> GetAll(string path)
+        public static List<MagmatEwpb> LoadData(string path)
         {
-            Clean();
-
             using (StreamReader sr = new StreamReader(path, Encoding.GetEncoding(1250)))
             {
+                List<MagmatEwpb> list = new List<MagmatEwpb>();
                 string line = null;
                 string[] prevSubLines = null;
                 int lp = 1;
@@ -67,7 +73,7 @@ namespace Migrator.Services
 
                                     material.NrMagazynu = subLines[2].Trim();
 
-                                    _listMagmatEwpb.Add(material);
+                                    list.Add(material);
                                     lp++;
                                 }
                             }
@@ -96,7 +102,7 @@ namespace Migrator.Services
 
                                 material.Uzytkownik = subLines[1].Trim().Substring(0, 5).Trim();
 
-                                _listMagmatEwpb.Add(material);
+                                list.Add(material);
                                 lp++;
                             }
                         }
@@ -124,7 +130,7 @@ namespace Migrator.Services
                                     material.NrSeryjny = string.Empty;
                                     material.Jednostka = prevSubLines[2].Trim();
 
-                                    _listMagmatEwpb.Add(material);
+                                    list.Add(material);
                                     lp++;
 
                                 }
@@ -143,11 +149,11 @@ namespace Migrator.Services
                     MessageBox.Show("Nie wszystkie dane zostały odczytane poprawnie. Zweryfikuj dane i ponownie wczytaj plik.", "Wykryto niepoprawną strukturę pliku!");
                 }
 
-                return _listMagmatEwpb;
+                return list;
             }
         }
 
-        private string PrzypiszKategorieMagmat(string indeks)
+        private static string PrzypiszKategorieMagmat(string indeks)
         {
             if (indeks.Trim().Contains("@"))
             {
@@ -157,81 +163,19 @@ namespace Migrator.Services
             return "1";
         }
 
-        private string PrzypiszKategorieEwpb319(string indeks)
+        private static string PrzypiszKategorieEwpb319(string indeks)
         {
             return "2";
         }
 
-        private string PrzypiszKategorieEwpb351(string indeks)
+        private static string PrzypiszKategorieEwpb351(string indeks)
         {
-            if(indeks.Contains("@"))
+            if (indeks.Contains("@"))
             {
                 return indeks.Split('@')[1];
             }
 
             return "2";
-        }
-
-        public void AddApp(MagmatEWPB typ)
-        {
-            _listMagmatEwpb.ForEach(x => x.App = typ.ToString());
-        }
-
-        public void AddZakladSklad(string zaklad, string sklad)
-        {
-            _listMagmatEwpb.ForEach(x =>
-                {
-                    x.Sklad = sklad;
-                    x.Zaklad = zaklad;
-                });
-        }
-
-        public List<MagmatEwpb> GetData()
-        {
-            return _listMagmatEwpb;
-        }
-
-        public void SetData(List<MagmatEwpb> listMagmatEwpb)
-        {
-            _listMagmatEwpb = listMagmatEwpb;
-        }
-
-        public List<MagmatEwpb> GetDictData(MagmatEWPB type)
-        {
-            switch (type)
-            {
-                case MagmatEWPB.Magmat_305:
-                    foreach (MagmatEwpb mat in _listMagmatEwpb)
-                    {
-                        if (!_listConversion.Exists(x => x.NrMagazynu == mat.NrMagazynu))
-                            _listConversion.Add(mat);
-                    }
-                    break;
-
-                case MagmatEWPB.EWPB_319_320:
-                    foreach (MagmatEwpb mat in _listMagmatEwpb)
-                    {
-                        if (!_listConversion.Exists(x => x.Uzytkownik == mat.Uzytkownik))
-                            _listConversion.Add(mat);
-                    }
-                    break;
-
-                case MagmatEWPB.EWPB_351:
-                    foreach (MagmatEwpb mat in _listMagmatEwpb)
-                    {
-                        if (!_listConversion.Exists(x => x.Jednostka == mat.Jednostka))
-                            _listConversion.Add(mat);
-                    }
-                    break;
-            }
-
-            return _listConversion;
-        }
-
-        public void Clean()
-        {
-            _listMagmatEwpb.Clear();
-            _listConversion.Clear();
         }
     }
 }

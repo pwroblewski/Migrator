@@ -16,14 +16,14 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IFileSigmatService _fSigmatService;
+        private IMAG_EWPBService _fSigmatService;
         private IFileJimService _fJimService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBJimDataViewModel(IFileSigmatService fSigmatService, IFileJimService fJimService)
+        public MagmatEWPBJimDataViewModel(IMAG_EWPBService fSigmatService, IFileJimService fJimService)
         {
             _fSigmatService = fSigmatService;
             _fJimService = fJimService;
@@ -125,17 +125,17 @@ namespace Migrator.ViewModel.MagmatViewModel
 
                 switch (TypWydruku)
                 {
-                    case MagmatEWPB.Magmat305:
+                    case MagmatEWPB.Magmat_305:
                         WartoscVis = true;
                         CenaVis = true;
                         UserVis = false;
                         break;
-                    case MagmatEWPB.Ewpb319_320:
+                    case MagmatEWPB.EWPB_319_320:
                         WartoscVis = false;
                         CenaVis = false;
                         UserVis = true;
                         break;
-                    case MagmatEWPB.EWpb351:
+                    case MagmatEWPB.EWPB_351:
                         WartoscVis = true;
                         UserVis = false;
                         CenaVis = false;

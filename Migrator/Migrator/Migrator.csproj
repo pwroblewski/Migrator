@@ -158,7 +158,7 @@
     <Compile Include="Interfaces\IFileMagazynService.cs" />
     <Compile Include="Interfaces\IFileMagmatEwpbService.cs" />
     <Compile Include="Interfaces\IFileService.cs" />
-    <Compile Include="Interfaces\IFileSigmatService.cs" />
+    <Compile Include="Interfaces\IMAG_EWPBService.cs" />
     <Compile Include="Interfaces\IFileUserService.cs" />
     <Compile Include="Interfaces\IFileZestawienieService.cs" />
     <Compile Include="Interfaces\ISRTRService.cs" />
@@ -195,9 +195,12 @@
     <Compile Include="Services\FileJimService.cs" />
     <Compile Include="Services\FileMagazynService.cs" />
     <Compile Include="Services\FileMagmatEwpbService.cs" />
-    <Compile Include="Services\FileSigmatService.cs" />
+    <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_Jednostka.cs" />
+    <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_Magazyn.cs" />
+    <Compile Include="Services\MAG_EWPBService.cs" />
     <Compile Include="Services\FileUserService.cs" />
     <Compile Include="Services\FileZestawienieService.cs" />
+    <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_File.cs" />
     <Compile Include="Services\SRTRService.cs" />
     <Compile Include="Services\SRTR\SRTR_GrGus.cs" />
     <Compile Include="Services\SRTR\SRTR_Jim.cs" />

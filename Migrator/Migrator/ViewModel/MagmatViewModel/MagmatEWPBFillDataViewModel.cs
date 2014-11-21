@@ -17,17 +17,15 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IFileMagmatEwpbService _fMagmatEwpbService;
-        private IFileSigmatService _fSigmatService;
+        private IMAG_EWPBService _fMagEwpbService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBFillDataViewModel(IFileMagmatEwpbService fMagmatEwpbService, IFileSigmatService fSigmatService)
+        public MagmatEWPBFillDataViewModel(IMAG_EWPBService fMagEwpbService)
         {
-            _fMagmatEwpbService = fMagmatEwpbService;
-            _fSigmatService = fSigmatService;
+            _fMagEwpbService = fMagEwpbService;
 
             SelectedCells = new List<DataGridCellInfo>();
             SelectedMaterialy = new List<MagmatEwpb>();
@@ -40,12 +38,12 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         #region Properties
 
-        private MagmatEWPB _typWydruku;
-        public MagmatEWPB TypWydruku
-        {
-            get { return _typWydruku; }
-            set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
-        }
+        //private MagmatEWPB _typWydruku;
+        //public MagmatEWPB TypWydruku
+        //{
+        //    get { return _typWydruku; }
+        //    set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
+        //}
 
         private List<MagmatEwpb> _listMaterialy;
         public List<MagmatEwpb> ListMaterialy
@@ -192,17 +190,13 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                if (ListMaterialy == null)
-                {
-                    ListMaterialy = _fMagmatEwpbService.GetData();
-                    TypWydruku = (MagmatEWPB)msg.MessageObject;
-                }
-                MsgToEnum(TypWydruku);
+                ListMaterialy = _fMagEwpbService.Materialy;
+                MsgToEnum(_fMagEwpbService.TypWydruku);
             }
             if (msg.MessageText.Equals("zapisz dane"))
             {
-                _fSigmatService.AddMaterial(ListMaterialy);
-                Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("synchronizuj dane", TypWydruku));
+                _fMagEwpbService.Materialy = ListMaterialy;
+                Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("synchronizuj dane"));
             }
         }
 
@@ -292,17 +286,17 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             switch (typ)
             {
-                case MagmatEWPB.Magmat305:
+                case MagmatEWPB.Magmat_305:
                     WartoscVis = true;
                     CenaVis = true;
                     break;
 
-                case MagmatEWPB.Ewpb319_320:
+                case MagmatEWPB.EWPB_319_320:
                     WartoscVis = false;
                     CenaVis = false;
                     break;
 
-                case MagmatEWPB.EWpb351:
+                case MagmatEWPB.EWPB_351:
                     WartoscVis = true;
                     CenaVis = false;
                     break;

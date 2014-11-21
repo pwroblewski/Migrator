@@ -22,14 +22,14 @@ namespace Migrator.ViewModel
         #region Fields
         private ISRTRService _fSrtrToZwsironService;
         private IFileMagmatEwpbService _fMagmatSrtrService;
-        private IFileSigmatService _fSigmatService;
+        private IMAG_EWPBService _fSigmatService;
         private IFileZestawienieService _fZestawienieService;
         private Modul modul;
         #endregion //Fields
 
         #region Constructor
 
-        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IFileMagmatEwpbService fMagmatEwpbService, IFileSigmatService fSigmatService, IFileZestawienieService fZestawienieService)
+        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IFileMagmatEwpbService fMagmatEwpbService, IMAG_EWPBService fSigmatService, IFileZestawienieService fZestawienieService)
         {
             this.CurrentPage = this.Pages[0];
             _fSrtrToZwsironService = fSrtrToZwsironService;
@@ -259,37 +259,37 @@ namespace Migrator.ViewModel
                 switch (stan.ViewName)
                 {
                     #region MAGMATEWPB
-                    case "MagFillData":
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                        _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                        break;
-                    case "MagFillDictionary":
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                        _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                        ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
-                        _fSigmatService.AddMaterial(stan.ListSigmat);
-                        break;
-                    case "MagJimData":
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                        ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                        ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                        _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                        ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
-                        _fSigmatService.AddMaterial(stan.ListSigmat);
-                        ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy = stan.ListJim;
-                        _fSigmatService.SetKat(stan.ListKat);
-                        _fSigmatService.SetPaliwa(stan.ListPaliwa);
-                        _fSigmatService.SetZywnosc(stan.ListZywnosc);
-                        _fSigmatService.SetMund(stan.ListMund);
-                        _fSigmatService.SetAmunicja(stan.ListAmunicja);
-                        break;
+                    //case "MagFillData":
+                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
+                    //   // ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
+                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
+                    //    break;
+                    //case "MagFillDictionary":
+                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
+                    //   // ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
+                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
+                    //    ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
+                    //    _fSigmatService.AddMaterial(stan.ListSigmat);
+                    //    break;
+                    //case "MagJimData":
+                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
+                    //    //ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
+                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
+                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
+                    //    ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
+                    //    _fSigmatService.AddMaterial(stan.ListSigmat);
+                    //    ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy = stan.ListJim;
+                    //    _fSigmatService.SetKat(stan.ListKat);
+                    //    _fSigmatService.SetPaliwa(stan.ListPaliwa);
+                    //    _fSigmatService.SetZywnosc(stan.ListZywnosc);
+                    //    _fSigmatService.SetMund(stan.ListMund);
+                    //    _fSigmatService.SetAmunicja(stan.ListAmunicja);
+                    //    break;
                     #endregion
                 }
             }
@@ -594,7 +594,7 @@ namespace Migrator.ViewModel
                 #endregion
                 #region MAGMAT EWPB
                 case "MagChooseType":
-                    Messenger.Default.Send<Message, MagmatEWPBChooseTypeViewModel>(new Message("zapisz dane"));
+                    Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane"));
                     break;
                 case "MagFillData":
                     Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("zapisz dane"));

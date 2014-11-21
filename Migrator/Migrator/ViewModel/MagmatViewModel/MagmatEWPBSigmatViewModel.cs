@@ -17,13 +17,13 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IFileSigmatService _fSigmatService;
+        private IMAG_EWPBService _fSigmatService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBSigmatViewModel(IFileSigmatService fSigmatService)
+        public MagmatEWPBSigmatViewModel(IMAG_EWPBService fSigmatService)
         {
             _fSigmatService = fSigmatService;
 
@@ -129,15 +129,15 @@ namespace Migrator.ViewModel.MagmatViewModel
 
                 switch (TypWydruku)
                 {
-                    case MagmatEWPB.Magmat305:
+                    case MagmatEWPB.Magmat_305:
                         UserVis = false;
                         UserNotVis = true;
                         break;
-                    case MagmatEWPB.Ewpb319_320:
+                    case MagmatEWPB.EWPB_319_320:
                         UserVis = true;
                         UserNotVis = false;
                         break;
-                    case MagmatEWPB.EWpb351:
+                    case MagmatEWPB.EWPB_351:
                         UserVis = false;
                         UserNotVis = true;
                         break;
@@ -210,7 +210,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 foreach (var zywnosc in temp_list[i - 1])
                                 {
                                     NullToStringEmptyConversion(zywnosc);
-                                    if(TypWydruku == MagmatEWPB.Ewpb319_320)
+                                    if(TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
                                     else
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
@@ -225,7 +225,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                             foreach (var zywnosc in lista)
                             {
                                 NullToStringEmptyConversion(zywnosc);
-                                if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
                                 else
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
@@ -278,7 +278,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 foreach (var amunicja in temp_list[i - 1])
                                 {
                                     NullToStringEmptyConversion(amunicja);
-                                    if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
                                             amunicja.Jim.PadRight(18),
                                             amunicja.Ilosc.ToString().PadRight(17),
@@ -339,7 +339,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                             foreach (var amunicja in lista)
                             {
                                 NullToStringEmptyConversion(amunicja);
-                                if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
                                         amunicja.Jim.PadRight(18),
                                         amunicja.Ilosc.ToString().PadRight(17),
@@ -438,7 +438,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 foreach (var kat in temp_list[i - 1])
                                 {
                                     NullToStringEmptyConversion(kat);
-                                    if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
                                     else
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
@@ -453,7 +453,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                             foreach (var kat in lista)
                             {
                                 NullToStringEmptyConversion(kat);
-                                if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
                                 else
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
@@ -506,7 +506,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 foreach (var pal in temp_list[i - 1])
                                 {
                                     NullToStringEmptyConversion(pal);
-                                    if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
                                     else
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
@@ -521,7 +521,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                             foreach (var pal in lista)
                             {
                                 NullToStringEmptyConversion(pal);
-                                if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
                                 else
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
@@ -574,7 +574,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 foreach (var mund in temp_list[i - 1])
                                 {
                                     NullToStringEmptyConversion(mund);
-                                    if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
                                     else
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
@@ -589,7 +589,7 @@ namespace Migrator.ViewModel.MagmatViewModel
                             foreach (var mund in lista)
                             {
                                 NullToStringEmptyConversion(mund);
-                                if (TypWydruku == MagmatEWPB.Ewpb319_320)
+                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
                                 else
                                     writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));

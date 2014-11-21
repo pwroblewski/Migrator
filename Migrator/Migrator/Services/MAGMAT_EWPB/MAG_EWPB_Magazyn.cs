@@ -7,13 +7,11 @@ using System.Data.OleDb;
 using System.IO;
 using System.Windows;
 
-namespace Migrator.Services
+namespace Migrator.Services.MAGMAT_EWPB
 {
-    public class FileMagazynService : IFileMagazynService
+    public static class MAG_EWPB_Magazyn
     {
-        private List<Magazyn> _listMagazyny = new List<Magazyn>();
-
-        public string OpenFileDialog()
+        public static string OpenFileDialog()
         {
             OpenFileDialog accessDialog = new OpenFileDialog() { DefaultExt = "dbf", Filter = "Database files (*.dbf)|*.dbf|All Files (*.*)|*.*", AddExtension = true };
 
@@ -33,12 +31,12 @@ namespace Migrator.Services
                 return string.Empty;
         }
 
-        public List<Magazyn> GetAll(string path)
+        public static List<Magazyn> LoadData(string path)
         {
-            Clean();
-
             using (OleDbConnection connection = new OleDbConnection(String.Format("Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; Extended Properties=DBASE IV;", Path.GetDirectoryName(path))))
             {
+                List<Magazyn> list = new List<Magazyn>();
+
                 try
                 {
                     connection.Open();
@@ -53,15 +51,13 @@ namespace Migrator.Services
                         while (rd.Read())
                         {
 
-                            Magazyn magazyn = new Magazyn()
-                            {
-                                NrMagazynu = rd["NR_MAG"].ToString(),
-                                NazwaMagazynu = KodowanieZnakow.PolskieZnaki(rd["NAZ_MAG"].ToString(), Modul.MAGMAT_EWPB),
-                                Zaklad = rd["ZAKLAD"].ToString(),
-                                Sklad = rd["SKLAD"].ToString(),
-                            };
+                            Magazyn magazyn = new Magazyn();
+                            magazyn.NrMagazynu = rd["NR_MAG"].ToString();
+                            magazyn.NazwaMagazynu = KodowanieZnakow.PolskieZnaki(rd["NAZ_MAG"].ToString(), Modul.MAGMAT_EWPB);
+                            magazyn.Zaklad = rd["ZAKLAD"].ToString();
+                            magazyn.Sklad = rd["SKLAD"].ToString();
 
-                            _listMagazyny.Add(magazyn);
+                            list.Add(magazyn);
                         }
                     }
                 }
@@ -70,13 +66,8 @@ namespace Migrator.Services
                     string message = string.Format("Wystąpił błąd podczas odczytu danych - {0}", ex.Message);
                     MessageBox.Show(message, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                return list;
             }
-            return _listMagazyny;
-        }
-
-        public void Clean()
-        {
-            _listMagazyny.Clear();
         }
     }
 }

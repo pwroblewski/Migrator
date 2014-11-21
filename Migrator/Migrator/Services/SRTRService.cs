@@ -321,18 +321,9 @@ namespace Migrator.Services
 
             GrGus = q;
         }
-        private bool CzyJimPoprawny(SrtrToZwsiron srtrToZwsiron)
-        {
-            if (srtrToZwsiron.IndeksMaterialowy == null || srtrToZwsiron.IndeksMaterialowy.Length != 13 || !srtrToZwsiron.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
-                return false;
-
-            if (string.IsNullOrEmpty(srtrToZwsiron.GrupaAktywow))
-                return false;
-
-            return true;
-        }
         #endregion
 
+        #region SaveFile
         public string SaveFile()
         {
             string success = "Plik zapisano poprawnie.";
@@ -393,6 +384,17 @@ namespace Migrator.Services
 
             return success;
         }
+        private bool CzyJimPoprawny(SrtrToZwsiron srtrToZwsiron)
+        {
+            if (srtrToZwsiron.IndeksMaterialowy == null || srtrToZwsiron.IndeksMaterialowy.Length != 13 || !srtrToZwsiron.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
+                return false;
+
+            if (string.IsNullOrEmpty(srtrToZwsiron.GrupaAktywow))
+                return false;
+
+            return true;
+        }
+        #endregion
 
         public void Clean()
         {

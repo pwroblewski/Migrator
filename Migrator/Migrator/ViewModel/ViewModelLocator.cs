@@ -49,7 +49,7 @@ namespace Migrator.ViewModel
                 SimpleIoc.Default.Register<IFileJimService, FileJimService>();
                 SimpleIoc.Default.Register<ISRTRService, SRTRService>();
                 SimpleIoc.Default.Register<IFileMagmatEwpbService, FileMagmatEwpbService>();
-                SimpleIoc.Default.Register<IFileSigmatService, FileSigmatService>();
+                SimpleIoc.Default.Register<IMAG_EWPBService, MAG_EWPBService>();
                 SimpleIoc.Default.Register<IFileZestawienieService, FileZestawienieService>();
                 SimpleIoc.Default.Register<IDBUserService, DBUserService>();
                 SimpleIoc.Default.Register<IDBAmorService, DBAmorService>();

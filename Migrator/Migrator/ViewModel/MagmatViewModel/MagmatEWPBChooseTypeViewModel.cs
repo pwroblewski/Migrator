@@ -16,8 +16,8 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IFileMagmatEwpbService _fMagmatEwpbService;
-        private IFileSigmatService _fSigmatService;
+        //private IFileMagmatEwpbService _fMagmatEwpbService;
+        private IMAG_EWPBService _fMagEwpbService;
 
         string msgSucces = "Plik wczytano poprawnie.";
 
@@ -25,15 +25,11 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         #region Constructor
 
-        public MagmatEWPBChooseTypeViewModel(IFileMagmatEwpbService fMagmatEwpbService, IFileSigmatService fSigmatService)
+        public MagmatEWPBChooseTypeViewModel(IFileMagmatEwpbService fMagmatEwpbService, IMAG_EWPBService fMagEwpbService)
         {
-            _fMagmatEwpbService = fMagmatEwpbService;
-            _fSigmatService = fSigmatService;
+             _fMagEwpbService = fMagEwpbService;
 
-            WydrukLista = new List<string>();
-            WydrukLista.Add("MAGMAT - 305");
-            WydrukLista.Add("EWPB - 319/320");
-            WydrukLista.Add("EWPB - 351");
+            WydrukLista = Enum.GetNames(typeof(MagmatEWPB)).Cast<string>().ToList();
 
             Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
@@ -42,7 +38,6 @@ namespace Migrator.ViewModel.MagmatViewModel
         #endregion
 
         #region Properties
-
         private string _wydruk;
         public string Wydruk
         {
@@ -84,12 +79,11 @@ namespace Migrator.ViewModel.MagmatViewModel
             get { return _listMaterialy; }
             set { _listMaterialy = value; RaisePropertyChanged(() => ListMaterialy); }
         }
-
         #endregion
 
         #region Commands
 
-        #region SelectedCellsChangedCommand
+        #region WczytajPlikCommand
 
         private RelayCommand<string> _wczytajPlikWydrukuCommand;
         public RelayCommand<string> WczytajPlikWydrukuCommand
@@ -112,43 +106,30 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void HandleMessage(Message msg)
         {
-            if(msg.MessageText.Equals("zapisz dane"))
-            {
-                _fMagmatEwpbService.AddZakladSklad(DomyslnyZaklad, DomyslnySklad);
-                Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane", DajTypWydruku(Wydruk)));
-            }
+            //if(msg.MessageText.Equals("zapisz dane"))
+            //{
+            //    //_fMagmatEwpbService.AddZakladSklad(DomyslnyZaklad, DomyslnySklad);
+            //    Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane"));
+            //}
         }
 
         private void WczytajPlik()
         {
             try
             {
-                PlikPath = _fMagmatEwpbService.OpenFileDialog();
+                PlikPath = _fMagEwpbService.OpenFile(Wydruk);
                 if (!string.IsNullOrEmpty(PlikPath))
                 {
-                    if ((PlikPath.Contains("305") && Wydruk.Equals("MAGMAT - 305")) || ((PlikPath.Contains("319") || PlikPath.Contains("320")) && Wydruk.Equals("EWPB - 319/320")) || (PlikPath.Contains("351") && Wydruk.Equals("EWPB - 351")))
-                    {
-                        ListMaterialy = _fMagmatEwpbService.GetAll(PlikPath);
-                        Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msgSucces));
-                    }
-                    else
-                        MessageBox.Show("Wybrano niepoprawny plik.", "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                    _fMagEwpbService.LoadData(PlikPath);
+                    ListMaterialy = _fMagEwpbService.Materialy;
+
+                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msgSucces));
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private MagmatEWPB DajTypWydruku(string wydruk)
-        {
-            if (wydruk.Contains("305"))
-                return MagmatEWPB.Magmat305;
-            else if (wydruk.Contains("319") || wydruk.Contains("320"))
-                return MagmatEWPB.Ewpb319_320;
-            else
-                return MagmatEWPB.EWpb351;
         }
 
         #endregion //Methods
@@ -159,7 +140,7 @@ namespace Migrator.ViewModel.MagmatViewModel
             if (Wydruk != null) Wydruk = string.Empty;
             if (DomyslnyZaklad != null) DomyslnyZaklad = string.Empty;
             if (DomyslnySklad != null) DomyslnySklad = string.Empty;
-            _fMagmatEwpbService.Clean();
+            //_fMagmatEwpbService.Clean();
         }
 
         internal override bool IsValid()

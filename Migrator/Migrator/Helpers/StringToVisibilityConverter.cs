@@ -12,7 +12,7 @@ namespace Migrator.Helpers
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value != null && value.ToString().Equals("EWPB - 319/320"))
+            if (value != null && value.ToString().Contains("319"))
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;

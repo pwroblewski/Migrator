@@ -17,23 +17,23 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IFileMagmatEwpbService _fMagmatEwpbService;
-        private IFileJednostkaService _fJednostkaService;
-        private IFileMagazynService _fMagazynService;
-        private IFileUserService _fUserService;
-        private IFileSigmatService _fSigmatService;
+        //private IFileMagmatEwpbService _fMagmatEwpbService;
+        //private IFileJednostkaService _fJednostkaService;
+        //private IFileMagazynService _fMagazynService;
+        //private IFileUserService _fUserService;
+        private IMAG_EWPBService _fMagEwpbService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBFillDictionaryViewModel(IFileMagmatEwpbService fMagmatEwpbService, IFileJednostkaService fJednostkaService, IFileMagazynService fMagazynService, IFileUserService fUserService, IFileSigmatService fSigmatService)
+        public MagmatEWPBFillDictionaryViewModel(IFileMagmatEwpbService fMagmatEwpbService, IFileJednostkaService fJednostkaService, IFileMagazynService fMagazynService, IFileUserService fUserService, IMAG_EWPBService fMagEwpbService)
         {
-            _fMagmatEwpbService = fMagmatEwpbService;
-            _fUserService = fUserService;
-            _fMagazynService = fMagazynService;
-            _fJednostkaService = fJednostkaService;
-            _fSigmatService = fSigmatService;
+            //_fMagmatEwpbService = fMagmatEwpbService;
+            //_fUserService = fUserService;
+            //_fMagazynService = fMagazynService;
+            //_fJednostkaService = fJednostkaService;
+            _fMagEwpbService = fMagEwpbService;
 
             SelectedCells = new List<DataGridCellInfo>();
 
@@ -44,13 +44,6 @@ namespace Migrator.ViewModel.MagmatViewModel
         #endregion //Constructor
 
         #region Properties
-        private MagmatEWPB _typWydruku;
-        public MagmatEWPB TypWydruku
-        {
-            get { return _typWydruku; }
-            set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
-        }
-
         private List<MagmatEwpb> _listMaterialy;
         public List<MagmatEwpb> ListMaterialy
         {
@@ -163,17 +156,16 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                if (ListMaterialy == null)
-                {
-                    ListMaterialy = _fMagmatEwpbService.GetDictData((MagmatEWPB)msg.MessageObject);
-                    TypWydruku = (MagmatEWPB)msg.MessageObject;
-                }
-                MsgToVisibility(TypWydruku);
+                if (_fMagEwpbService.Dictionaries == null)
+                    _fMagEwpbService.FillDictionaryData();
+
+                ListMaterialy = _fMagEwpbService.Dictionaries;
+                MsgToVisibility(_fMagEwpbService.TypWydruku);
             }
             if (msg.MessageText.Equals("zapisz dane"))
             {
-                _fSigmatService.AddSlownik(ListMaterialy, TypWydruku);
-                Messenger.Default.Send<Message, MagmatEWPBJimDataViewModel>(new Message("synchronizuj dane", TypWydruku));
+                _fMagEwpbService.Dictionaries = ListMaterialy;
+                Messenger.Default.Send<Message, MagmatEWPBJimDataViewModel>(new Message("synchronizuj dane"));
             }
             if (msg.MessageText.Equals("czyść dane"))
             {
@@ -183,64 +175,23 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void WczytajPlikSl()
         {
-            switch (TypWydruku)
+            SlownikPath = _fMagEwpbService.OpenDictionaryFile();
+            if (!string.IsNullOrEmpty(SlownikPath))
             {
-                case MagmatEWPB.Magmat305:
-                    SlownikPath = _fMagazynService.OpenFileDialog();
-                    if (!string.IsNullOrEmpty(SlownikPath))
-                    {
-                        try
-                        {
-                            ListMaterialy = _fMagazynService.GetMagData(ListMaterialy, SlownikPath);
+                try
+                {
+                    _fMagEwpbService.LoadDictionaryData(SlownikPath);
+                    ListMaterialy = null;
+                    ListMaterialy = _fMagEwpbService.Dictionaries;
 
-                            // komunikaty o statusie wczytania pliku
-                            Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie wczytano plik z bazą danych."));
-                        }
-                        catch (Exception ex)
-                        {
-                            string msg = string.Format("BŁĄD! - {0}", ex.Message);
-                            MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    break;
-
-                case MagmatEWPB.Ewpb319_320:
-                    SlownikPath = _fUserService.OpenFileDialog();
-                    if (!string.IsNullOrEmpty(SlownikPath))
-                    {
-                        try
-                        {
-                            ListMaterialy = _fUserService.GetUserData(ListMaterialy, SlownikPath);
-
-                            // komunikaty o statusie wczytania pliku
-                            Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie wczytano plik z bazą danych."));
-                        }
-                        catch (Exception ex)
-                        {
-                            string msg = string.Format("BŁĄD! - {0}", ex.Message);
-                            MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    break;
-
-                case MagmatEWPB.EWpb351:
-                    SlownikPath = _fJednostkaService.OpenFileDialog();
-                    if (!string.IsNullOrEmpty(SlownikPath))
-                    {
-                        try
-                        {
-                            ListMaterialy = _fJednostkaService.GetJedData(ListMaterialy, SlownikPath);
-
-                            // komunikaty o statusie wczytania pliku
-                            Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie wczytano plik z bazą danych."));
-                        }
-                        catch (Exception ex)
-                        {
-                            string msg = string.Format("BŁĄD! - {0}", ex.Message);
-                            MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    break;
+                    // komunikaty o statusie wczytania pliku
+                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie wczytano plik z bazą danych."));
+                }
+                catch (Exception ex)
+                {
+                    string msg = string.Format("BŁĄD! - {0}", ex.Message);
+                    MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -347,19 +298,19 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             switch (typ)
             {
-                case MagmatEWPB.Magmat305:
+                case MagmatEWPB.Magmat_305:
                     MagazynVisibility = true;
                     UzytkownikVisibility = false;
                     JednostkaVisibility = false;
                     break;
 
-                case MagmatEWPB.Ewpb319_320:
+                case MagmatEWPB.EWPB_319_320:
                     MagazynVisibility = false;
                     UzytkownikVisibility = true;
                     JednostkaVisibility = false;
                     break;
 
-                case MagmatEWPB.EWpb351:
+                case MagmatEWPB.EWPB_351:
                     MagazynVisibility = false;
                     UzytkownikVisibility = false;
                     JednostkaVisibility = true;
@@ -371,7 +322,7 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             if (ListMaterialy != null) ListMaterialy.Clear();
             if (SelectedCells != null) SelectedCells.Clear();
-            _fMagmatEwpbService.Clean();
+           // _fMagmatEwpbService.Clean();
         }
 
         #endregion //Methods
@@ -381,7 +332,7 @@ namespace Migrator.ViewModel.MagmatViewModel
             var idZwsiron = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.UzytkownikZwsiron));
             var zakladSklad = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.Zaklad) || string.IsNullOrEmpty(x.Sklad));
 
-            if (TypWydruku == MagmatEWPB.Ewpb319_320)
+            if (_fMagEwpbService.TypWydruku == MagmatEWPB.EWPB_319_320)
             {
                 if (idZwsiron || zakladSklad) return false;
                 else return true;
