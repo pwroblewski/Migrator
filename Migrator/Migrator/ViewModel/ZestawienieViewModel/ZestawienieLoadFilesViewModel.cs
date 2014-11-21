@@ -432,5 +432,10 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         {
             return ZestawieniePages.ZestawienieLoadFiles.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -148,10 +148,19 @@ namespace Migrator.ViewModel.SRTRViewModel
             try
             {
                 if (msg.MessageText.Equals("synchronizuj dane") && ListUzytkownicy == null)
-                    ListUzytkownicy = _fSrtrToZwsironService.GetUsersID();
+                    if (_fSrtrToZwsironService.Users == null)
+                    {
+                        _fSrtrToZwsironService.GetUsersID();
+                        ListUzytkownicy = _fSrtrToZwsironService.Users;
+                    }
+                    else
+                    {
+                        ListUzytkownicy = _fSrtrToZwsironService.Users;
+                    }
 
                 if (msg.MessageText.Equals("zapisz dane"))
                 {
+                    _fSrtrToZwsironService.Users = ListUzytkownicy;
                     _fSrtrToZwsironService.AddUzytkownicy(ListUzytkownicy);
 
                     Messenger.Default.Send<Message, SrtrGroupGusViewModel>(new Message("synchronizuj dane"));
@@ -171,6 +180,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                 try
                 {
                     _fSrtrToZwsironService.LoadUserData(SlUserPath);
+                    ListUzytkownicy = null;
                     ListUzytkownicy = _fSrtrToZwsironService.Users;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie zsynchronizowano plik z bazą danych."));    // komunikaty o statusie wczytania pliku
@@ -303,5 +313,10 @@ namespace Migrator.ViewModel.SRTRViewModel
         }
 
         #endregion //Private Methods
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

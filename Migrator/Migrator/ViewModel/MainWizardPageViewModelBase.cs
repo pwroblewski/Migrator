@@ -29,6 +29,7 @@ namespace Migrator.ViewModel
 
         internal abstract bool IsValid();
         internal abstract string GetPageName();
+        internal abstract void LoadData();
 
         #endregion //Methods
     }

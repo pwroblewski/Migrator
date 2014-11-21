@@ -644,5 +644,10 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             return MagmatEWPBPages.MagSigmat.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

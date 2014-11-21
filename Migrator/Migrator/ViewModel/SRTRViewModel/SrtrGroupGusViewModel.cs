@@ -105,12 +105,21 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
                 ListGrGusZWSIRON = await _dbGrRodzGusZWSIRONService.GetAll(); // pobranie danych z bazy o grupach rodzajowych ZWSI RON
-                if(ListGrGusSRTR == null)
-                    ListGrGusSRTR = _fSrtrToZwsironService.GetGrupaGus();   // pobranie danych grup GUS z kartoteki
+
+                if (_fSrtrToZwsironService.GrGus == null)
+                {
+                    _fSrtrToZwsironService.GetGrupaGus();   // pobranie danych grup GUS z kartoteki
+                    ListGrGusSRTR = _fSrtrToZwsironService.GrGus;
+                }
+                else
+                    ListGrGusSRTR = _fSrtrToZwsironService.GrGus;
             }
             if (msg.MessageText.Equals("zapisz dane"))
             {
+                _fSrtrToZwsironService.GrGus = ListGrGusSRTR;
                 _fSrtrToZwsironService.AddGrupaGus(ListGrGusSRTR);
+
+                Messenger.Default.Send<Message, SrtrLoadWykazViewModel>(new Message("synchronizuj dane"));
             }
         }
 
@@ -122,6 +131,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                 try
                 {
                     _fSrtrToZwsironService.LoadGrGusData(GrupaGusPath);      // Czytanie pliku
+                    ListGrGusSRTR = null;
                     ListGrGusSRTR = _fSrtrToZwsironService.GrGus;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie zsynchronizowano plik z bazą danych."));    // komunikaty o statusie wczytania pliku
@@ -172,5 +182,10 @@ namespace Migrator.ViewModel.SRTRViewModel
         }
 
         #endregion //Private Methods
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

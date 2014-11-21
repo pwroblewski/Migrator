@@ -397,5 +397,10 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             return Helpers.MagmatEWPBPages.MagFillDictionary.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

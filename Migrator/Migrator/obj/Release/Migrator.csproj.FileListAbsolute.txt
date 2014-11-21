@@ -382,3 +382,4 @@ C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.csproj.GenerateResource.Cache
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.exe.manifest
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.application
+C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Skins\MainSkin.baml

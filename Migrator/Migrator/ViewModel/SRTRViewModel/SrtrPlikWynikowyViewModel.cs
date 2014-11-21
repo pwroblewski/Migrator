@@ -96,5 +96,10 @@ namespace Migrator.ViewModel.SRTRViewModel
         }
 
         #endregion
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

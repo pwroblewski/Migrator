@@ -208,6 +208,12 @@ namespace Migrator.ViewModel.SRTRViewModel
             return SRTRPages.SrtrLoadKartoteka.ToString();
         }
 
+        internal override void LoadData()
+        {
+            ListKartoteka = _fSrtrToZwsironService.Kartoteka;
+            ListNZlikKartoteka = _fSrtrToZwsironService.KartotekaZlik;
+        }
+
         private void CallCleanUp(CleanUp cu)
         {
             if (KartotekaPath != null) KartotekaPath = string.Empty;

@@ -155,8 +155,14 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                msg.MessageObject = ListWykazIlosciowySRTR;
-                Messenger.Default.Send<Message, SrtrJimViewModel>(msg);
+                if (_fSrtrToZwsironService.Wykaz != null)
+                    ListWykazIlosciowySRTR = _fSrtrToZwsironService.Wykaz;
+            }
+            if (msg.MessageText.Equals("zapisz dane"))
+            {
+                _fSrtrToZwsironService.Wykaz = ListWykazIlosciowySRTR;
+
+                Messenger.Default.Send<Message, SrtrJimViewModel>(new Message("synchronizuj dane"));
             }
         }
 
@@ -299,5 +305,10 @@ namespace Migrator.ViewModel.SRTRViewModel
         }
 
         #endregion //Private Methods
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

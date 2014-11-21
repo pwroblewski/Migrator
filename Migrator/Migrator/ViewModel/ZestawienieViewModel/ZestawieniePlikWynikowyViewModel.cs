@@ -85,5 +85,10 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         {
             return ZestawieniePages.ZestawieniePlikWynikowy.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

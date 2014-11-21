@@ -16,6 +16,16 @@ namespace Migrator.Services
         private SrtrState stan = new SrtrState();
 
         #region Properties
+        public SrtrState SrtrState
+        {
+            get { return stan; }
+            set { stan = value; }
+        }
+        public string ViewName
+        {
+            get { return stan.ViewName; }
+            set { stan.ViewName = value; }
+        }
         public List<SrtrToZwsiron> SrtrToZwsiron
         {
             get { return stan.ListWynik; }
@@ -67,7 +77,30 @@ namespace Migrator.Services
         }
         public void LoadUserData(string path)
         {
-            Users = SRTR_Users.LoadData(path);
+            var slownik = SRTR_Users.LoadData(path);
+            SynchronizujDaneUzytkownika(slownik);
+        }
+        private void SynchronizujDaneUzytkownika(List<Uzytkownik> slownik)
+        {
+            Users.ForEach(x => 
+                {
+                    slownik.ForEach(y =>
+                        {
+                            if (x.IdSrtr.Equals(y.IdSrtr))
+                            {
+                                //x.IdZwsiron = y.IdZwsiron;
+                                //x.Mpk = y.Mpk;
+                                x.KodJednostki = y.KodJednostki;
+                                x.NazwaUzytkownika = y.NazwaUzytkownika;
+                                x.OsobaUpowazniona = y.OsobaUpowazniona;
+                                x.Poczta = y.Poczta;
+                                x.Telefax = y.Telefax;
+                                x.Telefon = y.Telefon;
+                                x.TypUzytkownika = y.TypUzytkownika;
+                                x.Ulica = y.Ulica;
+                            }
+                        });
+                });
         }
         #endregion
         #region GrGus
@@ -77,7 +110,21 @@ namespace Migrator.Services
         }
         public void LoadGrGusData(string path)
         {
-            GrGus = SRTR_GrGus.LoadData(path);
+            var slownik = SRTR_GrGus.LoadData(path);
+            SynchronizujDaneGus(slownik);
+        }
+        private void SynchronizujDaneGus(List<GrupaRodzajowaGusSRTR> slownik)
+        {
+            GrGus.ForEach(x =>
+            {
+                slownik.ForEach(y =>
+                {
+                    if (x.KodGrRodzSRTR.Equals(y.KodGrRodzSRTR))
+                    {
+                        x.NazwaGrRodzSRTR = y.NazwaGrRodzSRTR;
+                    }
+                });
+            });
         }
         #endregion
         #region WykazIlosciowy
@@ -109,7 +156,7 @@ namespace Migrator.Services
         #region Uzupelnianie
         public void AddKartotekaFile(List<KartotekaSRTR> listKartoteka)
         {
-            Clean();
+            SrtrToZwsiron = new List<SrtrToZwsiron>();
 
             foreach (var kartoteka in listKartoteka)
             {
@@ -245,20 +292,25 @@ namespace Migrator.Services
             else
                 return "9999";
         }
-        public List<Uzytkownik> GetUsersID()
+        public void GetUsersID()
         {
+            Users = new List<Uzytkownik>();
+
             var q = (from p in SrtrToZwsiron
                      select
                          new Uzytkownik
                          {
-                             IdSrtr = p.IdUzytSrtr
+                             IdSrtr = p.IdUzytSrtr,
+
                          }
                     ).Distinct(new UsersComparer()).ToList<Uzytkownik>();
 
-            return (List<Uzytkownik>)q;
+            Users = q;
         }
-        public List<GrupaRodzajowaGusSRTR> GetGrupaGus()
+        public void GetGrupaGus()
         {
+            GrGus = new List<GrupaRodzajowaGusSRTR>();
+
             var q = (from p in SrtrToZwsiron
                      select
                          new GrupaRodzajowaGusSRTR
@@ -267,7 +319,7 @@ namespace Migrator.Services
                          }
                     ).Distinct(new GrupaGusComparer()).ToList<GrupaRodzajowaGusSRTR>();
 
-            return (List<GrupaRodzajowaGusSRTR>)q;
+            GrGus = q;
         }
         private bool CzyJimPoprawny(SrtrToZwsiron srtrToZwsiron)
         {
@@ -347,9 +399,9 @@ namespace Migrator.Services
             SrtrToZwsiron.Clear();
             Kartoteka.Clear();
             KartotekaZlik.Clear();
-            Users.Clear();
-            GrGus.Clear();
-            Wykaz.Clear();
+            if(Users != null) Users.Clear();
+            if (GrGus != null) GrGus.Clear();
+            if (Wykaz != null) Wykaz.Clear();
         }
     }
 }

@@ -196,5 +196,10 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             return MagmatEWPBPages.MagJimData.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

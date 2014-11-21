@@ -24,6 +24,7 @@ namespace Migrator.ViewModel
         private IFileMagmatEwpbService _fMagmatSrtrService;
         private IFileSigmatService _fSigmatService;
         private IFileZestawienieService _fZestawienieService;
+        private Modul modul;
         #endregion //Fields
 
         #region Constructor
@@ -138,129 +139,84 @@ namespace Migrator.ViewModel
         {
             // Mega chujowy kod, ale burdel w MON mnie do tego zmusił
             // Praca w MON jest do dupy
-            SrtrState st;
             MagmatEwpbState magSt;
             ZestawienieState zestSt;
-            switch (this.CurrentPage.GetPageName())
+            switch (modul)
             {
-                #region SRTR
-                case "SrtrUserConversion":
-                    st = new SrtrState
-                    {
-                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
-                        ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
-                        ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
-                        ViewName = "SrtrUserConversion"
-                    };
-                    SaveSrtrProjectFile<SrtrState>(st);
+                case Modul.SRTR:
+
+                    SendMessageToCurrentPage();
+                    _fSrtrToZwsironService.ViewName = this.CurrentPage.GetPageName();
+                    SaveProjectFile<SrtrState>(_fSrtrToZwsironService.SrtrState);
                     break;
-                case "SrtrGroupGus":
-                    st = new SrtrState
-                    {
-                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
-                        ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
-                        ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
-                        ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
-                        ViewName = "SrtrGroupGus"
-                    };
-                    SaveSrtrProjectFile<SrtrState>(st);
-                    break;
-                case "SrtrWykaz":
-                    st = new SrtrState
-                    {
-                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
-                        ListWykazIlosciowy = ViewModelLocator.SrtrLoadWykazViewModel.ListWykazIlosciowySRTR,
-                        ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
-                        ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
-                        ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
-                        ViewName = "SrtrWykaz"
-                    };
-                    SaveSrtrProjectFile<SrtrState>(st);
-                    break;
-                case "SrtrJim":
-                    st = new SrtrState
-                    {
-                        ListWynik = _fSrtrToZwsironService.SrtrToZwsiron,
-                        ListWykazIlosciowy = ViewModelLocator.SrtrJimViewModel.ListWykazIlosciowySRTR,
-                        ListGrupaGus = ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR,
-                        ListUzytkownik = ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy,
-                        ListKartoteka = ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka,
-                        ListKartotekaZlik = ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka,
-                        ViewName = "SrtrJim"
-                    };
-                    SaveSrtrProjectFile<SrtrState>(st);
-                    break;
-                #endregion
-                #region MAGMAT EWPB
-                case "MagFillData":
-                    magSt = new MagmatEwpbState
-                    {
-                        ViewName = "MagFillData",
-                        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
-                    };
-                    SaveSrtrProjectFile<MagmatEwpbState>(magSt);
-                    break;
-                case "MagFillDictionary":
-                    magSt = new MagmatEwpbState
-                    {
-                        ViewName = "MagFillDictionary",
-                        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                        ListSigmat = _fSigmatService.GetMaterialy(),
-                        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
-                        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
-                    };
-                    SaveSrtrProjectFile<MagmatEwpbState>(magSt);
-                    break;
-                case "MagJimData":
-                    magSt = new MagmatEwpbState
-                    {
-                        ViewName = "MagJimData",
-                        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                        ListSigmat = _fSigmatService.GetMaterialy(),
-                        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
-                        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk,
-                        ListAmunicja = _fSigmatService.GetAmunicja(),
-                        ListPaliwa = _fSigmatService.GetPaliwa(),
-                        ListKat = _fSigmatService.GetKat(),
-                        ListMund = _fSigmatService.GetMund(),
-                        ListZywnosc = _fSigmatService.GetZywnosc(),
-                        ListJim = ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy
-                    };
-                    SaveSrtrProjectFile<MagmatEwpbState>(magSt);
-                    break;
-                #endregion
-                #region ZESTAWIENIE
-                case "ZestawienieLoadFiles":
-                    zestSt = new ZestawienieState
-                    {
-                        ViewName = "ZestawienieLoadFiles",
-                        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
-                        ListZestService = _fZestawienieService.GetZestawienie(),
-                        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
-                    };
-                    SaveSrtrProjectFile<ZestawienieState>(zestSt);
-                    break;
-                case "ZestawienieJimData":
-                    zestSt = new ZestawienieState
-                    {
-                        ViewName = "ZestawienieJimData",
-                        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
-                        ListZestService = _fZestawienieService.GetZestawienie(),
-                        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
-                    };
-                    SaveSrtrProjectFile<ZestawienieState>(zestSt);
-                    break;
-                #endregion
+
+                //#region MAGMAT EWPB
+                //case "MagFillData":
+                //    magSt = new MagmatEwpbState
+                //    {
+                //        ViewName = "MagFillData",
+                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
+                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
+                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
+                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
+                //    };
+                //    SaveProjectFile<MagmatEwpbState>(magSt);
+                //    break;
+                //case "MagFillDictionary":
+                //    magSt = new MagmatEwpbState
+                //    {
+                //        ViewName = "MagFillDictionary",
+                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
+                //        ListSigmat = _fSigmatService.GetMaterialy(),
+                //        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
+                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
+                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
+                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
+                //    };
+                //    SaveProjectFile<MagmatEwpbState>(magSt);
+                //    break;
+                //case "MagJimData":
+                //    magSt = new MagmatEwpbState
+                //    {
+                //        ViewName = "MagJimData",
+                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
+                //        ListSigmat = _fSigmatService.GetMaterialy(),
+                //        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
+                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
+                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
+                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk,
+                //        ListAmunicja = _fSigmatService.GetAmunicja(),
+                //        ListPaliwa = _fSigmatService.GetPaliwa(),
+                //        ListKat = _fSigmatService.GetKat(),
+                //        ListMund = _fSigmatService.GetMund(),
+                //        ListZywnosc = _fSigmatService.GetZywnosc(),
+                //        ListJim = ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy
+                //    };
+                //    SaveProjectFile<MagmatEwpbState>(magSt);
+                //    break;
+                //#endregion
+                //#region ZESTAWIENIE
+                //case "ZestawienieLoadFiles":
+                //    zestSt = new ZestawienieState
+                //    {
+                //        ViewName = "ZestawienieLoadFiles",
+                //        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
+                //        ListZestService = _fZestawienieService.GetZestawienie(),
+                //        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
+                //    };
+                //    SaveProjectFile<ZestawienieState>(zestSt);
+                //    break;
+                //case "ZestawienieJimData":
+                //    zestSt = new ZestawienieState
+                //    {
+                //        ViewName = "ZestawienieJimData",
+                //        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
+                //        ListZestService = _fZestawienieService.GetZestawienie(),
+                //        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
+                //    };
+                //    SaveProjectFile<ZestawienieState>(zestSt);
+                //    break;
+                //#endregion
             }
         }
 
@@ -268,20 +224,20 @@ namespace Migrator.ViewModel
         {
             if (this.CurrentPage != null)
             {
-                switch (this.CurrentPage.GetPageName())
+                switch (modul)
                 {
-                    case "SrtrLoadKartoteka":
+                    case Modul.SRTR:
                         var srtr = LoadProjectFile<SrtrState>();
                         LoadSrtr(srtr);
                         break;
-                    case "MagChooseType":
-                        var magmat = LoadProjectFile<MagmatEwpbState>();
-                        LoadMagmatEwpb(magmat);
-                        break;
-                    case "ZestawienieLoadFiles":
-                        var zestawienie = LoadProjectFile<ZestawienieState>();
-                        LoadZestawienie(zestawienie);
-                        break;
+                    //case "MagChooseType":
+                    //    var magmat = LoadProjectFile<MagmatEwpbState>();
+                    //    LoadMagmatEwpb(magmat);
+                    //    break;
+                    //case "ZestawienieLoadFiles":
+                    //    var zestawienie = LoadProjectFile<ZestawienieState>();
+                    //    LoadZestawienie(zestawienie);
+                    //    break;
                 }
             }
 
@@ -292,42 +248,8 @@ namespace Migrator.ViewModel
         {
             if (stan != null)
             {
-                switch (stan.ViewName)
-                {
-                    #region SRTR
-                    case "SrtrUserConversion":
-                        ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
-                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
-                        break;
-
-                    case "SrtrGroupGus":
-                        ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
-                        ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
-                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
-                        break;
-                    case "SrtrWykaz":
-                        ViewModelLocator.SrtrLoadWykazViewModel.ListWykazIlosciowySRTR = stan.ListWykazIlosciowy;
-                        ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
-                        ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
-                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
-                        break;
-                    case "SrtrJim":
-                        ViewModelLocator.SrtrJimViewModel.ListWykazIlosciowySRTR = stan.ListWykazIlosciowy;
-                        ViewModelLocator.SrtrLoadWykazViewModel.ListWykazIlosciowySRTR = stan.ListWykazIlosciowy;
-                        ViewModelLocator.SrtrGroupGusViewModel.ListGrGusSRTR = stan.ListGrupaGus;
-                        ViewModelLocator.SrtrUsersConversionViewModel.ListUzytkownicy = stan.ListUzytkownik;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListKartoteka = stan.ListKartoteka;
-                        ViewModelLocator.SrtrLoadFilesViewModel.ListNZlikKartoteka = stan.ListKartotekaZlik;
-                        _fSrtrToZwsironService.SrtrToZwsiron = stan.ListWynik;
-                        break;
-                    #endregion
-                }
+                _fSrtrToZwsironService.SrtrState = stan;
+                this.CurrentPage.LoadData();
             }
         }
         private void LoadMagmatEwpb(MagmatEwpbState stan)
@@ -572,6 +494,7 @@ namespace Migrator.ViewModel
             {
                 case Modul.SRTR:
                     {
+                        modul = Modul.SRTR;
                         var pages = new List<MainWizardPageViewModelBase>();
 
                         pages.Add(ViewModelLocator.SrtrLoadFilesViewModel);
@@ -586,6 +509,7 @@ namespace Migrator.ViewModel
                     }
                 case Modul.MAGMAT_EWPB:
                     {
+                        modul = Modul.MAGMAT_EWPB;
                         var pages = new List<MainWizardPageViewModelBase>();
 
                         pages.Add(ViewModelLocator.MagmatEWPBChooseTypeViewModel);
@@ -599,6 +523,7 @@ namespace Migrator.ViewModel
                     }
                 case Modul.ZESTAWIENIE:
                     {
+                        modul = Modul.ZESTAWIENIE;
                         var pages = new List<MainWizardPageViewModelBase>();
 
                         pages.Add(ViewModelLocator.ZestawienieLoadFilesViewModel);
@@ -659,7 +584,7 @@ namespace Migrator.ViewModel
                     Messenger.Default.Send<Message, SrtrGroupGusViewModel>(new Message("zapisz dane"));
                     break;
                 case "SrtrWykaz":
-                    Messenger.Default.Send<Message, SrtrLoadWykazViewModel>(new Message("synchronizuj dane"));
+                    Messenger.Default.Send<Message, SrtrLoadWykazViewModel>(new Message("zapisz dane"));
                     break;
                 case "SrtrJim":
                     Messenger.Default.Send<Message, SrtrJimViewModel>(new Message("zapisz dane"));
@@ -696,7 +621,7 @@ namespace Migrator.ViewModel
 
         #endregion // Private Helpers
 
-        private void SaveSrtrProjectFile<T>(T stan)
+        private void SaveProjectFile<T>(T stan)
         {
             string _fileName = string.Format("Projekt_{0}", DateTime.Now.ToShortDateString());
             SaveFileDialog saveFile = new SaveFileDialog() { FileName = _fileName, DefaultExt = ".dat", Filter = "Plik z danymi (.dat)|*.dat" };

@@ -150,5 +150,10 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         {
             return ZestawieniePages.ZestawienieJimData.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

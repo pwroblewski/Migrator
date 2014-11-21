@@ -4,42 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Migrator.Model;
+using Migrator.Model.State;
 
 namespace Migrator.Services
 {
     public interface ISRTRService
     {
         #region Properties
-        List<SrtrToZwsiron> SrtrToZwsiron
-        {
-            get;
-            set;
-        }
-        List<KartotekaSRTR> Kartoteka
-        {
-            get;
-            set;
-        }
-        List<KartotekaSRTR> KartotekaZlik
-        {
-            get;
-            set;
-        }
-        List<Uzytkownik> Users
-        {
-            get;
-            set;
-        }
-        List<GrupaRodzajowaGusSRTR> GrGus
-        {
-            get;
-            set;
-        }
-        List<WykazIlosciowy> Wykaz
-        {
-            get;
-            set;
-        }
+        SrtrState SrtrState { get; set; }
+        string ViewName { get; set; }
+        List<SrtrToZwsiron> SrtrToZwsiron { get; set; }
+        List<KartotekaSRTR> Kartoteka { get; set; }
+        List<KartotekaSRTR> KartotekaZlik { get; set; }
+        List<Uzytkownik> Users { get; set; }
+        List<GrupaRodzajowaGusSRTR> GrGus { get; set; }
+        List<WykazIlosciowy> Wykaz { get; set; }
         #endregion
 
         #region Kartoteka
@@ -72,8 +51,8 @@ namespace Migrator.Services
         void AddUzytkownicy(List<Uzytkownik> listUzytkownicy);
         void AddGrupaGus(List<GrupaRodzajowaGusSRTR> listGrupaGus);
         void AddWykaz(List<WykazIlosciowy> listWykaz);
-        List<Uzytkownik> GetUsersID();
-        List<GrupaRodzajowaGusSRTR> GetGrupaGus();
+        void GetUsersID();
+        void GetGrupaGus();
         string SaveFile();
         void Clean();
     }

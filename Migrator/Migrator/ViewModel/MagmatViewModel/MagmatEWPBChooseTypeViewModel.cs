@@ -179,5 +179,10 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             return Helpers.MagmatEWPBPages.MagChooseType.ToString();
         }
+
+        internal override void LoadData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
