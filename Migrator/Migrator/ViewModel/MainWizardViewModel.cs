@@ -22,13 +22,13 @@ namespace Migrator.ViewModel
         #region Fields
         private ISRTRService _fSrtrToZwsironService;
         private IMAG_EWPBService _fMagmatEwpbService;
-        private IFileZestawienieService _fZestawienieService;
+        private IZestawienieService _fZestawienieService;
         private Modul modul;
         #endregion //Fields
 
         #region Constructor
 
-        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fMagmatEwpbService, IFileZestawienieService fZestawienieService)
+        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fMagmatEwpbService, IZestawienieService fZestawienieService)
         {
             this.CurrentPage = this.Pages[0];
 
@@ -153,8 +153,8 @@ namespace Migrator.ViewModel
 
                 case Modul.ZESTAWIENIE:
                     SendMessageToCurrentPage();
-                    //_fZestawienieService.ViewName = this.CurrentPage.GetPageName();
-                    //SaveProjectFile<ZestawienieState>(_fZestawienieService.ZestawienieState);
+                    _fZestawienieService.ViewName = this.CurrentPage.GetPageName();
+                    SaveProjectFile<ZestawienieState>(_fZestawienieService.ZestawienieState);
                     break;
             }
         }
@@ -201,7 +201,7 @@ namespace Migrator.ViewModel
         {
             if (stan != null)
             {
-                //_fZestawienieService.ZestawienieState = stan;
+                _fZestawienieService.ZestawienieState = stan;
                 this.CurrentPage.LoadData();
             }
         }
@@ -240,6 +240,9 @@ namespace Migrator.ViewModel
                         return true;
 
                     case "ZestawienieJimData":
+                        return true;
+
+                    case "ZestawieniePlikWynikowy":
                         return true;
                     #endregion
                     default:
@@ -504,11 +507,13 @@ namespace Migrator.ViewModel
                 #endregion
                 #region ZESTAWIENIE
                 case "ZestawienieLoadFiles":
-                    Messenger.Default.Send<Message, ZestawienieJimViewModel>(new Message("synchronizuj dane"));
+                    Messenger.Default.Send<Message, ZestawienieLoadFilesViewModel>(new Message("zapisz dane"));
                     break;
                 case "ZestawienieJimData":
                     Messenger.Default.Send<Message, ZestawienieJimViewModel>(new Message("zapisz dane"));
-                    Messenger.Default.Send<Message, ZestawieniePlikWynikowyViewModel>(new Message("synchronizuj dane"));
+                    break;
+                case "ZestawieniePlikWynikowy":
+                    Messenger.Default.Send<Message, ZestawieniePlikWynikowyViewModel>(new Message("zapisz dane"));
                     break;
                 #endregion
             }

@@ -18,17 +18,15 @@ namespace Migrator.ViewModel.ZestawienieViewModel
     {
         #region Fields
 
-        private IFileZestawienieService _fZestawienieService;
-        private IFileJimService _fJimService;
+        private IZestawienieService _fZestawienieService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public ZestawienieJimViewModel(IFileZestawienieService fZestawienieService, IFileJimService fJimService)
+        public ZestawienieJimViewModel(IZestawienieService fZestawienieService)
         {
             _fZestawienieService = fZestawienieService;
-            _fJimService = fJimService;
 
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
             Messenger.Default.Register<Message>(this, HandleMessage);
@@ -95,29 +93,29 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         private void HandleMessage(Message msg)
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
-                ListZestawienieKlas = _fZestawienieService.GetZestawienieKlas();
+            {
+                ListZestawienieKlas = _fZestawienieService.ZestawieniaKlas;
+            }
             if (msg.MessageText.Equals("zapisz dane"))
-                _fZestawienieService.ZapiszZestawienieKlas(ListZestawienieKlas);
+            {
+                _fZestawienieService.ZestawieniaKlas = ListZestawienieKlas;
+
+                Messenger.Default.Send<Message, ZestawieniePlikWynikowyViewModel>(new Message("synchronizuj dane"));
+            }
         }
 
         private void WczytajPlikJim()
         {
-            var path = _fZestawienieService.OpenFileDialog();
-
-            if (path!=null)
-                JimPath = path[0];
-            else
-                JimPath = null;
-
+            JimPath = _fZestawienieService.OpenJimFile();
             if (!string.IsNullOrEmpty(JimPath))
             {
                 try
                 {
                     // Czytanie pliku
-                    ListZestawienieKlas = _fZestawienieService.AddJimData(JimPath);
+                    _fZestawienieService.AddJimData(JimPath);
+                    ListZestawienieKlas = _fZestawienieService.ZestawieniaKlas;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
-                    Messenger.Default.Send<Message, ZestawieniePlikWynikowyViewModel>(new Message("synchronizuj dane"));
                 }
                 catch (Exception ex)
                 {
@@ -129,7 +127,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
 
         private void UtworzPlik()
         {
-            string msg = _fJimService.SaveFileDialog(ListZestawienieKlas);
+            string msg = _fZestawienieService.SaveJimFile();
 
             Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msg));
         }

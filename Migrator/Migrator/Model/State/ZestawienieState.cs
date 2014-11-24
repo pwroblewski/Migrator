@@ -9,8 +9,7 @@ namespace Migrator.Model.State
     public class ZestawienieState
     {
         public string ViewName { get; set; }
-        public ObservableCollection<Zestawienie> ListZestawienie { get; set; }
-        public List<Zestawienie> ListZestService { get; set; }
-        public List<ZestawienieKlas> ListZestKlasService { get; set; }
+        public List<Zestawienie> Zestawienia { get; set; }
+        public List<ZestawienieKlas> ZestawieniaKlas { get; set; }
     }
 }

@@ -153,10 +153,9 @@
     <Compile Include="Interfaces\IDBJmService.cs" />
     <Compile Include="Interfaces\IDBService.cs" />
     <Compile Include="Interfaces\IDBUserService.cs" />
-    <Compile Include="Interfaces\IFileJimService.cs" />
     <Compile Include="Interfaces\IFileService.cs" />
     <Compile Include="Interfaces\IMAG_EWPBService.cs" />
-    <Compile Include="Interfaces\IFileZestawienieService.cs" />
+    <Compile Include="Interfaces\IZestawienieService.cs" />
     <Compile Include="Interfaces\ISRTRService.cs" />
     <Compile Include="Model\Amortyzacja.cs" />
     <Compile Include="Model\GrupaAktywow.cs" />
@@ -187,11 +186,10 @@
     <Compile Include="Services\DBGrupaAktywowService.cs" />
     <Compile Include="Services\DBJmService.cs" />
     <Compile Include="Services\DBUserService.cs" />
-    <Compile Include="Services\FileJimService.cs" />
     <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_Jednostka.cs" />
     <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_Magazyn.cs" />
     <Compile Include="Services\MAG_EWPBService.cs" />
-    <Compile Include="Services\FileZestawienieService.cs" />
+    <Compile Include="Services\ZestawienieService.cs" />
     <Compile Include="Services\MAGMAT_EWPB\MAG_EWPB_File.cs" />
     <Compile Include="Services\SRTRService.cs" />
     <Compile Include="Services\SRTR\SRTR_GrGus.cs" />
@@ -199,6 +197,7 @@
     <Compile Include="Services\SRTR\SRTR_Kartoteka.cs" />
     <Compile Include="Services\SRTR\SRTR_Users.cs" />
     <Compile Include="Services\SRTR\SRTR_WykazIlosciowy.cs" />
+    <Compile Include="Services\ZESTAWIENIE\Zestawienie_File.cs" />
     <Compile Include="ViewModel\DictionariesViewModel\DictionaryAmortyzacjaViewModel.cs" />
     <Compile Include="ViewModel\DictionariesViewModel\DictionaryGrupyGusViewModel.cs" />
     <Compile Include="ViewModel\DictionariesViewModel\DictionaryJednostkiMiaryViewModel.cs" />

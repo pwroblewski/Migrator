@@ -16,11 +16,9 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        //private IFileMagmatEwpbService _fMagmatEwpbService;
         private IMAG_EWPBService _fMagEwpbService;
 
         string msgSucces = "Plik wczytano poprawnie.";
-
         #endregion
 
         #region Constructor

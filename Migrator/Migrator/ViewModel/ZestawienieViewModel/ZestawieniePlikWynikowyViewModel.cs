@@ -14,13 +14,13 @@ namespace Migrator.ViewModel.ZestawienieViewModel
     {
         #region Fields
 
-        private IFileZestawienieService _fZestawienieService;
+        private IZestawienieService _fZestawienieService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public ZestawieniePlikWynikowyViewModel(IFileZestawienieService fZestawienieService)
+        public ZestawieniePlikWynikowyViewModel(IZestawienieService fZestawienieService)
         {
             _fZestawienieService = fZestawienieService;
 
@@ -66,7 +66,13 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         private void HandleMessage(Message msg)
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
-                ListZestawienieKlas = _fZestawienieService.GetZestawienieKlas();
+            {
+                ListZestawienieKlas = _fZestawienieService.ZestawieniaKlas;
+            }
+            if(msg.MessageText.Equals("zapisz dane"))
+            {
+                _fZestawienieService.ZestawieniaKlas = ListZestawienieKlas;
+            }
         }
 
         private void CallCleanUp(CleanUp cu)

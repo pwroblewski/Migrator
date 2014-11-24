@@ -45,7 +45,7 @@ namespace Migrator.ViewModel
             {
                 SimpleIoc.Default.Register<ISRTRService, SRTRService>();
                 SimpleIoc.Default.Register<IMAG_EWPBService, MAG_EWPBService>();
-                SimpleIoc.Default.Register<IFileZestawienieService, FileZestawienieService>();
+                SimpleIoc.Default.Register<IZestawienieService, ZestawienieService>();
                 SimpleIoc.Default.Register<IDBUserService, DBUserService>();
                 SimpleIoc.Default.Register<IDBAmorService, DBAmorService>();
                 SimpleIoc.Default.Register<IDBJmService, DBJmService>();

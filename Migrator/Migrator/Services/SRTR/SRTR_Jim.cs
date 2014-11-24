@@ -76,6 +76,53 @@ namespace Migrator.Services.SRTR
 
             return temp;
         }
+        public static List<ZestawienieKlas> AddJimData(string fileJimPath, List<ZestawienieKlas> listZestawienieKlas, List<Zestawienie> listZestawienie)
+        {
+            using (StreamReader sr = new StreamReader(fileJimPath, Encoding.Default))
+            {
+                string line = null;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    foreach (var zestawienie in listZestawienieKlas)
+                    {
+                        if (zestawienie.Jim.Equals(line.Substring(0, 18).Trim()))
+                        {
+                            zestawienie.Jim = line.Substring(0, 18);
+                            zestawienie.KlasaZaop = line.Substring(18, 1);
+                            zestawienie.Nazwa = line.Substring(19, 40);
+                            zestawienie.Jm = line.Substring(59, 3);
+                            zestawienie.StaryNrInd = line.Substring(62, 18);
+                            zestawienie.GrupaKlasaKwo = line.Substring(80, 9);
+                            zestawienie.Gestor = line.Substring(89, 18);
+                            zestawienie.KlasyfikatorHier = line.Substring(107, 18);
+                            zestawienie.WagaBrutto = line.Substring(125, 17);
+                            zestawienie.JednWagi = line.Substring(142, 3);
+                            zestawienie.WagaNetto = line.Substring(145, 17);
+                            zestawienie.Objetosc = line.Substring(162, 17);
+                            zestawienie.JednObj = line.Substring(179, 3);
+                            zestawienie.Wymiary = line.Substring(182, 32);
+                            zestawienie.KodCpv = line.Substring(214, 18);
+                            zestawienie.WyroznikCpv = line.Substring(232, 2);
+                            zestawienie.Norma = line.Substring(234, 18);
+                            zestawienie.WyroznikProdNiebezp = line.Substring(252, 3);
+                            zestawienie.KlasyfikacjaPartii = line.Substring(255);
+                        }
+                    }
+
+                    listZestawienie.ForEach(x =>
+                    {
+                        if (x.Jim.Equals(line.Substring(0, 18).Trim()))
+                            x.Material = line.Substring(19, 40);
+                    });
+                }
+            }
+
+            List<ZestawienieKlas> temp = new List<ZestawienieKlas>();
+            temp.AddRange(listZestawienieKlas);
+
+            return temp;
+        }
         public static string SaveFileDialog(List<WykazIlosciowy> listWykazIlosciowy)
         {
             string success = "Plik zapisano poprawnie.";
@@ -137,6 +184,51 @@ namespace Migrator.Services.SRTR
                         List<string> temp = new List<string>();
 
                         foreach (MagmatEwpb material in listMaterialy)
+                        {
+                            if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
+                            {
+                                string line = material.Jim.Substring(6, 7);
+                                if (!temp.Contains(line))
+                                {
+                                    temp.Add(line);
+                                    writer.WriteLine(line);
+                                }
+
+                                writer.Flush();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return string.Empty;
+                    }
+                    finally
+                    {
+                        writeStream.Flush();
+                        writeStream.Close();
+                    }
+                }
+            }
+
+            return success;
+        }
+        public static string SaveFileDialog(List<ZestawienieKlas> listZestawieniaKlas)
+        {
+            string success = "Plik zapisano poprawnie.";
+
+            SaveFileDialog saveFile = new SaveFileDialog() { FileName = "wykaz_JIM", DefaultExt = ".text", Filter = "Dokumenty tekstowe (.txt)|*.txt" };
+
+            if (saveFile.ShowDialog() == true)
+            {
+                using (Stream writeStream = saveFile.OpenFile())
+                {
+                    try
+                    {
+                        StreamWriter writer = new StreamWriter(writeStream);
+                        List<string> temp = new List<string>();
+
+                        foreach (ZestawienieKlas material in listZestawieniaKlas)
                         {
                             if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
                             {

@@ -18,19 +18,21 @@ namespace Migrator.ViewModel.ZestawienieViewModel
     {
         #region Fields
 
-        private IFileZestawienieService _fZestawienieService;
+        private IZestawienieService _fZestawienieService;
 
+        string msgSucces = "Plik wczytano poprawnie.";
         #endregion //Fields
 
         #region Constructor
 
-        public ZestawienieLoadFilesViewModel(IFileZestawienieService fZestawienieService)
+        public ZestawienieLoadFilesViewModel(IZestawienieService fZestawienieService)
         {
             _fZestawienieService = fZestawienieService;
 
             SelectedCells = new List<DataGridCellInfo>();
             SelectedMaterialy = new List<Zestawienie>();
 
+            Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
         }
 
@@ -38,8 +40,8 @@ namespace Migrator.ViewModel.ZestawienieViewModel
 
         #region Properties
 
-        private ObservableCollection<Zestawienie> _listZestawienie;
-        public ObservableCollection<Zestawienie> ListZestawienie
+        private List<Zestawienie> _listZestawienie;
+        public List<Zestawienie> ListZestawienie
         {
             get { return _listZestawienie; }
             set { _listZestawienie = value; RaisePropertyChanged(() => ListZestawienie); }
@@ -190,7 +192,15 @@ namespace Migrator.ViewModel.ZestawienieViewModel
         #endregion
 
         #region Methods
+        private void HandleMessage(Message msg)
+        {
+            if (msg.MessageText.Equals("zapisz dane"))
+            {
+                _fZestawienieService.Zestawienia = ListZestawienie;
 
+                Messenger.Default.Send<Message, ZestawienieJimViewModel>(new Message("synchronizuj dane"));
+            }
+        }
         private void WczytajPlik()
         {
             try
@@ -198,11 +208,10 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                 string[] PlikPath = _fZestawienieService.OpenFileDialog();
                 if (PlikPath != null && PlikPath.Any())
                 {
-                    ListZestawienie = ExtensionMethods.ToObservableCollection<Zestawienie>(_fZestawienieService.GetAll(PlikPath));
+                    _fZestawienieService.LoadData(PlikPath);
+                    ListZestawienie = _fZestawienieService.Zestawienia;
 
-                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie wczytano pliki"));
-                    //Messenger.Default.Send<Message, ZestawienieJimViewModel>(new Message("synchronizuj dane"));
-                    //Messenger.Default.Send<Message, ZestawieniePlikWynikowyViewModel>(new Message("synchronizuj dane"));
+                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msgSucces));
                 }
             }
             catch (Exception ex)
@@ -287,7 +296,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
 
         }
 
-        private ObservableCollection<Zestawienie> PrzypiszListe(List<Zestawienie> list)
+        private List<Zestawienie> PrzypiszListe(List<Zestawienie> list)
         {
             bool znalazl = false;
             List<Zestawienie> temp = new List<Zestawienie>();
@@ -307,7 +316,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                     temp.Add(zestawienie);
             }
 
-            return ExtensionMethods.ToObservableCollection<Zestawienie>(temp);
+            return temp;
         }
 
         private bool CzyMozeUzupelnicDzial()
@@ -349,7 +358,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                         temp.Add(zest);
                 }
 
-                ListZestawienie = ExtensionMethods.ToObservableCollection<Zestawienie>(temp);
+                ListZestawienie = temp;
             }
             else
             {
@@ -360,7 +369,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                     zest.Dzial = DzialText;
                     tempList.Add(zest);
                 }
-                ListZestawienie = ExtensionMethods.ToObservableCollection<Zestawienie>(tempList);
+                ListZestawienie = tempList;
             }
         }
 
@@ -393,7 +402,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                         temp.Add(zest);
                 }
 
-                ListZestawienie = ExtensionMethods.ToObservableCollection<Zestawienie>(temp);
+                ListZestawienie = temp;
             }
             else
             {
@@ -404,7 +413,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
                     zest.MaterialKonto = DzialText;
                     tempList.Add(zest);
                 }
-                ListZestawienie = ExtensionMethods.ToObservableCollection<Zestawienie>(tempList);
+                ListZestawienie = tempList;
             }
         }
 
@@ -435,7 +444,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
 
         internal override void LoadData()
         {
-            throw new NotImplementedException();
+            ListZestawienie = _fZestawienieService.Zestawienia;
         }
     }
 }

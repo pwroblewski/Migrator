@@ -145,7 +145,7 @@ namespace Migrator.ViewModel.DictionariesViewModel
 
         #region Private Methods
 
-        private async void WczytajSlownikUzytkownikow()
+        private void WczytajSlownikUzytkownikow()
         {
             //SlUserPath = _fUserService.OpenFileDialog();
             //if (!string.IsNullOrEmpty(SlUserPath))
