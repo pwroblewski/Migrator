@@ -16,17 +16,15 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IMAG_EWPBService _fSigmatService;
-        private IFileJimService _fJimService;
+        private IMAG_EWPBService _fMagEwpbService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBJimDataViewModel(IMAG_EWPBService fSigmatService, IFileJimService fJimService)
+        public MagmatEWPBJimDataViewModel(IMAG_EWPBService fMagEwpbService)
         {
-            _fSigmatService = fSigmatService;
-            _fJimService = fJimService;
+            _fMagEwpbService = fMagEwpbService;
 
             Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
@@ -35,13 +33,6 @@ namespace Migrator.ViewModel.MagmatViewModel
         #endregion //Constructor
 
         #region Properties
-
-        private MagmatEWPB _typWydruku;
-        public MagmatEWPB TypWydruku
-        {
-            get { return _typWydruku; }
-            set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
-        }
 
         private List<MagmatEwpb> _listMaterialy;
         public List<MagmatEwpb> ListMaterialy
@@ -121,47 +112,53 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                TypWydruku = (MagmatEWPB)msg.MessageObject;
+                ListMaterialy = _fMagEwpbService.Materialy;
 
-                switch (TypWydruku)
-                {
-                    case MagmatEWPB.Magmat_305:
-                        WartoscVis = true;
-                        CenaVis = true;
-                        UserVis = false;
-                        break;
-                    case MagmatEWPB.EWPB_319_320:
-                        WartoscVis = false;
-                        CenaVis = false;
-                        UserVis = true;
-                        break;
-                    case MagmatEWPB.EWPB_351:
-                        WartoscVis = true;
-                        UserVis = false;
-                        CenaVis = false;
-                        break;
-                    default:
-                        break;
-                }
-
-                if(ListMaterialy == null)
-                    ListMaterialy = _fSigmatService.GetMaterialy();
+                MsgToVisibility(_fMagEwpbService.TypWydruku);
             }
             if (msg.MessageText.Equals("zapisz dane"))
             {
-                _fSigmatService.AddJim(ListMaterialy, TypWydruku);
-                Messenger.Default.Send<Message, MagmatEWPBSigmatViewModel>(new Message("synchronizuj dane", TypWydruku));
+                _fMagEwpbService.Materialy = ListMaterialy;
+                _fMagEwpbService.AddJim();
+                
+                Messenger.Default.Send<Message, MagmatEWPBSigmatViewModel>(new Message("synchronizuj dane"));
+            }
+        }
+
+        private void MsgToVisibility(MagmatEWPB typ)
+        {
+            switch (typ)
+            {
+                case MagmatEWPB.Magmat_305:
+                    WartoscVis = true;
+                    CenaVis = true;
+                    UserVis = false;
+                    break;
+                case MagmatEWPB.EWPB_319_320:
+                    WartoscVis = false;
+                    CenaVis = false;
+                    UserVis = true;
+                    break;
+                case MagmatEWPB.EWPB_351:
+                    WartoscVis = true;
+                    UserVis = false;
+                    CenaVis = false;
+                    break;
+                default:
+                    break;
             }
         }
 
         private void WczytajPlikJim()
         {
-            WynikJimPath = _fJimService.OpenFileDialog();
+            WynikJimPath = _fMagEwpbService.OpenJimFile();
             if (!string.IsNullOrEmpty(WynikJimPath))
             {
                 try
                 {
-                    ListMaterialy = _fJimService.AddJimData(WynikJimPath, ListMaterialy);
+                    // Czytanie pliku
+                    _fMagEwpbService.AddJimData(WynikJimPath);
+                    ListMaterialy = _fMagEwpbService.Materialy;
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }
@@ -175,7 +172,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void UtworzPlik()
         {
-            string msg = _fJimService.SaveFileDialog(ListMaterialy);
+            string msg = _fMagEwpbService.SaveJimFile();
 
             Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msg));
         }

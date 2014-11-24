@@ -161,7 +161,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                 if (msg.MessageText.Equals("zapisz dane"))
                 {
                     _fSrtrToZwsironService.Users = ListUzytkownicy;
-                    _fSrtrToZwsironService.AddUzytkownicy(ListUzytkownicy);
+                    _fSrtrToZwsironService.AddUzytkownicy();
 
                     Messenger.Default.Send<Message, SrtrGroupGusViewModel>(new Message("synchronizuj dane"));
                 }

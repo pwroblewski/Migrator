@@ -17,22 +17,14 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        //private IFileMagmatEwpbService _fMagmatEwpbService;
-        //private IFileJednostkaService _fJednostkaService;
-        //private IFileMagazynService _fMagazynService;
-        //private IFileUserService _fUserService;
         private IMAG_EWPBService _fMagEwpbService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBFillDictionaryViewModel(IFileMagmatEwpbService fMagmatEwpbService, IFileJednostkaService fJednostkaService, IFileMagazynService fMagazynService, IFileUserService fUserService, IMAG_EWPBService fMagEwpbService)
+        public MagmatEWPBFillDictionaryViewModel(IMAG_EWPBService fMagEwpbService)
         {
-            //_fMagmatEwpbService = fMagmatEwpbService;
-            //_fUserService = fUserService;
-            //_fMagazynService = fMagazynService;
-            //_fJednostkaService = fJednostkaService;
             _fMagEwpbService = fMagEwpbService;
 
             SelectedCells = new List<DataGridCellInfo>();
@@ -165,6 +157,8 @@ namespace Migrator.ViewModel.MagmatViewModel
             if (msg.MessageText.Equals("zapisz dane"))
             {
                 _fMagEwpbService.Dictionaries = ListMaterialy;
+                _fMagEwpbService.AddDictionary();
+
                 Messenger.Default.Send<Message, MagmatEWPBJimDataViewModel>(new Message("synchronizuj dane"));
             }
             if (msg.MessageText.Equals("czyść dane"))

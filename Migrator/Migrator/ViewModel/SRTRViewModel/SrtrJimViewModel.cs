@@ -98,7 +98,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (msg.MessageText.Equals("zapisz dane"))
             {
                 _fSrtrToZwsironService.Wykaz = ListWykazIlosciowySRTR;
-                _fSrtrToZwsironService.AddWykaz(ListWykazIlosciowySRTR);
+                _fSrtrToZwsironService.AddWykaz();
 
                 Messenger.Default.Send<Message, SrtrPlikWynikowyViewModel>(new Message("synchronizuj dane"));
             }

@@ -117,7 +117,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (msg.MessageText.Equals("zapisz dane"))
             {
                 _fSrtrToZwsironService.GrGus = ListGrGusSRTR;
-                _fSrtrToZwsironService.AddGrupaGus(ListGrGusSRTR);
+                _fSrtrToZwsironService.AddGrupaGus();
 
                 Messenger.Default.Send<Message, SrtrLoadWykazViewModel>(new Message("synchronizuj dane"));
             }

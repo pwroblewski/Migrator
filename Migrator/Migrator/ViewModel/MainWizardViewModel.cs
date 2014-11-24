@@ -21,7 +21,6 @@ namespace Migrator.ViewModel
     {
         #region Fields
         private ISRTRService _fSrtrToZwsironService;
-        private IFileMagmatEwpbService _fMagmatSrtrService;
         private IMAG_EWPBService _fSigmatService;
         private IFileZestawienieService _fZestawienieService;
         private Modul modul;
@@ -29,11 +28,11 @@ namespace Migrator.ViewModel
 
         #region Constructor
 
-        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IFileMagmatEwpbService fMagmatEwpbService, IMAG_EWPBService fSigmatService, IFileZestawienieService fZestawienieService)
+        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fSigmatService, IFileZestawienieService fZestawienieService)
         {
             this.CurrentPage = this.Pages[0];
+
             _fSrtrToZwsironService = fSrtrToZwsironService;
-            _fMagmatSrtrService = fMagmatEwpbService;
             _fSigmatService = fSigmatService;
             _fZestawienieService = fZestawienieService;
 
@@ -598,7 +597,7 @@ namespace Migrator.ViewModel
                     break;
                 case "MagFillData":
                     Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("zapisz dane"));
-                    Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("czyść dane"));
+                    //Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("czyść dane"));
                     break;
                 case "MagFillDictionary":
                     Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("zapisz dane"));

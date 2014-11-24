@@ -25,7 +25,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         #region Constructor
 
-        public MagmatEWPBChooseTypeViewModel(IFileMagmatEwpbService fMagmatEwpbService, IMAG_EWPBService fMagEwpbService)
+        public MagmatEWPBChooseTypeViewModel(IMAG_EWPBService fMagEwpbService)
         {
              _fMagEwpbService = fMagEwpbService;
 

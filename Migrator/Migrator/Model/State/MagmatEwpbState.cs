@@ -14,11 +14,11 @@ namespace Migrator.Model.State
         public List<MagmatEwpb> Dictionaries { get; set; }
         //public List<MagmatEwpb> MagmatEwpbService { get; set; }
         //public List<MagmatEwpb> ListSigmat { get; set; }
-        //public List<SigmatKat> ListKat { get; set; }
-        //public List<SigmatAmunicja> ListAmunicja { get; set; }
-        //public List<SigmatPaliwa> ListPaliwa { get; set; }
-        //public List<SigmatMund> ListMund { get; set; }
-        //public List<SigmatZywnosc> ListZywnosc { get; set; }
+        public List<SigmatKat> Kat { get; set; }
+        public List<SigmatAmunicja> Amunicja { get; set; }
+        public List<SigmatPaliwa> Paliwa { get; set; }
+        public List<SigmatMund> Mund { get; set; }
+        public List<SigmatZywnosc> Zywnosc { get; set; }
         //public List<MagmatEwpb> ListJim { get; set; }
     }
 }

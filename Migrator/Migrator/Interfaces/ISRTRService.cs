@@ -48,9 +48,9 @@ namespace Migrator.Services
         void AddJednostkiMiary(List<JednostkaMiary> listJM);
         void AddGrupaAktywow(List<GrupaAktywow> listGrupaAktywow);
         void AddAmortyzacja(List<Amortyzacja> listAmortyzacja);
-        void AddUzytkownicy(List<Uzytkownik> listUzytkownicy);
-        void AddGrupaGus(List<GrupaRodzajowaGusSRTR> listGrupaGus);
-        void AddWykaz(List<WykazIlosciowy> listWykaz);
+        void AddUzytkownicy();
+        void AddGrupaGus();
+        void AddWykaz();
         void GetUsersID();
         void GetGrupaGus();
         string SaveFile();

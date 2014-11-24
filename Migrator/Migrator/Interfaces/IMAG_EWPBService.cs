@@ -15,6 +15,11 @@ namespace Migrator.Services
         string ViewName { get; set; }
         List<MagmatEwpb> Materialy { get; set; }
         List<MagmatEwpb> Dictionaries { get; set; }
+        List<SigmatKat> Kat { get; set; }
+        List<SigmatAmunicja> Amunicja { get; set; }
+        List<SigmatPaliwa> Paliwa { get; set; }
+        List<SigmatMund> Mund { get; set; }
+        List<SigmatZywnosc> Zywnosc { get; set; }
         MagmatEWPB TypWydruku { get; set; }
         #endregion
 
@@ -22,33 +27,20 @@ namespace Migrator.Services
         string OpenFile(string wydruk);
         void LoadData(string path);
         #endregion
-
         #region Dictionaries
         void FillDictionaryData();
         string OpenDictionaryFile();
         void LoadDictionaryData(string path);
         #endregion
+        #region Jim
+        string SaveJimFile();
+        string OpenJimFile();
+        void AddJimData(string path);
+        #endregion
 
+        void AddDictionary();
+        void AddJim();
         string SaveFile();
-
-
-        List<SigmatKat> GetKat();
-        List<SigmatAmunicja> GetAmunicja();
-        List<SigmatMund> GetMund();
-        List<SigmatPaliwa> GetPaliwa();
-        List<SigmatZywnosc> GetZywnosc();
-        List<MagmatEwpb> GetMaterialy();
-
-        void SetKat(List<SigmatKat> listKat);
-        void SetAmunicja(List<SigmatAmunicja> listAmunicja);
-        void SetMund(List<SigmatMund> listMund);
-        void SetPaliwa(List<SigmatPaliwa> listPaliwa);
-        void SetZywnosc(List<SigmatZywnosc> listZywnosc);
-
-
-        void AddMaterial(List<MagmatEwpb> listMaterialy);
-        void AddSlownik(List<MagmatEwpb> listMaterialy, MagmatEWPB typWydruku);
-        void AddJim(List<MagmatEwpb> listMaterialy, MagmatEWPB typWydruku);
         void Clean();
     }
 }

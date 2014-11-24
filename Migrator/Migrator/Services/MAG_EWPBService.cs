@@ -14,13 +14,6 @@ namespace Migrator.Services
     {
         private MagmatEwpbState stan = new MagmatEwpbState();
 
-        List<MagmatEwpb> _listMaterialy = new List<MagmatEwpb>();
-        List<SigmatKat> _listKat = new List<SigmatKat>();
-        List<SigmatAmunicja> _listAmunicja = new List<SigmatAmunicja>();
-        List<SigmatMund> _listMund = new List<SigmatMund>();
-        List<SigmatPaliwa> _listPaliwa = new List<SigmatPaliwa>();
-        List<SigmatZywnosc> _listZywnosc = new List<SigmatZywnosc>();
-
         #region Properties
         public MagmatEwpbState MagmatEwpbState
         {
@@ -47,6 +40,31 @@ namespace Migrator.Services
             get { return stan.Dictionaries; }
             set { stan.Dictionaries = value; }
         }
+        public List<SigmatKat> Kat
+        {
+            get { return stan.Kat; }
+            set { stan.Kat = value; }
+        }
+        public List<SigmatAmunicja> Amunicja
+        {
+            get { return stan.Amunicja; }
+            set { stan.Amunicja = value; }
+        }
+        public List<SigmatMund> Mund
+        {
+            get { return stan.Mund; }
+            set { stan.Mund = value; }
+        }
+        public List<SigmatPaliwa> Paliwa
+        {
+            get { return stan.Paliwa; }
+            set { stan.Paliwa = value; }
+        }
+        public List<SigmatZywnosc> Zywnosc
+        {
+            get { return stan.Zywnosc; }
+            set { stan.Zywnosc = value; }
+        }
         #endregion
 
         #region MagmatEwpbFile
@@ -58,15 +76,6 @@ namespace Migrator.Services
         {
             Materialy = MAG_EWPB_File.LoadData(path);
             UstawTypWydruku(path);
-        }
-        private void UstawTypWydruku(string path)
-        {
-            if (path.Contains("305"))
-                TypWydruku = MagmatEWPB.Magmat_305;
-            else if (path.Contains("319"))
-                TypWydruku = MagmatEWPB.EWPB_319_320;
-            else
-                TypWydruku = MagmatEWPB.EWPB_351;
         }
         #endregion
         #region Dictionary
@@ -150,7 +159,6 @@ namespace Migrator.Services
                         });
                 });
         }
-
         private void SynchronizujDaneUzytkownikow(List<Uzytkownik> users)
         {
             Dictionaries.ForEach(x =>
@@ -166,7 +174,6 @@ namespace Migrator.Services
                 });
             });
         }
-
         private void SynchronizujDaneMagazynow(List<Magazyn> magazyny)
         {
             Dictionaries.ForEach(x =>
@@ -183,43 +190,55 @@ namespace Migrator.Services
             });
         }
         #endregion
+        #region Jim
+        public string SaveJimFile()
+        {
+            return SRTR_Jim.SaveFileDialog(Materialy);
+        }
+        public string OpenJimFile()
+        {
+            return SRTR_Jim.OpenFileDialog();
+        }
+        public void AddJimData(string fileJimPath)
+        {
+            var materialy = SRTR_Jim.AddJimData(fileJimPath, Materialy);
+            Materialy = materialy;
+        }
+        #endregion
 
         #region Helpers
-
+        private void UstawTypWydruku(string path)
+        {
+            if (path.Contains("305"))
+                TypWydruku = MagmatEWPB.Magmat_305;
+            else if (path.Contains("319"))
+                TypWydruku = MagmatEWPB.EWPB_319_320;
+            else
+                TypWydruku = MagmatEWPB.EWPB_351;
+        }
         #endregion
-        public string SaveFile()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void AddMaterial(List<MagmatEwpb> listMaterialy)
+        public void AddDictionary()
         {
-            Clean();
-
-            _listMaterialy.AddRange(listMaterialy);
-        }
-
-        public void AddSlownik(List<MagmatEwpb> listSelMaterialy, MagmatEWPB typWydruku)
-        {
-            _listMaterialy.ForEach(x =>
+            Materialy.ForEach(x =>
             {
-                switch (typWydruku)
+                switch (TypWydruku)
                 {
                     case MagmatEWPB.Magmat_305:
-                        var mag = listSelMaterialy.Find(y => y.NrMagazynu == x.NrMagazynu);
+                        var mag = Dictionaries.Find(y => y.NrMagazynu == x.NrMagazynu);
                         x.NazwaMagazynu = mag.NazwaMagazynu;
                         x.Zaklad = mag.Zaklad;
                         x.Sklad = mag.Sklad;
                         break;
                     case MagmatEWPB.EWPB_319_320:
-                        var ewpb319 = listSelMaterialy.Find(y => y.Uzytkownik == x.Uzytkownik);
+                        var ewpb319 = Dictionaries.Find(y => y.Uzytkownik == x.Uzytkownik);
                         x.UzytkownikZwsiron = ewpb319.UzytkownikZwsiron;
                         x.NazwaUzytkownika = ewpb319.NazwaUzytkownika;
                         x.Zaklad = ewpb319.Zaklad;
                         x.Sklad = ewpb319.Sklad;
                         break;
                     case MagmatEWPB.EWPB_351:
-                        var ewpb351 = listSelMaterialy.Find(y => y.Jednostka == x.Jednostka);
+                        var ewpb351 = Dictionaries.Find(y => y.Jednostka == x.Jednostka);
                         x.NazwaJednostki = ewpb351.NazwaJednostki;
                         x.Zaklad = ewpb351.Zaklad;
                         x.Sklad = ewpb351.Sklad;
@@ -227,17 +246,22 @@ namespace Migrator.Services
                 }
             });
         }
-
-        public void AddJim(List<MagmatEwpb> listMaterialy, MagmatEWPB typWydruku)
+        public void AddJim()
         {
-            listMaterialy.ForEach(x =>
+            Zywnosc = new List<SigmatZywnosc>();
+            Amunicja = new List<SigmatAmunicja>();
+            Kat = new List<SigmatKat>();
+            Paliwa = new List<SigmatPaliwa>();
+            Mund = new List<SigmatMund>();
+
+            Materialy.ForEach(x =>
             {
                 switch (x.Klasyfikacja)
                 {
                     case "ZYWNOSC":
                         // SIGMAT ZYWNOSC LEKARSTWA
                         SigmatZywnosc zywnosc = new SigmatZywnosc();
-                        zywnosc.App = typWydruku.ToString();
+                        zywnosc.App = TypWydruku.ToString();
                         zywnosc.Lp = x.Lp;
                         zywnosc.Magazyn_ID = x.NrMagazynu;
                         zywnosc.Jim = x.Jim;
@@ -249,13 +273,13 @@ namespace Migrator.Services
                         zywnosc.Sklad = x.Sklad;
                         zywnosc.Uzytkownik_ID = x.UzytkownikZwsiron;
 
-                        _listZywnosc.Add(zywnosc);
+                        Zywnosc.Add(zywnosc);
                         break;
 
                     case "AMUNICJA":
                         // SIGMAT AMUNICJA
                         SigmatAmunicja amunicja = new SigmatAmunicja();
-                        amunicja.App = typWydruku.ToString();
+                        amunicja.App = TypWydruku.ToString();
                         amunicja.Lp = x.Lp;
                         amunicja.Magazyn_ID = x.NrMagazynu;
                         amunicja.Jim = x.Jim;
@@ -268,13 +292,13 @@ namespace Migrator.Services
                         amunicja.Sklad = x.Sklad;
                         amunicja.Uzytkownik_ID = x.UzytkownikZwsiron;
 
-                        _listAmunicja.Add(amunicja);
+                        Amunicja.Add(amunicja);
                         break;
 
                     case "KAT":
                         // SIGMAT KAT
                         SigmatKat kat = new SigmatKat();
-                        kat.App = typWydruku.ToString();
+                        kat.App = TypWydruku.ToString();
                         kat.Lp = x.Lp;
                         kat.Magazyn_ID = x.NrMagazynu;
                         kat.Jim = x.Jim;
@@ -287,13 +311,13 @@ namespace Migrator.Services
                         kat.Sklad = x.Sklad;
                         kat.Uzytkownik_ID = x.UzytkownikZwsiron;
 
-                        _listKat.Add(kat);
+                        Kat.Add(kat);
                         break;
 
                     case "PALIWA":
                         // SIGMAT PALIWA
                         SigmatPaliwa paliwa = new SigmatPaliwa();
-                        paliwa.App = typWydruku.ToString();
+                        paliwa.App = TypWydruku.ToString();
                         paliwa.Lp = x.Lp;
                         paliwa.Magazyn_ID = x.NrMagazynu;
                         paliwa.Jim = x.Jim;
@@ -305,13 +329,13 @@ namespace Migrator.Services
                         paliwa.Sklad = x.Sklad;
                         paliwa.Uzytkownik_ID = x.UzytkownikZwsiron;
 
-                        _listPaliwa.Add(paliwa);
+                        Paliwa.Add(paliwa);
                         break;
 
                     case "MUND":
                         // SIGMAT MUNDUROWKA
                         SigmatMund mund = new SigmatMund();
-                        mund.App = typWydruku.ToString();
+                        mund.App = TypWydruku.ToString();
                         mund.Lp = x.Lp;
                         mund.Magazyn_ID = x.NrMagazynu;
                         mund.Jim = x.Jim;
@@ -323,8 +347,9 @@ namespace Migrator.Services
                         mund.Sklad = x.Sklad;
                         mund.Uzytkownik_ID = x.UzytkownikZwsiron;
 
-                        _listMund.Add(mund);
+                        Mund.Add(mund);
                         break;
+
                     default:
                         break;
                 }
@@ -332,75 +357,20 @@ namespace Migrator.Services
 
         }
 
-        public List<Sigmat> GetSigmat()
+        public string SaveFile()
         {
             throw new NotImplementedException();
         }
 
-        public List<MagmatEwpb> GetMaterialy()
-        {
-            return _listMaterialy;
-        }
-
-        public List<SigmatKat> GetKat()
-        {
-            return _listKat;
-        }
-
-        public List<SigmatAmunicja> GetAmunicja()
-        {
-            return _listAmunicja;
-        }
-
-        public List<SigmatMund> GetMund()
-        {
-            return _listMund;
-        }
-
-        public List<SigmatPaliwa> GetPaliwa()
-        {
-            return _listPaliwa;
-        }
-
-        public List<SigmatZywnosc> GetZywnosc()
-        {
-            return _listZywnosc;
-        }
-
         public void Clean()
         {
-            _listMaterialy.Clear();
-            _listKat.Clear();
-            _listAmunicja.Clear();
-            _listMund.Clear();
-            _listPaliwa.Clear();
-            _listZywnosc.Clear();
-        }
-
-
-        public void SetKat(List<SigmatKat> listKat)
-        {
-            _listKat = listKat;
-        }
-
-        public void SetAmunicja(List<SigmatAmunicja> listAmunicja)
-        {
-            _listAmunicja = listAmunicja;
-        }
-
-        public void SetMund(List<SigmatMund> listMund)
-        {
-            _listMund = listMund;
-        }
-
-        public void SetPaliwa(List<SigmatPaliwa> listPaliwa)
-        {
-            _listPaliwa = listPaliwa;
-        }
-
-        public void SetZywnosc(List<SigmatZywnosc> listZywnosc)
-        {
-            _listZywnosc = listZywnosc;
+            Materialy.Clear();
+            Dictionaries.Clear();
+            Kat.Clear();
+            Amunicja.Clear();
+            Mund.Clear();
+            Paliwa.Clear();
+            Zywnosc.Clear();
         }
     }
 }

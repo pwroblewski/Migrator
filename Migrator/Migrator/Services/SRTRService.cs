@@ -236,11 +236,11 @@ namespace Migrator.Services
             });
         }
 
-        public void AddUzytkownicy(List<Uzytkownik> listUzytkownicy)
+        public void AddUzytkownicy()
         {
             SrtrToZwsiron.ForEach(x =>
             {
-                listUzytkownicy.ForEach(y =>
+                Users.ForEach(y =>
                 {
                     if (x.IdUzytSrtr.Equals(y.IdSrtr))
                     {
@@ -251,11 +251,11 @@ namespace Migrator.Services
             });
         }
 
-        public void AddGrupaGus(List<GrupaRodzajowaGusSRTR> listGrupaGus)
+        public void AddGrupaGus()
         {
             SrtrToZwsiron.ForEach(x =>
             {
-                listGrupaGus.ForEach(y =>
+                GrGus.ForEach(y =>
                 {
                     if (x.GrupaGusSRTR.Equals(y.KodGrRodzSRTR))
                         x.GrupaGus = y.KodGrRodzZWSIRON;
@@ -263,11 +263,11 @@ namespace Migrator.Services
             });
         }
 
-        public void AddWykaz(List<WykazIlosciowy> listWykaz)
+        public void AddWykaz()
         {
             SrtrToZwsiron.ForEach(x =>
             {
-                listWykaz.ForEach(y =>
+                Wykaz.ForEach(y =>
                 {
                     if (x.NrInwentarzowy.Equals(y.NrInwentarzowy))
                     {

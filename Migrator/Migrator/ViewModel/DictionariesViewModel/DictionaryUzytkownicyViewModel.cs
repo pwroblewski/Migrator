@@ -15,16 +15,14 @@ namespace Migrator.ViewModel.DictionariesViewModel
     {
         #region Fields
 
-        private readonly IFileUserService _fUserService;
         private readonly IDBUserService _dbUserService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public DictionaryUzytkownicyViewModel(IFileUserService fUserService, IDBUserService dbUserService)
+        public DictionaryUzytkownicyViewModel(IDBUserService dbUserService)
         {
-            _fUserService = fUserService;
             _dbUserService = dbUserService;
 
             Name = "Słownik użytkowników";
@@ -149,27 +147,27 @@ namespace Migrator.ViewModel.DictionariesViewModel
 
         private async void WczytajSlownikUzytkownikow()
         {
-            SlUserPath = _fUserService.OpenFileDialog();
-            if (!string.IsNullOrEmpty(SlUserPath))
-            {
-                try
-                {
-                    // Czytanie pliku
-                    var fileData = _fUserService.GetAll(SlUserPath);
-                    // Synchronizowanie pliku z bazą danych
-                    await _dbUserService.SyncFileUserData(fileData);
+            //SlUserPath = _fUserService.OpenFileDialog();
+            //if (!string.IsNullOrEmpty(SlUserPath))
+            //{
+            //    try
+            //    {
+            //        // Czytanie pliku
+            //        var fileData = _fUserService.GetAll(SlUserPath);
+            //        // Synchronizowanie pliku z bazą danych
+            //        await _dbUserService.SyncFileUserData(fileData);
 
-                    LoadUsersData();
+            //        LoadUsersData();
 
-                    // komunikaty o statusie wczytania pliku
-                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie zsynchronizowano plik z bazą danych."));
-                }
-                catch (Exception ex)
-                {
-                    string msg = string.Format("BŁĄD! - {0}", ex.Message);
-                    MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            //        // komunikaty o statusie wczytania pliku
+            //        Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Poprawnie zsynchronizowano plik z bazą danych."));
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        string msg = string.Format("BŁĄD! - {0}", ex.Message);
+            //        MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //}
         }
 
         private void WklejDaneZeSchowkaSystemowego()
@@ -288,7 +286,6 @@ namespace Migrator.ViewModel.DictionariesViewModel
         {
             if (SlUserPath != null) SlUserPath = string.Empty;
             if (ListUzytkownicy != null) ListUzytkownicy.Clear();
-            _fUserService.Clean();
         }
 
         #endregion //Private Methods

@@ -17,15 +17,15 @@ namespace Migrator.ViewModel.MagmatViewModel
     {
         #region Fields
 
-        private IMAG_EWPBService _fSigmatService;
+        private IMAG_EWPBService _fMagEwpbService;
 
         #endregion //Fields
 
         #region Constructor
 
-        public MagmatEWPBSigmatViewModel(IMAG_EWPBService fSigmatService)
+        public MagmatEWPBSigmatViewModel(IMAG_EWPBService fMagEwpbService)
         {
-            _fSigmatService = fSigmatService;
+            _fMagEwpbService = fMagEwpbService;
 
             Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
@@ -34,14 +34,6 @@ namespace Migrator.ViewModel.MagmatViewModel
         #endregion //Constructor
 
         #region Properties
-
-        private MagmatEWPB _typWydruku;
-        public MagmatEWPB TypWydruku
-        {
-            get { return _typWydruku; }
-            set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
-        }
-
         private TabItem _selectedItem;
         public TabItem SelectedItem
         {
@@ -110,7 +102,7 @@ namespace Migrator.ViewModel.MagmatViewModel
             {
                 return _utworzPlikCommand
                     ?? (_utworzPlikCommand = new RelayCommand<string>(
-                        file => UtworzPlik(TypWydruku)
+                        file => UtworzPlik()
                 ));
             }
         }
@@ -125,55 +117,58 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             if (msg.MessageText.Equals("synchronizuj dane"))
             {
-                TypWydruku = (MagmatEWPB)msg.MessageObject;
+                MsgToVisible(_fMagEwpbService.TypWydruku);
 
-                switch (TypWydruku)
-                {
-                    case MagmatEWPB.Magmat_305:
-                        UserVis = false;
-                        UserNotVis = true;
-                        break;
-                    case MagmatEWPB.EWPB_319_320:
-                        UserVis = true;
-                        UserNotVis = false;
-                        break;
-                    case MagmatEWPB.EWPB_351:
-                        UserVis = false;
-                        UserNotVis = true;
-                        break;
-                    default:
-                        break;
-                }
-
-                ListAmunicja = _fSigmatService.GetAmunicja();
-                ListKat = _fSigmatService.GetKat();
-                ListPaliwa = _fSigmatService.GetPaliwa();
-                ListMund = _fSigmatService.GetMund();
-                ListZywnosc = _fSigmatService.GetZywnosc();
+                ListAmunicja = _fMagEwpbService.Amunicja;
+                ListKat = _fMagEwpbService.Kat;
+                ListPaliwa = _fMagEwpbService.Paliwa;
+                ListMund = _fMagEwpbService.Mund;
+                ListZywnosc = _fMagEwpbService.Zywnosc;
             }
         }
 
-        private void UtworzPlik(MagmatEWPB TypWydruku)
+        private void MsgToVisible(MagmatEWPB typ)
         {
-            //string msg = _fJimService.SaveFileDialog(ListMaterialy);
-            switch (SelectedItem.Header.ToString())
+            switch (typ)
             {
-                case "ŻYWNOŚC (LEKARSTWA)":
-                    ZapiszZywnosc(TypWydruku);
+                case MagmatEWPB.Magmat_305:
+                    UserVis = false;
+                    UserNotVis = true;
                     break;
-                case "AMUNICJA":
-                    ZapiszAmunicja(TypWydruku);
+                case MagmatEWPB.EWPB_319_320:
+                    UserVis = true;
+                    UserNotVis = false;
                     break;
-                case "KAT":
-                    ZapiszKat(TypWydruku);
+                case MagmatEWPB.EWPB_351:
+                    UserVis = false;
+                    UserNotVis = true;
                     break;
-                case "PALIWA":
-                    ZapiszPaliwa(TypWydruku);
-                    break;
-                case "MUND":
-                    ZapiszMund(TypWydruku);
+                default:
                     break;
             }
+        }
+
+        private void UtworzPlik()
+        {
+            //string msg = _fJimService.SaveFileDialog(ListMaterialy);
+            //switch (SelectedItem.Header.ToString())
+            //{
+            //    case "ŻYWNOŚC (LEKARSTWA)":
+            //        ZapiszZywnosc(TypWydruku);
+            //        break;
+            //    case "AMUNICJA":
+            //        ZapiszAmunicja(TypWydruku);
+            //        break;
+            //    case "KAT":
+            //        ZapiszKat(TypWydruku);
+            //        break;
+            //    case "PALIWA":
+            //        ZapiszPaliwa(TypWydruku);
+            //        break;
+            //    case "MUND":
+            //        ZapiszMund(TypWydruku);
+            //        break;
+            //}
 
             Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik zapisano poprawnie."));
         }
