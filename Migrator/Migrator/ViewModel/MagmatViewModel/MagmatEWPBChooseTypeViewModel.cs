@@ -145,7 +145,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         internal override bool IsValid()
         {
-            if (!string.IsNullOrEmpty(PlikPath) && Wydruk!=null)
+            if (ListMaterialy != null && ListMaterialy.Any() && Wydruk!=null)
             {
                 if (Wydruk.Equals("EWPB - 319/320") && (string.IsNullOrEmpty(DomyslnyZaklad) || string.IsNullOrEmpty(DomyslnySklad)))
                     return false;
@@ -163,7 +163,8 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         internal override void LoadData()
         {
-            throw new NotImplementedException();
+            ListMaterialy = _fMagEwpbService.Materialy;
+            Wydruk = _fMagEwpbService.TypWydruku.ToString();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Migrator.Services
 
         void AddDictionary();
         void AddJim();
-        string SaveFile();
+        void SaveFile(string header);
         void Clean();
     }
 }

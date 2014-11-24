@@ -21,19 +21,19 @@ namespace Migrator.ViewModel
     {
         #region Fields
         private ISRTRService _fSrtrToZwsironService;
-        private IMAG_EWPBService _fSigmatService;
+        private IMAG_EWPBService _fMagmatEwpbService;
         private IFileZestawienieService _fZestawienieService;
         private Modul modul;
         #endregion //Fields
 
         #region Constructor
 
-        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fSigmatService, IFileZestawienieService fZestawienieService)
+        public MainWizardViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fMagmatEwpbService, IFileZestawienieService fZestawienieService)
         {
             this.CurrentPage = this.Pages[0];
 
             _fSrtrToZwsironService = fSrtrToZwsironService;
-            _fSigmatService = fSigmatService;
+            _fMagmatEwpbService = fMagmatEwpbService;
             _fZestawienieService = fZestawienieService;
 
             Messenger.Default.Register<Modul>(this, CreatePages);
@@ -136,10 +136,6 @@ namespace Migrator.ViewModel
 
         private void SaveProject()
         {
-            // Mega chujowy kod, ale burdel w MON mnie do tego zmusił
-            // Praca w MON jest do dupy
-            MagmatEwpbState magSt;
-            ZestawienieState zestSt;
             switch (modul)
             {
                 case Modul.SRTR:
@@ -149,73 +145,17 @@ namespace Migrator.ViewModel
                     SaveProjectFile<SrtrState>(_fSrtrToZwsironService.SrtrState);
                     break;
 
-                //#region MAGMAT EWPB
-                //case "MagFillData":
-                //    magSt = new MagmatEwpbState
-                //    {
-                //        ViewName = "MagFillData",
-                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
-                //    };
-                //    SaveProjectFile<MagmatEwpbState>(magSt);
-                //    break;
-                //case "MagFillDictionary":
-                //    magSt = new MagmatEwpbState
-                //    {
-                //        ViewName = "MagFillDictionary",
-                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                //        ListSigmat = _fSigmatService.GetMaterialy(),
-                //        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
-                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk
-                //    };
-                //    SaveProjectFile<MagmatEwpbState>(magSt);
-                //    break;
-                //case "MagJimData":
-                //    magSt = new MagmatEwpbState
-                //    {
-                //        ViewName = "MagJimData",
-                //        MagmatEwpbService = _fMagmatSrtrService.GetData(),
-                //        ListSigmat = _fSigmatService.GetMaterialy(),
-                //        ListDictionary = ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy,
-                //        ListData = ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy,
-                //        TypWydruku = ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku,
-                //        Wydruk = ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk,
-                //        ListAmunicja = _fSigmatService.GetAmunicja(),
-                //        ListPaliwa = _fSigmatService.GetPaliwa(),
-                //        ListKat = _fSigmatService.GetKat(),
-                //        ListMund = _fSigmatService.GetMund(),
-                //        ListZywnosc = _fSigmatService.GetZywnosc(),
-                //        ListJim = ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy
-                //    };
-                //    SaveProjectFile<MagmatEwpbState>(magSt);
-                //    break;
-                //#endregion
-                //#region ZESTAWIENIE
-                //case "ZestawienieLoadFiles":
-                //    zestSt = new ZestawienieState
-                //    {
-                //        ViewName = "ZestawienieLoadFiles",
-                //        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
-                //        ListZestService = _fZestawienieService.GetZestawienie(),
-                //        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
-                //    };
-                //    SaveProjectFile<ZestawienieState>(zestSt);
-                //    break;
-                //case "ZestawienieJimData":
-                //    zestSt = new ZestawienieState
-                //    {
-                //        ViewName = "ZestawienieJimData",
-                //        ListZestawienie = ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie,
-                //        ListZestService = _fZestawienieService.GetZestawienie(),
-                //        ListZestKlasService = _fZestawienieService.GetZestawienieKlas()
-                //    };
-                //    SaveProjectFile<ZestawienieState>(zestSt);
-                //    break;
-                //#endregion
+                case Modul.MAGMAT_EWPB:
+                    SendMessageToCurrentPage();
+                    _fMagmatEwpbService.ViewName = this.CurrentPage.GetPageName();
+                    SaveProjectFile<MagmatEwpbState>(_fMagmatEwpbService.MagmatEwpbState);
+                    break;
+
+                case Modul.ZESTAWIENIE:
+                    SendMessageToCurrentPage();
+                    //_fZestawienieService.ViewName = this.CurrentPage.GetPageName();
+                    //SaveProjectFile<ZestawienieState>(_fZestawienieService.ZestawienieState);
+                    break;
             }
         }
 
@@ -229,18 +169,16 @@ namespace Migrator.ViewModel
                         var srtr = LoadProjectFile<SrtrState>();
                         LoadSrtr(srtr);
                         break;
-                    //case "MagChooseType":
-                    //    var magmat = LoadProjectFile<MagmatEwpbState>();
-                    //    LoadMagmatEwpb(magmat);
-                    //    break;
-                    //case "ZestawienieLoadFiles":
-                    //    var zestawienie = LoadProjectFile<ZestawienieState>();
-                    //    LoadZestawienie(zestawienie);
-                    //    break;
+                    case Modul.MAGMAT_EWPB:
+                        var magmat = LoadProjectFile<MagmatEwpbState>();
+                        LoadMagmatEwpb(magmat);
+                        break;
+                    case Modul.ZESTAWIENIE:
+                        var zestawienie = LoadProjectFile<ZestawienieState>();
+                        LoadZestawienie(zestawienie);
+                        break;
                 }
             }
-
-
         }
 
         private void LoadSrtr(SrtrState stan)
@@ -255,63 +193,16 @@ namespace Migrator.ViewModel
         {
             if (stan != null)
             {
-                switch (stan.ViewName)
-                {
-                    #region MAGMATEWPB
-                    //case "MagFillData":
-                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                    //   // ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                    //    break;
-                    //case "MagFillDictionary":
-                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                    //   // ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                    //    ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
-                    //    _fSigmatService.AddMaterial(stan.ListSigmat);
-                    //    break;
-                    //case "MagJimData":
-                    //    ViewModelLocator.MagmatEWPBChooseTypeViewModel.PlikPath = " ";
-                    //    //ViewModelLocator.MagmatEWPBChooseTypeViewModel.Wydruk = stan.Wydruk;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.TypWydruku = stan.TypWydruku;
-                    //    ViewModelLocator.MagmatEWPBFillDataViewModel.ListMaterialy = stan.ListData;
-                    //    _fMagmatSrtrService.SetData(stan.MagmatEwpbService);
-                    //    ViewModelLocator.MagmatEWPBFillDictionaryViewModel.ListMaterialy = stan.ListDictionary;
-                    //    _fSigmatService.AddMaterial(stan.ListSigmat);
-                    //    ViewModelLocator.MagmatEWPBJimDataViewModel.ListMaterialy = stan.ListJim;
-                    //    _fSigmatService.SetKat(stan.ListKat);
-                    //    _fSigmatService.SetPaliwa(stan.ListPaliwa);
-                    //    _fSigmatService.SetZywnosc(stan.ListZywnosc);
-                    //    _fSigmatService.SetMund(stan.ListMund);
-                    //    _fSigmatService.SetAmunicja(stan.ListAmunicja);
-                    //    break;
-                    #endregion
-                }
+                _fMagmatEwpbService.MagmatEwpbState = stan;
+                this.CurrentPage.LoadData();
             }
         }
         private void LoadZestawienie(ZestawienieState stan)
         {
             if (stan != null)
             {
-                switch (stan.ViewName)
-                {
-                    #region MAGMATEWPB
-                    case "ZestawienieLoadFiles":
-                        ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie = stan.ListZestawienie;
-                        _fZestawienieService.SetZestawienie(stan.ListZestService);
-                        _fZestawienieService.SetZestawienieKlas(stan.ListZestKlasService);
-                        break;
-                    case "ZestawienieJimData":
-                        ViewModelLocator.ZestawienieLoadFilesViewModel.ListZestawienie = stan.ListZestawienie;
-                        _fZestawienieService.SetZestawienie(stan.ListZestService);
-                        _fZestawienieService.SetZestawienieKlas(stan.ListZestKlasService);
-                        break;
-                    #endregion
-                }
+                //_fZestawienieService.ZestawienieState = stan;
+                this.CurrentPage.LoadData();
             }
         }
 
@@ -339,6 +230,9 @@ namespace Migrator.ViewModel
                         return true;
 
                     case "MagJimData":
+                        return true;
+
+                    case "MagSigmat":
                         return true;
                     #endregion
                     #region ZESTAWIENIE
@@ -487,9 +381,9 @@ namespace Migrator.ViewModel
 
         #region Private Helpers
 
-        void CreatePages(Modul modul)
+        void CreatePages(Modul mod)
         {
-            switch (modul)
+            switch (mod)
             {
                 case Modul.SRTR:
                     {
@@ -597,13 +491,15 @@ namespace Migrator.ViewModel
                     break;
                 case "MagFillData":
                     Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("zapisz dane"));
-                    //Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("czyść dane"));
                     break;
                 case "MagFillDictionary":
                     Messenger.Default.Send<Message, MagmatEWPBFillDictionaryViewModel>(new Message("zapisz dane"));
                     break;
                 case "MagJimData":
                     Messenger.Default.Send<Message, MagmatEWPBJimDataViewModel>(new Message("zapisz dane"));
+                    break;
+                case "MagSigmat":
+                    Messenger.Default.Send<Message, MagmatEWPBSigmatViewModel>(new Message("zapisz dane"));
                     break;
                 #endregion
                 #region ZESTAWIENIE
