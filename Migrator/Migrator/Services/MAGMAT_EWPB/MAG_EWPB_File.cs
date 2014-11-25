@@ -124,7 +124,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Material = KodowanieZnakow.PolskieZnakiEWPB(prevSubLines[3].Trim());
                                     material.Jm = prevSubLines[4].Trim();
                                     material.Ilosc = Convert.ToInt32(Convert.ToDouble(prevSubLines[5].Trim().Replace(".", String.Empty)));
-                                    material.Wartosc = subLines[6].Trim();
+                                    material.Wartosc = "0";
                                     material.Cena = "X";
                                     material.Kategoria = PrzypiszKategorieEwpb351(subLines[2].Trim());
                                     material.NrSeryjny = string.Empty;

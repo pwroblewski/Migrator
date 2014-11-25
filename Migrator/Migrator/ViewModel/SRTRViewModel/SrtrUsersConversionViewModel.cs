@@ -298,7 +298,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             // sprawdzenie wypełnienia wszystkich Mpk oraz Id ZWSI RON
             if (ListUzytkownicy != null)
             {
-                bool isValid = ListUzytkownicy.Exists(x => string.IsNullOrEmpty(x.Mpk) || string.IsNullOrEmpty(x.IdZwsiron));
+                bool isValid = ListUzytkownicy.Exists(x => string.IsNullOrEmpty(x.Mpk));
                 return isValid ? false : true;
             }
             return false;

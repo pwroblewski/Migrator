@@ -147,7 +147,17 @@ namespace Migrator.ViewModel.MagmatViewModel
                                 {
                                     int ilosc = material.Ilosc;
                                     material.Ilosc = 1;
-                                    material.Wartosc = material.Cena;
+
+                                    decimal ret;
+                                    if(Decimal.TryParse(material.Wartosc, out ret))
+                                    {
+                                        material.Wartosc = Decimal.Round(Convert.ToDecimal(ret/ilosc), 2).ToString();
+                                        material.Cena = material.Wartosc;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Nie można rozdzielić podanej wartości!", "Błąd wartości!");
+                                    }
 
                                     for (int j = 0; j < ilosc; j++)
                                     {
@@ -300,7 +310,7 @@ namespace Migrator.ViewModel.MagmatViewModel
         {
             ListMaterialy = null;
             if (SelectedCells != null) SelectedCells.Clear();
-            SelectedMaterialy = null;
+            if (SelectedMaterialy != null) SelectedMaterialy.Clear();
         }
 
         #endregion //Methods
