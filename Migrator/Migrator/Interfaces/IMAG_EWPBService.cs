@@ -26,6 +26,7 @@ namespace Migrator.Services
         #region MagEwpbFile
         string OpenFile(string wydruk);
         void LoadData(string path);
+        void AddDomyslnyZakladSklad(string zaklad, string sklad);
         #endregion
         #region Dictionaries
         void FillDictionaryData();

@@ -490,7 +490,7 @@ namespace Migrator.ViewModel
                 #endregion
                 #region MAGMAT EWPB
                 case "MagChooseType":
-                    Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane"));
+                    Messenger.Default.Send<Message, MagmatEWPBChooseTypeViewModel>(new Message("zapisz dane"));
                     break;
                 case "MagFillData":
                     Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("zapisz dane"));

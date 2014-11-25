@@ -79,6 +79,17 @@ namespace Migrator.Services
             Materialy = MAG_EWPB_File.LoadData(path);
             UstawTypWydruku(path);
         }
+        public void AddDomyslnyZakladSklad(string zaklad, string sklad)
+        {
+            if(zaklad != null && sklad != null)
+            {
+                Materialy.ForEach(x =>
+                    {
+                        x.Zaklad = zaklad;
+                        x.Sklad = sklad;
+                    });
+            }
+        }
         #endregion
         #region Dictionary
         public void FillDictionaryData()

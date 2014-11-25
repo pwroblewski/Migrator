@@ -322,19 +322,23 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         internal override bool IsValid()
         {
-            var idZwsiron = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.UzytkownikZwsiron));
-            var zakladSklad = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.Zaklad) || string.IsNullOrEmpty(x.Sklad));
+            if (ListMaterialy != null)
+            {
+                var idZwsiron = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.UzytkownikZwsiron));
+                var zakladSklad = ListMaterialy.Exists(x => string.IsNullOrEmpty(x.Zaklad) || string.IsNullOrEmpty(x.Sklad));
 
-            if (_fMagEwpbService.TypWydruku == MagmatEWPB.EWPB_319_320)
-            {
-                if (idZwsiron || zakladSklad) return false;
-                else return true;
+                if (_fMagEwpbService.TypWydruku == MagmatEWPB.EWPB_319_320)
+                {
+                    if (idZwsiron || zakladSklad) return false;
+                    else return true;
+                }
+                else
+                {
+                    if (zakladSklad) return false;
+                    else return true;
+                }
             }
-            else
-            {
-                if (zakladSklad) return false;
-                else return true;
-            }
+            return false;
         }
 
         internal override string GetPageName()

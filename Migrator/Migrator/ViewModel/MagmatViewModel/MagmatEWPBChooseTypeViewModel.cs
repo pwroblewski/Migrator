@@ -104,11 +104,11 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void HandleMessage(Message msg)
         {
-            //if(msg.MessageText.Equals("zapisz dane"))
-            //{
-            //    //_fMagmatEwpbService.AddZakladSklad(DomyslnyZaklad, DomyslnySklad);
-            //    Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane"));
-            //}
+            if (msg.MessageText.Equals("zapisz dane"))
+            {
+                _fMagEwpbService.AddDomyslnyZakladSklad(DomyslnyZaklad, DomyslnySklad);
+                Messenger.Default.Send<Message, MagmatEWPBFillDataViewModel>(new Message("synchronizuj dane"));
+            }
         }
 
         private void WczytajPlik()

@@ -38,13 +38,6 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         #region Properties
 
-        //private MagmatEWPB _typWydruku;
-        //public MagmatEWPB TypWydruku
-        //{
-        //    get { return _typWydruku; }
-        //    set { _typWydruku = value; RaisePropertyChanged(() => TypWydruku); }
-        //}
-
         private List<MagmatEwpb> _listMaterialy;
         public List<MagmatEwpb> ListMaterialy
         {
