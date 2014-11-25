@@ -176,11 +176,12 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListAmunicja != null) ListAmunicja.Clear();
-            if (ListKat != null) ListKat.Clear();
-            if (ListMund != null) ListMund.Clear();
-            if (ListPaliwa != null) ListPaliwa.Clear();
-            if (ListZywnosc != null) ListZywnosc.Clear();
+            ListAmunicja = null;
+            ListKat = null;
+            ListMund = null;
+            ListPaliwa = null;
+            ListZywnosc = null;
+            _fMagEwpbService.Clean();
         }
 
         #endregion //Methods

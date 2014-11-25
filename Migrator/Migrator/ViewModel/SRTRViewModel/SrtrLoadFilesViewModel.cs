@@ -34,7 +34,6 @@ namespace Migrator.ViewModel.SRTRViewModel
             _dbGrupaAktywowService = dbGrupaAktywowService;
             _dbAmorService = dbAmorService;
 
-            //kartotekaWindow = new KartotekaWindow();
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
         }
 
@@ -218,9 +217,8 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             if (KartotekaPath != null) KartotekaPath = string.Empty;
             if (JednostkaGosp != null) JednostkaGosp = string.Empty;
-            if (ListKartoteka != null) ListKartoteka.Clear();
-            if (ListNZlikKartoteka != null) ListNZlikKartoteka.Clear();
-            _fSrtrToZwsironService.Clean();
+            ListKartoteka = null;
+            ListNZlikKartoteka = null;
         }
 
         #endregion // Methods

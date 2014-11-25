@@ -138,7 +138,6 @@ namespace Migrator.ViewModel.MagmatViewModel
             if (Wydruk != null) Wydruk = string.Empty;
             if (DomyslnyZaklad != null) DomyslnyZaklad = string.Empty;
             if (DomyslnySklad != null) DomyslnySklad = string.Empty;
-            //_fMagmatEwpbService.Clean();
         }
 
         internal override bool IsValid()

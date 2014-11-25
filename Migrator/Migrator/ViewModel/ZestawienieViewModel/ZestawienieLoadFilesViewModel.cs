@@ -419,7 +419,7 @@ namespace Migrator.ViewModel.ZestawienieViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListZestawienie != null) ListZestawienie.Clear();
+            ListZestawienie = null;
         }
 
         #endregion

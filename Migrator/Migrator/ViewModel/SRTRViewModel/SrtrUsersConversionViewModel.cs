@@ -147,7 +147,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             try
             {
-                if (msg.MessageText.Equals("synchronizuj dane") && ListUzytkownicy == null)
+                if (msg.MessageText.Equals("synchronizuj dane"))
                     if (_fSrtrToZwsironService.Users == null)
                     {
                         _fSrtrToZwsironService.GetUsersID();
@@ -296,8 +296,12 @@ namespace Migrator.ViewModel.SRTRViewModel
         internal override bool IsValid()
         {
             // sprawdzenie wypełnienia wszystkich Mpk oraz Id ZWSI RON
-            bool isValid = ListUzytkownicy.Exists(x => string.IsNullOrEmpty(x.Mpk) || string.IsNullOrEmpty(x.IdZwsiron));
-            return isValid ? false : true;
+            if (ListUzytkownicy != null)
+            {
+                bool isValid = ListUzytkownicy.Exists(x => string.IsNullOrEmpty(x.Mpk) || string.IsNullOrEmpty(x.IdZwsiron));
+                return isValid ? false : true;
+            }
+            return false;
         }
 
         internal override string GetPageName()
@@ -308,8 +312,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         private void CallCleanUp(CleanUp cu)
         {
             if (SlUserPath != null) SlUserPath = string.Empty;
-            if (ListUzytkownicy != null) ListUzytkownicy.Clear();
-            _fSrtrToZwsironService.Clean();
+            ListUzytkownicy = null;
         }
 
         #endregion //Private Methods

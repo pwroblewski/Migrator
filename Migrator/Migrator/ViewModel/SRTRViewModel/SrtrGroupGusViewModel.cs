@@ -164,8 +164,12 @@ namespace Migrator.ViewModel.SRTRViewModel
         internal override bool IsValid()
         {
             // sprawdzenie wypełnienia wszystkich Mpk oraz Id ZWSI RON
-            bool isValid = ListGrGusSRTR.Exists(x => string.IsNullOrEmpty(x.KodGrRodzZWSIRON));
-            return isValid ? false : true;
+            if (ListGrGusSRTR != null)
+            {
+                bool isValid = ListGrGusSRTR.Exists(x => string.IsNullOrEmpty(x.KodGrRodzZWSIRON));
+                return isValid ? false : true;
+            }
+            return false;
         }
 
         internal override string GetPageName()
@@ -176,9 +180,8 @@ namespace Migrator.ViewModel.SRTRViewModel
         private void CallCleanUp(CleanUp cu)
         {
             if(GrupaGusPath != null) GrupaGusPath = string.Empty;
-            if (ListGrGusSRTR != null) ListGrGusSRTR.Clear();
-            if (ListGrGusZWSIRON != null) ListGrGusZWSIRON.Clear();
-            _fSrtrToZwsironService.Clean();
+            ListGrGusSRTR = null;
+            ListGrGusZWSIRON = null;
         }
 
         #endregion //Private Methods

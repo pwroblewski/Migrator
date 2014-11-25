@@ -179,7 +179,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListMaterialy != null) ListMaterialy.Clear();
+            ListMaterialy = null;
         }
 
         #endregion //Methods

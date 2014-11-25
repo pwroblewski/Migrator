@@ -284,10 +284,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                 bool isValid = ListWykazIlosciowySRTR.Exists(x => string.IsNullOrEmpty(x.Zaklad));
                 return isValid ? false : true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         internal override string GetPageName()
@@ -300,8 +297,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             if (WykazIlosciowyPath != null) WykazIlosciowyPath = string.Empty;
             if (ZakladText != null) ZakladText = string.Empty;
             if (SelectedCells != null) SelectedCells.Clear();
-            if (ListWykazIlosciowySRTR != null) ListWykazIlosciowySRTR.Clear();
-            _fSrtrToZwsironService.Clean();
+            ListWykazIlosciowySRTR = null;
         }
 
         #endregion //Private Methods

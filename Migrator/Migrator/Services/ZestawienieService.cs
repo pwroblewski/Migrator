@@ -178,8 +178,8 @@ namespace Migrator.Services
 
         public void Clean()
         {
-            Zestawienia.Clear();
-            ZestawieniaKlas.Clear();
+            Zestawienia = null;
+            ZestawieniaKlas = null;
         }
     }
 }

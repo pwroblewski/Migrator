@@ -782,13 +782,13 @@ namespace Migrator.Services
 
         public void Clean()
         {
-            Materialy.Clear();
-            Dictionaries.Clear();
-            Kat.Clear();
-            Amunicja.Clear();
-            Mund.Clear();
-            Paliwa.Clear();
-            Zywnosc.Clear();
+            Materialy = null;
+            Dictionaries = null;
+            Kat = null;
+            Amunicja = null;
+            Mund = null;
+            Paliwa = null;
+            Zywnosc = null;
         }
     }
 }

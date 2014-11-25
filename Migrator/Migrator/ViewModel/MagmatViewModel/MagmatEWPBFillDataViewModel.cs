@@ -305,9 +305,9 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListMaterialy != null) ListMaterialy.Clear();
+            ListMaterialy = null;
             if (SelectedCells != null) SelectedCells.Clear();
-            if (SelectedMaterialy != null) SelectedMaterialy.Clear();
+            SelectedMaterialy = null;
         }
 
         #endregion //Methods

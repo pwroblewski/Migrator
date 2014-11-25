@@ -314,9 +314,8 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListMaterialy != null) ListMaterialy.Clear();
+            ListMaterialy = null;
             if (SelectedCells != null) SelectedCells.Clear();
-           // _fMagmatEwpbService.Clean();
         }
 
         #endregion //Methods

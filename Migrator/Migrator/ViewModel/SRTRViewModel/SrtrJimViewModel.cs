@@ -154,7 +154,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         private void CallCleanUp(CleanUp cu)
         {
             if (WynikJimPath != null) WynikJimPath = string.Empty;
-            if (ListWykazIlosciowySRTR != null) ListWykazIlosciowySRTR.Clear();
+            ListWykazIlosciowySRTR = null;
         }
 
         #endregion //Private Methods

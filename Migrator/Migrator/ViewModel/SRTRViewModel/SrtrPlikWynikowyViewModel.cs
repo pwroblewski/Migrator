@@ -91,7 +91,7 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
-            if (ListSrtrToZwsiron != null) ListSrtrToZwsiron.Clear();
+            ListSrtrToZwsiron = null;
             _fSrtrToZwsironService.Clean();
         }
 

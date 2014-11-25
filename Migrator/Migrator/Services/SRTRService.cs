@@ -398,12 +398,12 @@ namespace Migrator.Services
 
         public void Clean()
         {
-            SrtrToZwsiron.Clear();
-            Kartoteka.Clear();
-            KartotekaZlik.Clear();
-            if(Users != null) Users.Clear();
-            if (GrGus != null) GrGus.Clear();
-            if (Wykaz != null) Wykaz.Clear();
+            SrtrToZwsiron = null;
+            Kartoteka = null;
+            KartotekaZlik = null;
+            Users = null;
+            GrGus = null;
+            Wykaz = null;
         }
     }
 }
