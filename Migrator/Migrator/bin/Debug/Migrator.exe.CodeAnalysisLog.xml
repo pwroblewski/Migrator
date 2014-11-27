@@ -2,429 +2,355 @@
 <?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 12.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
 <FxCopReport Version="12.0">
  <Targets>
-  <Target Name="C:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\bin\Debug\Migrator.exe">
+  <Target Name="C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Debug\Migrator.exe">
    <Modules>
     <Module Name="migrator.exe">
      <Namespaces>
-      <Namespace Name="Migrator.Facade">
-       <Types>
-        <Type Name="ContextProxy" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#DBAmorService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBAmorService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="346">'ContextProxy.DBAmorService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-          <Member Name="#DBGrRodzGusSRTRService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBGrRodzGusSRTRService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="361">'ContextProxy.DBGrRodzGusSRTRService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-          <Member Name="#DBGrRodzGusZWSIRONService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBGrRodzGusZWSIRONService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="366">'ContextProxy.DBGrRodzGusZWSIRONService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-          <Member Name="#DBGrupaAktywowService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBGrupaAktywowService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="356">'ContextProxy.DBGrupaAktywowService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-          <Member Name="#DBJmService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBJmService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="351">'ContextProxy.DBJmService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-          <Member Name="#DBUserService" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Accessors>
-            <Accessor Name="#get_DBUserService()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-             <Messages>
-              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
-               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Facade" File="ContextProxy.cs" Line="341">'ContextProxy.DBUserService.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
-              </Message>
-             </Messages>
-            </Accessor>
-           </Accessors>
-          </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
       <Namespace Name="Migrator.Helpers">
        <Types>
         <Type Name="SQLite3" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
           <Member Name="#BindBlob(System.IntPtr,System.Int32,System.Byte[],System.Int32,System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindBlob(IntPtr, int, byte[], int, IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindBlob(IntPtr, int, byte[], int, IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindDouble(System.IntPtr,System.Int32,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindDouble(IntPtr, int, double)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindDouble(IntPtr, int, double)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindInt(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindInt(IntPtr, int, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindInt(IntPtr, int, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindInt64(System.IntPtr,System.Int32,System.Int64)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindInt64(IntPtr, int, long)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindInt64(IntPtr, int, long)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindNull(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindNull(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindNull(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindParameterIndex(System.IntPtr,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindParameterIndex(IntPtr, string)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindParameterIndex(IntPtr, string)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
-            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">To reduce security risk, marshal parameter 'name' as Unicode, by setting DllImport.CharSet to CharSet.Unicode, or by explicitly marshaling the parameter as UnmanagedType.LPWStr. If you need to marshal this string as ANSI or system-dependent, specify MarshalAs explicitly, and set BestFitMapping=false; for added security, also set ThrowOnUnmappableChar=true.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BindText(System.IntPtr,System.Int32,System.String,System.Int32,System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BindText(IntPtr, int, string, int, IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BindText(IntPtr, int, string, int, IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#BusyTimeout(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.BusyTimeout(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.BusyTimeout(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Changes(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Changes(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Changes(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Close(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Close(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Close(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnBlob(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnBlob(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnBlob(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnBytes(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnBytes(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnBytes(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnCount(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnCount(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnCount(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnDouble(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnDouble(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnDouble(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnInt(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnInt(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnInt(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnInt64(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnInt64(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnInt64(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnName(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnName(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnName(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnName16Internal(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnName16Internal(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnText(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnText(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnText(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnText16(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnText16(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnText16(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ColumnType(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.ColumnType(IntPtr, int)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.ColumnType(IntPtr, int)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Config(Migrator.Helpers.SQLite3+ConfigOption)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Config(SQLite3.ConfigOption)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokeEntryPointsShouldExist" Category="Microsoft.Interoperability" CheckId="CA1400" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message TypeName="PInvokeEntryPointsShouldExist" Category="Microsoft.Interoperability" CheckId="CA1400" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Certainty="50" Level="CriticalWarning">Correct the declaration of 'SQLite3.Config(SQLite3.ConfigOption)' so that it correctly points to an existing entry point in 'sqlite3'. The unmanaged entry point name currently linked to is sqlite3_config.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Config(SQLite3.ConfigOption)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Errmsg(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Errmsg(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Errmsg(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Finalize(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Finalize(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Finalize(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LastInsertRowid(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.LastInsertRowid(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.LastInsertRowid(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Open(System.Byte[],System.IntPtr&amp;,System.Int32,System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Open(byte[], out IntPtr, int, IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Open(byte[], out IntPtr, int, IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Open(System.String,System.IntPtr&amp;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Open(string, out IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Open(string, out IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
-            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">To reduce security risk, marshal parameter 'filename' as Unicode, by setting DllImport.CharSet to CharSet.Unicode, or by explicitly marshaling the parameter as UnmanagedType.LPWStr. If you need to marshal this string as ANSI or system-dependent, specify MarshalAs explicitly, and set BestFitMapping=false; for added security, also set ThrowOnUnmappableChar=true.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Open(System.String,System.IntPtr&amp;,System.Int32,System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Open(string, out IntPtr, int, IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Open(string, out IntPtr, int, IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
-            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">To reduce security risk, marshal parameter 'filename' as Unicode, by setting DllImport.CharSet to CharSet.Unicode, or by explicitly marshaling the parameter as UnmanagedType.LPWStr. If you need to marshal this string as ANSI or system-dependent, specify MarshalAs explicitly, and set BestFitMapping=false; for added security, also set ThrowOnUnmappableChar=true.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Open16(System.String,System.IntPtr&amp;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Open16(string, out IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Open16(string, out IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Prepare2(System.IntPtr,System.String,System.Int32,System.IntPtr&amp;,System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Prepare2(IntPtr, string, int, out IntPtr, IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Prepare2(IntPtr, string, int, out IntPtr, IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
-            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">To reduce security risk, marshal parameter 'sql' as Unicode, by setting DllImport.CharSet to CharSet.Unicode, or by explicitly marshaling the parameter as UnmanagedType.LPWStr. If you need to marshal this string as ANSI or system-dependent, specify MarshalAs explicitly, and set BestFitMapping=false; for added security, also set ThrowOnUnmappableChar=true.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Reset(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Reset(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Reset(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#SetDirectory(System.UInt32,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.SetDirectory(uint, string)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokeEntryPointsShouldExist" Category="Microsoft.Interoperability" CheckId="CA1400" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+            <Message TypeName="PInvokeEntryPointsShouldExist" Category="Microsoft.Interoperability" CheckId="CA1400" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
              <Issue Certainty="50" Level="CriticalWarning">Correct the declaration of 'SQLite3.SetDirectory(uint, string)' so that it correctly points to an existing entry point in 'sqlite3'. The unmanaged entry point name currently linked to is sqlite3_win32_set_directory.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.SetDirectory(uint, string)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Step(System.IntPtr)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Because it is a P/Invoke method, 'SQLite3.Step(IntPtr)' should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Change the accessibility of P/Invoke 'SQLite3.Step(IntPtr)' so that it is no longer visible from outside its assembly.</Issue>
             </Message>
            </Messages>
@@ -433,7 +359,7 @@
         </Type>
         <Type Name="SQLiteException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'SQLiteException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
@@ -442,139 +368,112 @@
       </Namespace>
       <Namespace Name="Migrator.Services">
        <Types>
-        <Type Name="FileGrGusService" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
-         <Members>
-          <Member Name="#GetAll(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileGrGusService.cs" Line="49">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileGrGusService.GetAll(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileJednostkaService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#GetAll(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileJednostkaService.cs" Line="49">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileJednostkaService.GetAll(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetJedData(System.Collections.Generic.List`1&lt;Migrator.Model.MagmatEwpb&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileJednostkaService.cs" Line="92">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileJednostkaService.GetJedData(List&lt;MagmatEwpb&gt;, string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileJimService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.MagmatEwpb&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileJimService.cs" Line="119">Object 'writeStream' can be disposed more than once in method 'FileJimService.SaveFileDialog(List&lt;MagmatEwpb&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 119</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.WykazIlosciowy&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileJimService.cs" Line="73">Object 'writeStream' can be disposed more than once in method 'FileJimService.SaveFileDialog(List&lt;WykazIlosciowy&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 73</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.ZestawienieKlas&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileJimService.cs" Line="165">Object 'writeStream' can be disposed more than once in method 'FileJimService.SaveFileDialog(List&lt;ZestawienieKlas&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 165</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileKartotekaService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#DeserializeData(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileKartotekaService.cs" Line="219">Object 'originalFileStream' can be disposed more than once in method 'FileKartotekaService.DeserializeData(string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 219</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetAll(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileKartotekaService.cs" Line="51">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileKartotekaService.GetAll(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#SerializeData(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileKartotekaService.cs" Line="198">Object 'compressedFileStream' can be disposed more than once in method 'FileKartotekaService.SerializeData(string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 198</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileMagazynService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#GetAll(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileMagazynService.cs" Line="49">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileMagazynService.GetAll(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetMagData(System.Collections.Generic.List`1&lt;Migrator.Model.MagmatEwpb&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileMagazynService.cs" Line="90">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileMagazynService.GetMagData(List&lt;MagmatEwpb&gt;, string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileSrtrToZwsironService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+        <Type Name="SRTRService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
           <Member Name="#SaveFile()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileSrtrToZwsironService.cs" Line="239">Object 'writeStream' can be disposed more than once in method 'FileSrtrToZwsironService.SaveFile()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 239</Issue>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services" File="SRTRService.cs" Line="382">Object 'writeStream' can be disposed more than once in method 'SRTRService.SaveFile()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 382</Issue>
             </Message>
            </Messages>
           </Member>
          </Members>
         </Type>
-        <Type Name="FileUserService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#GetAll(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileUserService.cs" Line="49">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileUserService.GetAll(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#GetUserData(System.Collections.Generic.List`1&lt;Migrator.Model.MagmatEwpb&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileUserService.cs" Line="116">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'FileUserService.GetUserData(List&lt;MagmatEwpb&gt;, string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="FileZestawienieService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+        <Type Name="ZestawienieService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
           <Member Name="#ZapiszPliki()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileZestawienieService.cs" Line="209">Object 'writeStream' can be disposed more than once in method 'FileZestawienieService.ZapiszPliki()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 209</Issue>
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\Services" File="FileZestawienieService.cs" Line="242">Object 'writeStream' can be disposed more than once in method 'FileZestawienieService.ZapiszPliki()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 242</Issue>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services" File="ZestawienieService.cs" Line="137">Object 'writeStream' can be disposed more than once in method 'ZestawienieService.ZapiszPliki()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 137</Issue>
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services" File="ZestawienieService.cs" Line="170">Object 'writeStream' can be disposed more than once in method 'ZestawienieService.ZapiszPliki()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 170</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Migrator.Services.MAGMAT_EWPB">
+       <Types>
+        <Type Name="MAG_EWPB_Jednostka" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadData(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\MAGMAT_EWPB" File="MAG_EWPB_Jednostka.cs" Line="47">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'MAG_EWPB_Jednostka.LoadData(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MAG_EWPB_Magazyn" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadData(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\MAGMAT_EWPB" File="MAG_EWPB_Magazyn.cs" Line="47">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'MAG_EWPB_Magazyn.LoadData(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Migrator.Services.SRTR">
+       <Types>
+        <Type Name="SRTR_GrGus" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadData(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_GrGus.cs" Line="47">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'SRTR_GrGus.LoadData(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SRTR_Jim" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.MagmatEwpb&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_Jim.cs" Line="211">Object 'writeStream' can be disposed more than once in method 'SRTR_Jim.SaveFileDialog(List&lt;MagmatEwpb&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 211</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.WykazIlosciowy&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_Jim.cs" Line="166">Object 'writeStream' can be disposed more than once in method 'SRTR_Jim.SaveFileDialog(List&lt;WykazIlosciowy&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 166</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SaveFileDialog(System.Collections.Generic.List`1&lt;Migrator.Model.ZestawienieKlas&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_Jim.cs" Line="256">Object 'writeStream' can be disposed more than once in method 'SRTR_Jim.SaveFileDialog(List&lt;ZestawienieKlas&gt;)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 256</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SRTR_Kartoteka" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadData(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_Kartoteka.cs" Line="48">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'SRTR_Kartoteka.LoadData(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SRTR_Users" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadData(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\Services\SRTR" File="SRTR_Users.cs" Line="46">The query string passed to 'OleDbCommand.CommandText.set(string)' in 'SRTR_Users.LoadData(string)' could contain the following variables 'Path.GetFileNameWithoutExtension(path)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -586,17 +485,17 @@
        <Types>
         <Type Name="MainWizardViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileKartotekaService,Migrator.Services.IFileSrtrToZwsironService,Migrator.Services.IFileMagmatEwpbService,Migrator.Services.IFileSigmatService,Migrator.Services.IFileZestawienieService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.ISRTRService,Migrator.Services.IMAG_EWPBService,Migrator.Services.IZestawienieService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel" File="MainWizardViewModel.cs" Line="35">'MainWizardViewModel.MainWizardViewModel(IFileKartotekaService, IFileSrtrToZwsironService, IFileMagmatEwpbService, IFileSigmatService, IFileZestawienieService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MainWizardViewModel..ctor(IFileKartotekaService, IFileSrtrToZwsironService, IFileMagmatEwpbService, IFileSigmatService, IFileZestawienieService)&#xD;&#xA;MainWizardViewModel.set_CurrentPage(MainWizardPageViewModelBase):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged(String):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel" File="MainWizardViewModel.cs" Line="31">'MainWizardViewModel.MainWizardViewModel(ISRTRService, IMAG_EWPBService, IZestawienieService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MainWizardViewModel..ctor(ISRTRService, IMAG_EWPBService, IZestawienieService)&#xD;&#xA;MainWizardViewModel.set_CurrentPage(MainWizardPageViewModelBase):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged(String):Void</Issue>
             </Message>
            </Messages>
           </Member>
-          <Member Name="#SaveSrtrProjectFile`1(!!0)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+          <Member Name="#SaveProjectFile`1(!!0)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel" File="MainWizardViewModel.cs" Line="726">Object 'stream' can be disposed more than once in method 'MainWizardViewModel.SaveSrtrProjectFile&lt;T&gt;(T)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 726</Issue>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel" File="MainWizardViewModel.cs" Line="546">Object 'stream' can be disposed more than once in method 'MainWizardViewModel.SaveProjectFile&lt;T&gt;(T)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 546</Issue>
             </Message>
            </Messages>
           </Member>
@@ -610,8 +509,8 @@
          <Members>
           <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\DictionariesViewModel" File="DictionaryManagementViewModel.cs" Line="14">'DictionaryManagementViewModel.DictionaryManagementViewModel()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;DictionaryManagementViewModel..ctor()&#xD;&#xA;DictionaryManagementViewModel.CreateDictionaryPages():Void&#xD;&#xA;DictionaryManagementViewModel.set_CurrentPage(DictionaryPageViewModelBase):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged(String):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\DictionariesViewModel" File="DictionaryManagementViewModel.cs" Line="14">'DictionaryManagementViewModel.DictionaryManagementViewModel()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;DictionaryManagementViewModel..ctor()&#xD;&#xA;DictionaryManagementViewModel.CreateDictionaryPages():Void&#xD;&#xA;DictionaryManagementViewModel.set_CurrentPage(DictionaryPageViewModelBase):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged(String):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -619,10 +518,10 @@
         </Type>
         <Type Name="DictionaryUzytkownicyViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileUserService,Migrator.Services.IDBUserService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.IDBUserService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\DictionariesViewModel" File="DictionaryUzytkownicyViewModel.cs" Line="25">'DictionaryUzytkownicyViewModel.DictionaryUzytkownicyViewModel(IFileUserService, IDBUserService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;DictionaryUzytkownicyViewModel..ctor(IFileUserService, IDBUserService)&#xD;&#xA;DictionaryPageViewModelBase.set_Name(String):Void&#xD;&#xA;DictionaryUzytkownicyViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\DictionariesViewModel" File="DictionaryUzytkownicyViewModel.cs" Line="24">'DictionaryUzytkownicyViewModel.DictionaryUzytkownicyViewModel(IDBUserService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;DictionaryUzytkownicyViewModel..ctor(IDBUserService)&#xD;&#xA;DictionaryPageViewModelBase.set_Name(String):Void&#xD;&#xA;DictionaryUzytkownicyViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -634,10 +533,10 @@
        <Types>
         <Type Name="MagmatEWPBChooseTypeViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileMagmatEwpbService,Migrator.Services.IFileSigmatService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.IMAG_EWPBService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBChooseTypeViewModel.cs" Line="22">'MagmatEWPBChooseTypeViewModel.MagmatEWPBChooseTypeViewModel(IFileMagmatEwpbService, IFileSigmatService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBChooseTypeViewModel..ctor(IFileMagmatEwpbService, IFileSigmatService)&#xD;&#xA;MagmatEWPBChooseTypeViewModel.set_WydrukLista(List&lt;String&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBChooseTypeViewModel.cs" Line="21">'MagmatEWPBChooseTypeViewModel.MagmatEWPBChooseTypeViewModel(IMAG_EWPBService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBChooseTypeViewModel..ctor(IMAG_EWPBService)&#xD;&#xA;MagmatEWPBChooseTypeViewModel.set_WydrukLista(List&lt;String&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -645,10 +544,10 @@
         </Type>
         <Type Name="MagmatEWPBFillDataViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileMagmatEwpbService,Migrator.Services.IFileSigmatService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.IMAG_EWPBService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBFillDataViewModel.cs" Line="27">'MagmatEWPBFillDataViewModel.MagmatEWPBFillDataViewModel(IFileMagmatEwpbService, IFileSigmatService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBFillDataViewModel..ctor(IFileMagmatEwpbService, IFileSigmatService)&#xD;&#xA;MagmatEWPBFillDataViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBFillDataViewModel.cs" Line="26">'MagmatEWPBFillDataViewModel.MagmatEWPBFillDataViewModel(IMAG_EWPBService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBFillDataViewModel..ctor(IMAG_EWPBService)&#xD;&#xA;MagmatEWPBFillDataViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -656,10 +555,10 @@
         </Type>
         <Type Name="MagmatEWPBFillDictionaryViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileMagmatEwpbService,Migrator.Services.IFileJednostkaService,Migrator.Services.IFileMagazynService,Migrator.Services.IFileUserService,Migrator.Services.IFileSigmatService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.IMAG_EWPBService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBFillDictionaryViewModel.cs" Line="30">'MagmatEWPBFillDictionaryViewModel.MagmatEWPBFillDictionaryViewModel(IFileMagmatEwpbService, IFileJednostkaService, IFileMagazynService, IFileUserService, IFileSigmatService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBFillDictionaryViewModel..ctor(IFileMagmatEwpbService, IFileJednostkaService, IFileMagazynService, IFileUserService, IFileSigmatService)&#xD;&#xA;MagmatEWPBFillDictionaryViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\MagmatViewModel" File="MagmatEWPBFillDictionaryViewModel.cs" Line="26">'MagmatEWPBFillDictionaryViewModel.MagmatEWPBFillDictionaryViewModel(IMAG_EWPBService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;MagmatEWPBFillDictionaryViewModel..ctor(IMAG_EWPBService)&#xD;&#xA;MagmatEWPBFillDictionaryViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -671,10 +570,10 @@
        <Types>
         <Type Name="SrtrLoadWykazViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileWykazIlosciowyService,Migrator.Services.IFileSrtrToZwsironService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.ISRTRService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\SRTRViewModel" File="SrtrLoadWykazViewModel.cs" Line="29">'SrtrLoadWykazViewModel.SrtrLoadWykazViewModel(IFileWykazIlosciowyService, IFileSrtrToZwsironService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;SrtrLoadWykazViewModel..ctor(IFileWykazIlosciowyService, IFileSrtrToZwsironService)&#xD;&#xA;SrtrLoadWykazViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\SRTRViewModel" File="SrtrLoadWykazViewModel.cs" Line="28">'SrtrLoadWykazViewModel.SrtrLoadWykazViewModel(ISRTRService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;SrtrLoadWykazViewModel..ctor(ISRTRService)&#xD;&#xA;SrtrLoadWykazViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -682,10 +581,10 @@
         </Type>
         <Type Name="SrtrUsersConversionViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileUserService,Migrator.Services.IFileSrtrToZwsironService,Migrator.Services.IDBUserService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.ISRTRService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\SRTRViewModel" File="SrtrUsersConversionViewModel.cs" Line="26">'SrtrUsersConversionViewModel.SrtrUsersConversionViewModel(IFileUserService, IFileSrtrToZwsironService, IDBUserService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;SrtrUsersConversionViewModel..ctor(IFileUserService, IFileSrtrToZwsironService, IDBUserService)&#xD;&#xA;SrtrUsersConversionViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\SRTRViewModel" File="SrtrUsersConversionViewModel.cs" Line="24">'SrtrUsersConversionViewModel.SrtrUsersConversionViewModel(ISRTRService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;SrtrUsersConversionViewModel..ctor(ISRTRService)&#xD;&#xA;SrtrUsersConversionViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -697,10 +596,10 @@
        <Types>
         <Type Name="ZestawienieLoadFilesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(Migrator.Services.IFileZestawienieService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(Migrator.Services.IZestawienieService)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-06-11 11:18:27Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\ViewModel\ZestawienieViewModel" File="ZestawienieLoadFilesViewModel.cs" Line="27">'ZestawienieLoadFilesViewModel.ZestawienieLoadFilesViewModel(IFileZestawienieService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;ZestawienieLoadFilesViewModel..ctor(IFileZestawienieService)&#xD;&#xA;ZestawienieLoadFilesViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2014-11-27 13:43:39Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="c:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\ViewModel\ZestawienieViewModel" File="ZestawienieLoadFilesViewModel.cs" Line="23">'ZestawienieLoadFilesViewModel.ZestawienieLoadFilesViewModel(IZestawienieService)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;ZestawienieLoadFilesViewModel..ctor(IZestawienieService)&#xD;&#xA;ZestawienieLoadFilesViewModel.set_SelectedCells(List&lt;DataGridCellInfo&gt;):Void&#xD;&#xA;ObservableObject.RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
@@ -717,7 +616,7 @@
   <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
    <Name>Do not dispose objects multiple times</Name>
    <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
-   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 726</Resolution>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 546</Resolution>
    <Owner>RuleOwner</Owner>
    <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
    <Email />
@@ -733,16 +632,6 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
    <File Name="usagerules.dll" Version="12.0.0.0" />
-  </Rule>
-  <Rule TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065">
-   <Name>Do not raise exceptions in unexpected locations</Name>
-   <Description>Do not explicitly raise exceptions from unexpected locations. There are some methods, such as Equals and GetHashCode, which users do not expect to raise exceptions. Therefore calls to these methods are not commonly wrapped in try catch blocks.</Description>
-   <Resolution Name="PropertyGetter">{0} creates an exception of type {1}, an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/bb386039.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="90">Error, Warning</MessageLevel>
-   <File Name="designrules.dll" Version="12.0.0.0" />
   </Rule>
   <Rule TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237">
    <Name>Mark ISerializable types with SerializableAttribute</Name>
