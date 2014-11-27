@@ -88,8 +88,8 @@ namespace Migrator.Services
                         {
                             if (x.IdSrtr.Equals(y.IdSrtr))
                             {
-                                //x.IdZwsiron = y.IdZwsiron;
-                                //x.Mpk = y.Mpk;
+                                x.IdZwsiron = y.IdZwsiron;
+                                x.Mpk = y.Mpk;
                                 x.KodJednostki = y.KodJednostki;
                                 x.NazwaUzytkownika = y.NazwaUzytkownika;
                                 x.OsobaUpowazniona = y.OsobaUpowazniona;
