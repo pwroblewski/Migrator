@@ -287,11 +287,9 @@ C:\Users\pwro\Documents\GitHub\Migrator\Migrator\Migrator\obj\Release\Migrator.a
 G:\MIGRATOR\Migrator źródła\Migrator\Migrator\bin\Release\Migrator.exe.config
 G:\MIGRATOR\Migrator źródła\Migrator\Migrator\obj\Release\Migrator.exe
 G:\MIGRATOR\Migrator źródła\Migrator\Migrator\obj\Release\Migrator.pdb
-C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\Migrator.exe.config
-C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.exe
-C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.pdb
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\sqlite3.dll
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\MigratorDB.s3db
+C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\Migrator.exe.config
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\Migrator.exe.manifest
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\Migrator.application
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\Migrator.exe
@@ -323,6 +321,7 @@ C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\bin\Release\
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.csproj.App.config
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.csprojResolveAssemblyReference.cache
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Resources\Icons.baml
+C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Skins\MainSkin.baml
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\View\DictionariesView\DictionaryManagementWindow.baml
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\View\DictionariesView\DictionaryAmortyzacjaView.baml
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\View\DictionariesView\DictionaryGrupyGusView.baml
@@ -382,4 +381,5 @@ C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.csproj.GenerateResource.Cache
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.exe.manifest
 C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.application
-C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Skins\MainSkin.baml
+C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.exe
+C:\Users\pwro\Documents\Projekty\Migrator\Projekt\Migrator\Migrator\obj\Release\Migrator.pdb
