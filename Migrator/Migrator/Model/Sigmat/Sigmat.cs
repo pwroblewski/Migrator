@@ -17,7 +17,7 @@ namespace Migrator.Model
         public string Material { get; set; }
         public string Kategoria { get; set; }
         public string Kategoria2 { get; set; }
-        public int Ilosc { get; set; }
+        public double Ilosc { get; set; }
         public string Wartosc { get; set; }
         public string Zaklad { get; set; }
         public string Sklad { get; set; }

@@ -179,6 +179,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
+            if (WynikJimPath != null) WynikJimPath = string.Empty;
             ListMaterialy = null;
         }
 

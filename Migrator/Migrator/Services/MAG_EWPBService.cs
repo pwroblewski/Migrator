@@ -224,7 +224,7 @@ namespace Migrator.Services
         {
             if (path.Contains("305"))
                 TypWydruku = MagmatEWPB.Magmat_305;
-            else if (path.Contains("319"))
+            else if (path.Contains("319") || path.Contains("320"))
                 TypWydruku = MagmatEWPB.EWPB_319_320;
             else
                 TypWydruku = MagmatEWPB.EWPB_351;
@@ -259,11 +259,11 @@ namespace Migrator.Services
         }
         public void AddJim()
         {
-            if(Zywnosc != null) return; else Zywnosc = new List<SigmatZywnosc>();
-            if (Amunicja != null) return; else Amunicja = new List<SigmatAmunicja>();
-            if (Kat != null) return; else Kat = new List<SigmatKat>();
-            if (Paliwa != null) return; else Paliwa = new List<SigmatPaliwa>();
-            if (Mund != null) return; else Mund = new List<SigmatMund>();
+            if(Zywnosc != null) Zywnosc.Clear() ; else Zywnosc = new List<SigmatZywnosc>();
+            if (Amunicja != null) Amunicja.Clear() ; else Amunicja = new List<SigmatAmunicja>();
+            if (Kat != null) Kat.Clear() ; else Kat = new List<SigmatKat>();
+            if (Paliwa != null) Paliwa.Clear() ; else Paliwa = new List<SigmatPaliwa>();
+            if (Mund != null) Mund.Clear() ; else Mund = new List<SigmatMund>();
 
             Materialy.ForEach(x =>
             {

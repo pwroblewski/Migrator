@@ -314,6 +314,7 @@ namespace Migrator.ViewModel.MagmatViewModel
 
         private void CallCleanUp(CleanUp cu)
         {
+            if (SlownikPath != null) SlownikPath = string.Empty;
             ListMaterialy = null;
             if (SelectedCells != null) SelectedCells.Clear();
         }

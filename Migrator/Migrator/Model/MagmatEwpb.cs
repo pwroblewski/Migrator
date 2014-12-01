@@ -13,7 +13,7 @@ namespace Migrator.Model
         public string Jim { get; set; }
         public string Material { get; set; }
         public string Jm { get; set; }
-        public int Ilosc { get; set; }
+        public double Ilosc { get; set; }
         public string Wartosc { get; set; }
         public string Cena { get; set; }
         public string Kategoria { get; set; }

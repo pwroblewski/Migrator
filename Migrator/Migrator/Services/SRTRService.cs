@@ -374,11 +374,11 @@ namespace Migrator.Services
                         MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         return string.Empty;
                     }
-                    finally
-                    {
-                        writeStream.Flush();
-                        writeStream.Close();
-                    }
+                    //finally
+                    //{
+                    //    writeStream.Flush();
+                    //    writeStream.Close();
+                    //}
                 }
             }
 

@@ -145,13 +145,13 @@ namespace Migrator.ViewModel.MagmatViewModel
                             {
                                 if (SelectedMaterialy.Contains(material))
                                 {
-                                    int ilosc = material.Ilosc;
+                                    double ilosc = material.Ilosc;
                                     material.Ilosc = 1;
 
                                     decimal ret;
                                     if(Decimal.TryParse(material.Wartosc, out ret))
                                     {
-                                        material.Wartosc = Decimal.Round(Convert.ToDecimal(ret/ilosc), 2).ToString();
+                                        material.Wartosc = Decimal.Round(Convert.ToDecimal(ret/(int)ilosc), 2).ToString();
                                         material.Cena = material.Wartosc;
                                     }
                                     else
@@ -178,11 +178,25 @@ namespace Migrator.ViewModel.MagmatViewModel
 
                             ListMaterialy = temp;
                             RaisePropertyChanged(() => ListMaterialy);
+                        },
+                        user =>
+                        {
+                            if (ListMaterialy != null)
+                            {
+                                foreach (MagmatEwpb material in ListMaterialy)
+                                {
+                                    if (SelectedMaterialy.Contains(material))
+                                    {
+                                        int ret;
+                                        return Int32.TryParse(material.Ilosc.ToString(), out ret);
+                                    }
+                                }
+                            }
+                            return true;
                         }
                 ));
             }
         }
-
         #endregion
 
         #endregion

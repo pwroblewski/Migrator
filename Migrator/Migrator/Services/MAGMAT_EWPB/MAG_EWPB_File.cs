@@ -64,7 +64,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Jim = subLines[3].Trim().Substring(0, 13);
                                     material.Material = KodowanieZnakow.PolskieZnaki(subLines[4].Trim(), Modul.MAGMAT_EWPB);
                                     material.Jm = subLines[5].Trim();
-                                    material.Ilosc = Convert.ToInt32(Convert.ToDouble(subLines[6].Trim().Replace(".", String.Empty)));
+                                    material.Ilosc = Convert.ToDouble(subLines[6].Trim().Replace(".", string.Empty));
                                     material.Kategoria = PrzypiszKategorieMagmat(subLines[3]);
                                     material.Wartosc = subLines[8].Trim().Replace(".", String.Empty);
                                     material.Cena = subLines[7].Trim().Replace(".", String.Empty);
@@ -93,14 +93,15 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 material.Lp = lp;
                                 material.Jim = subLines[1].Substring(13, 13);
                                 material.Material = KodowanieZnakow.PolskieZnakiEWPB(subLines[2].Trim());
+                                //material.Material = KodowanieZnakow.PolskieZnaki(subLines[2].Trim(), Modul.MAGMAT_EWPB);
                                 material.Jm = subLines[3].Trim();
-                                material.Ilosc = Convert.ToInt32(Convert.ToDouble(subLines[4].Trim().Replace(".", String.Empty)));
+                                material.Ilosc = Convert.ToDouble(subLines[4].Trim().Replace(".", string.Empty));
                                 material.Wartosc = "0";
                                 material.Cena = "X";
                                 material.Kategoria = PrzypiszKategorieEwpb319(subLines[1]);
                                 material.NrSeryjny = string.Empty;
 
-                                material.Uzytkownik = subLines[1].Trim().Substring(0, 5).Trim();
+                                material.Uzytkownik = subLines[1].Trim().Substring(0, 5).Trim().TrimStart('0');
 
                                 list.Add(material);
                                 lp++;
@@ -121,9 +122,10 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                                     material.Lp = lp;
                                     material.Jim = subLines[2].Trim().Substring(0, 13);
-                                    material.Material = KodowanieZnakow.PolskieZnakiEWPB(prevSubLines[3].Trim());
+                                    //material.Material = KodowanieZnakow.PolskieZnakiEWPB(prevSubLines[3].Trim());
+                                    material.Material = KodowanieZnakow.PolskieZnaki(prevSubLines[3].Trim(), Modul.MAGMAT_EWPB);
                                     material.Jm = prevSubLines[4].Trim();
-                                    material.Ilosc = Convert.ToInt32(Convert.ToDouble(prevSubLines[5].Trim().Replace(".", String.Empty)));
+                                    material.Ilosc = Convert.ToDouble(prevSubLines[5].Trim().Replace(".", string.Empty));
                                     material.Wartosc = "0";
                                     material.Cena = "X";
                                     material.Kategoria = PrzypiszKategorieEwpb351(subLines[2].Trim());
