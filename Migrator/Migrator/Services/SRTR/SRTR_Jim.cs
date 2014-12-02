@@ -135,21 +135,21 @@ namespace Migrator.Services.SRTR
                 {
                     try
                     {
-                        StreamWriter writer = new StreamWriter(writeStream);
-                        List<string> temp = new List<string>();
-
-                        foreach (WykazIlosciowy wykaz in listWykazIlosciowy)
+                        using (StreamWriter writer = new StreamWriter(writeStream))
                         {
-                            if (wykaz.IndeksMaterialowy.Length > 12 && wykaz.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
-                            {
-                                string line = wykaz.IndeksMaterialowy.Substring(6, 7);
-                                if (!temp.Contains(line))
-                                {
-                                    temp.Add(line);
-                                    writer.WriteLine(line);
-                                }
+                            List<string> temp = new List<string>();
 
-                                writer.Flush();
+                            foreach (WykazIlosciowy wykaz in listWykazIlosciowy)
+                            {
+                                if (wykaz.IndeksMaterialowy.Length > 12 && wykaz.IndeksMaterialowy.Substring(4, 2).Equals("PL"))
+                                {
+                                    string line = wykaz.IndeksMaterialowy.Substring(6, 7);
+                                    if (!temp.Contains(line))
+                                    {
+                                        temp.Add(line);
+                                        writer.WriteLine(line);
+                                    }
+                                }
                             }
                         }
                     }
@@ -157,11 +157,6 @@ namespace Migrator.Services.SRTR
                     {
                         MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         return string.Empty;
-                    }
-                    finally
-                    {
-                        writeStream.Flush();
-                        writeStream.Close();
                     }
                 }
             }
@@ -180,21 +175,21 @@ namespace Migrator.Services.SRTR
                 {
                     try
                     {
-                        StreamWriter writer = new StreamWriter(writeStream);
-                        List<string> temp = new List<string>();
-
-                        foreach (MagmatEwpb material in listMaterialy)
+                        using (StreamWriter writer = new StreamWriter(writeStream))
                         {
-                            if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
-                            {
-                                string line = material.Jim.Substring(6, 7);
-                                if (!temp.Contains(line))
-                                {
-                                    temp.Add(line);
-                                    writer.WriteLine(line);
-                                }
+                            List<string> temp = new List<string>();
 
-                                writer.Flush();
+                            foreach (MagmatEwpb material in listMaterialy)
+                            {
+                                if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
+                                {
+                                    string line = material.Jim.Substring(6, 7);
+                                    if (!temp.Contains(line))
+                                    {
+                                        temp.Add(line);
+                                        writer.WriteLine(line);
+                                    }
+                                }
                             }
                         }
                     }
@@ -202,11 +197,6 @@ namespace Migrator.Services.SRTR
                     {
                         MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         return string.Empty;
-                    }
-                    finally
-                    {
-                        writeStream.Flush();
-                        writeStream.Close();
                     }
                 }
             }
@@ -225,21 +215,21 @@ namespace Migrator.Services.SRTR
                 {
                     try
                     {
-                        StreamWriter writer = new StreamWriter(writeStream);
-                        List<string> temp = new List<string>();
-
-                        foreach (ZestawienieKlas material in listZestawieniaKlas)
+                        using (StreamWriter writer = new StreamWriter(writeStream))
                         {
-                            if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
-                            {
-                                string line = material.Jim.Substring(6, 7);
-                                if (!temp.Contains(line))
-                                {
-                                    temp.Add(line);
-                                    writer.WriteLine(line);
-                                }
+                            List<string> temp = new List<string>();
 
-                                writer.Flush();
+                            foreach (ZestawienieKlas material in listZestawieniaKlas)
+                            {
+                                if (material.Jim.Length > 12 && material.Jim.Substring(4, 2).Equals("PL"))
+                                {
+                                    string line = material.Jim.Substring(6, 7);
+                                    if (!temp.Contains(line))
+                                    {
+                                        temp.Add(line);
+                                        writer.WriteLine(line);
+                                    }
+                                }
                             }
                         }
                     }
@@ -247,11 +237,6 @@ namespace Migrator.Services.SRTR
                     {
                         MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         return string.Empty;
-                    }
-                    finally
-                    {
-                        writeStream.Flush();
-                        writeStream.Close();
                     }
                 }
             }

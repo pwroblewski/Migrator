@@ -81,7 +81,7 @@ namespace Migrator.Services
         }
         public void AddDomyslnyZakladSklad(string zaklad, string sklad)
         {
-            if(zaklad != null && sklad != null)
+            if (zaklad != null && sklad != null)
             {
                 Materialy.ForEach(x =>
                     {
@@ -259,11 +259,11 @@ namespace Migrator.Services
         }
         public void AddJim()
         {
-            if(Zywnosc != null) Zywnosc.Clear() ; else Zywnosc = new List<SigmatZywnosc>();
-            if (Amunicja != null) Amunicja.Clear() ; else Amunicja = new List<SigmatAmunicja>();
-            if (Kat != null) Kat.Clear() ; else Kat = new List<SigmatKat>();
-            if (Paliwa != null) Paliwa.Clear() ; else Paliwa = new List<SigmatPaliwa>();
-            if (Mund != null) Mund.Clear() ; else Mund = new List<SigmatMund>();
+            if (Zywnosc != null) Zywnosc.Clear(); else Zywnosc = new List<SigmatZywnosc>();
+            if (Amunicja != null) Amunicja.Clear(); else Amunicja = new List<SigmatAmunicja>();
+            if (Kat != null) Kat.Clear(); else Kat = new List<SigmatKat>();
+            if (Paliwa != null) Paliwa.Clear(); else Paliwa = new List<SigmatPaliwa>();
+            if (Mund != null) Mund.Clear(); else Mund = new List<SigmatMund>();
 
             Materialy.ForEach(x =>
             {
@@ -392,31 +392,56 @@ namespace Migrator.Services
                         for (int i = 1; i <= temp_list.Count; i++)
                         {
                             string FileName2 = string.Format("{0}/{1}_{2}_ZYWNOSC_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
-                            StreamWriter writer = new StreamWriter(FileName2);
 
-                            foreach (var zywnosc in temp_list[i - 1])
+                            try
                             {
-                                NullToStringEmptyConversion(zywnosc);
-                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
-                                else
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
-                                writer.Flush();
+                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                {
+
+                                    foreach (var zywnosc in temp_list[i - 1])
+                                    {
+                                        NullToStringEmptyConversion(zywnosc);
+                                        if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
+                                        else
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
+                                    }
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                     else
                     {
-                        StreamWriter writer = new StreamWriter(FileName);
-
-                        foreach (var zywnosc in lista)
+                        try
                         {
-                            NullToStringEmptyConversion(zywnosc);
-                            if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
-                            else
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
-                            writer.Flush();
+                            using (StreamWriter writer = new StreamWriter(FileName))
+                            {
+
+                                foreach (var zywnosc in lista)
+                                {
+                                    NullToStringEmptyConversion(zywnosc);
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
+                                    else
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
+                                }
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -451,123 +476,149 @@ namespace Migrator.Services
                         for (int i = 1; i <= temp_list.Count; i++)
                         {
                             string FileName2 = string.Format("{0}/{1}_{2}_AMUNICJA_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
-                            StreamWriter writer = new StreamWriter(FileName2);
 
-                            foreach (var amunicja in temp_list[i - 1])
+                            try
                             {
-                                NullToStringEmptyConversion(amunicja);
-                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
-                                        amunicja.Jim.PadRight(18),
-                                        amunicja.Ilosc.ToString().PadRight(17),
-                                        amunicja.Wartosc.ToString().PadRight(16),
-                                        amunicja.Kategoria.ToString().PadRight(1),
-                                        amunicja.Kategoria2.ToString().PadRight(1),
-                                        amunicja.NrPartii.ToString().PadRight(17),
-                                        amunicja.DataProdukcji.ToString().PadRight(8),
-                                        amunicja.DataZablokowania.ToString().PadRight(8),
-                                        amunicja.Wyroznik.ToString().PadRight(1),
-                                        amunicja.DataGwarancji.ToString().PadRight(8),
-                                        amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                        amunicja.NrSeryjny.ToString().PadRight(5),
-                                        amunicja.Uzytkownik_ID.ToString().PadRight(10),
-                                        amunicja.DataWydania.ToString().PadRight(8),
-                                        amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
-                                else
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
-                                        amunicja.Jim.PadRight(18),
-                                        amunicja.Ilosc.ToString().PadRight(17),
-                                        amunicja.Wartosc.ToString().PadRight(16),
-                                        amunicja.Kategoria.ToString().PadRight(1),
-                                        amunicja.Kategoria2.ToString().PadRight(1),
-                                        amunicja.NrPartii.ToString().PadRight(17),
-                                        amunicja.DataProdukcji.ToString().PadRight(8),
-                                        amunicja.DataZablokowania.ToString().PadRight(8),
-                                        amunicja.Wyroznik.ToString().PadRight(1),
-                                        amunicja.DataGwarancji.ToString().PadRight(8),
-                                        amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                        amunicja.NrSeryjny.ToString().PadRight(5),
-                                        amunicja.DataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Zapalnik.ToString().PadRight(17),
-                                        amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
-                                        amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Zaplonnik.ToString().PadRight(17),
-                                        amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
-                                        amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Ladunek.ToString().PadRight(17),
-                                        amunicja.LadunekDataGwarancji.ToString().PadRight(8),
-                                        amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Pocisk.ToString().PadRight(17),
-                                        amunicja.PociskDataGwarancji.ToString().PadRight(8),
-                                        amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Zrodlo.ToString().PadRight(17),
-                                        amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
-                                        amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
-                                        amunicja.Smugacz.ToString().PadRight(17),
-                                        amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
-                                        amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
-                                writer.Flush();
+                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                {
+
+                                    foreach (var amunicja in temp_list[i - 1])
+                                    {
+                                        NullToStringEmptyConversion(amunicja);
+                                        if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
+                                                amunicja.Jim.PadRight(18),
+                                                amunicja.Ilosc.ToString().PadRight(17),
+                                                amunicja.Wartosc.ToString().PadRight(16),
+                                                amunicja.Kategoria.ToString().PadRight(1),
+                                                amunicja.Kategoria2.ToString().PadRight(1),
+                                                amunicja.NrPartii.ToString().PadRight(17),
+                                                amunicja.DataProdukcji.ToString().PadRight(8),
+                                                amunicja.DataZablokowania.ToString().PadRight(8),
+                                                amunicja.Wyroznik.ToString().PadRight(1),
+                                                amunicja.DataGwarancji.ToString().PadRight(8),
+                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1),
+                                                amunicja.NrSeryjny.ToString().PadRight(5),
+                                                amunicja.Uzytkownik_ID.ToString().PadRight(10),
+                                                amunicja.DataWydania.ToString().PadRight(8),
+                                                amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
+                                        else
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
+                                                amunicja.Jim.PadRight(18),
+                                                amunicja.Ilosc.ToString().PadRight(17),
+                                                amunicja.Wartosc.ToString().PadRight(16),
+                                                amunicja.Kategoria.ToString().PadRight(1),
+                                                amunicja.Kategoria2.ToString().PadRight(1),
+                                                amunicja.NrPartii.ToString().PadRight(17),
+                                                amunicja.DataProdukcji.ToString().PadRight(8),
+                                                amunicja.DataZablokowania.ToString().PadRight(8),
+                                                amunicja.Wyroznik.ToString().PadRight(1),
+                                                amunicja.DataGwarancji.ToString().PadRight(8),
+                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1),
+                                                amunicja.NrSeryjny.ToString().PadRight(5),
+                                                amunicja.DataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Zapalnik.ToString().PadRight(17),
+                                                amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
+                                                amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Zaplonnik.ToString().PadRight(17),
+                                                amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
+                                                amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Ladunek.ToString().PadRight(17),
+                                                amunicja.LadunekDataGwarancji.ToString().PadRight(8),
+                                                amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Pocisk.ToString().PadRight(17),
+                                                amunicja.PociskDataGwarancji.ToString().PadRight(8),
+                                                amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Zrodlo.ToString().PadRight(17),
+                                                amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
+                                                amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
+                                                amunicja.Smugacz.ToString().PadRight(17),
+                                                amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
+                                                amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
+                                    }
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                     else
                     {
-                        StreamWriter writer = new StreamWriter(FileName);
-
-                        foreach (var amunicja in lista)
+                        try
                         {
-                            NullToStringEmptyConversion(amunicja);
-                            if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
-                                    amunicja.Jim.PadRight(18),
-                                    amunicja.Ilosc.ToString().PadRight(17),
-                                    amunicja.Wartosc.ToString().PadRight(16),
-                                    amunicja.Kategoria.ToString().PadRight(1),
-                                    amunicja.Kategoria2.ToString().PadRight(1),
-                                    amunicja.NrPartii.ToString().PadRight(17),
-                                    amunicja.DataProdukcji.ToString().PadRight(8),
-                                    amunicja.DataZablokowania.ToString().PadRight(8),
-                                    amunicja.Wyroznik.ToString().PadRight(1),
-                                    amunicja.DataGwarancji.ToString().PadRight(8),
-                                    amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                    amunicja.NrSeryjny.ToString().PadRight(5),
-                                    amunicja.Uzytkownik_ID.ToString().PadRight(10),
-                                    amunicja.DataWydania.ToString().PadRight(8),
-                                    amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
-                            else
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
-                                    amunicja.Jim.PadRight(18),
-                                    amunicja.Ilosc.ToString().PadRight(17),
-                                    amunicja.Wartosc.ToString().PadRight(16),
-                                    amunicja.Kategoria.ToString().PadRight(1),
-                                    amunicja.Kategoria2.ToString().PadRight(1),
-                                    amunicja.NrPartii.ToString().PadRight(17),
-                                    amunicja.DataProdukcji.ToString().PadRight(8),
-                                    amunicja.DataZablokowania.ToString().PadRight(8),
-                                    amunicja.Wyroznik.ToString().PadRight(1),
-                                    amunicja.DataGwarancji.ToString().PadRight(8),
-                                    amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                    amunicja.NrSeryjny.ToString().PadRight(5),
-                                    amunicja.DataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Zapalnik.ToString().PadRight(17),
-                                    amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
-                                    amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Zaplonnik.ToString().PadRight(17),
-                                    amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
-                                    amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Ladunek.ToString().PadRight(17),
-                                    amunicja.LadunekDataGwarancji.ToString().PadRight(8),
-                                    amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Pocisk.ToString().PadRight(17),
-                                    amunicja.PociskDataGwarancji.ToString().PadRight(8),
-                                    amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Zrodlo.ToString().PadRight(17),
-                                    amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
-                                    amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
-                                    amunicja.Smugacz.ToString().PadRight(17),
-                                    amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
-                                    amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
-                            writer.Flush();
+
+                            using (StreamWriter writer = new StreamWriter(FileName))
+                            {
+
+                                foreach (var amunicja in lista)
+                                {
+                                    NullToStringEmptyConversion(amunicja);
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
+                                            amunicja.Jim.PadRight(18),
+                                            amunicja.Ilosc.ToString().PadRight(17),
+                                            amunicja.Wartosc.ToString().PadRight(16),
+                                            amunicja.Kategoria.ToString().PadRight(1),
+                                            amunicja.Kategoria2.ToString().PadRight(1),
+                                            amunicja.NrPartii.ToString().PadRight(17),
+                                            amunicja.DataProdukcji.ToString().PadRight(8),
+                                            amunicja.DataZablokowania.ToString().PadRight(8),
+                                            amunicja.Wyroznik.ToString().PadRight(1),
+                                            amunicja.DataGwarancji.ToString().PadRight(8),
+                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1),
+                                            amunicja.NrSeryjny.ToString().PadRight(5),
+                                            amunicja.Uzytkownik_ID.ToString().PadRight(10),
+                                            amunicja.DataWydania.ToString().PadRight(8),
+                                            amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
+                                    else
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
+                                            amunicja.Jim.PadRight(18),
+                                            amunicja.Ilosc.ToString().PadRight(17),
+                                            amunicja.Wartosc.ToString().PadRight(16),
+                                            amunicja.Kategoria.ToString().PadRight(1),
+                                            amunicja.Kategoria2.ToString().PadRight(1),
+                                            amunicja.NrPartii.ToString().PadRight(17),
+                                            amunicja.DataProdukcji.ToString().PadRight(8),
+                                            amunicja.DataZablokowania.ToString().PadRight(8),
+                                            amunicja.Wyroznik.ToString().PadRight(1),
+                                            amunicja.DataGwarancji.ToString().PadRight(8),
+                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1),
+                                            amunicja.NrSeryjny.ToString().PadRight(5),
+                                            amunicja.DataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Zapalnik.ToString().PadRight(17),
+                                            amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
+                                            amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Zaplonnik.ToString().PadRight(17),
+                                            amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
+                                            amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Ladunek.ToString().PadRight(17),
+                                            amunicja.LadunekDataGwarancji.ToString().PadRight(8),
+                                            amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Pocisk.ToString().PadRight(17),
+                                            amunicja.PociskDataGwarancji.ToString().PadRight(8),
+                                            amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Zrodlo.ToString().PadRight(17),
+                                            amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
+                                            amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
+                                            amunicja.Smugacz.ToString().PadRight(17),
+                                            amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
+                                            amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
+                                }
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -602,31 +653,55 @@ namespace Migrator.Services
                         for (int i = 1; i <= temp_list.Count; i++)
                         {
                             string FileName2 = string.Format("{0}/{1}_{2}_KAT_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
-                            StreamWriter writer = new StreamWriter(FileName2);
-
-                            foreach (var kat in temp_list[i - 1])
+                            try
                             {
-                                NullToStringEmptyConversion(kat);
-                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
-                                else
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
-                                writer.Flush();
+                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                {
+
+                                    foreach (var kat in temp_list[i - 1])
+                                    {
+                                        NullToStringEmptyConversion(kat);
+                                        if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
+                                        else
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
+                                    }
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                     else
                     {
-                        StreamWriter writer = new StreamWriter(FileName);
-
-                        foreach (var kat in lista)
+                        try
                         {
-                            NullToStringEmptyConversion(kat);
-                            if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
-                            else
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
-                            writer.Flush();
+                            using (StreamWriter writer = new StreamWriter(FileName))
+                            {
+
+                                foreach (var kat in lista)
+                                {
+                                    NullToStringEmptyConversion(kat);
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
+                                    else
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
+                                }
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -661,31 +736,56 @@ namespace Migrator.Services
                         for (int i = 1; i <= temp_list.Count; i++)
                         {
                             string FileName2 = string.Format("{0}/{1}_{2}_PALIWA_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
-                            StreamWriter writer = new StreamWriter(FileName2);
 
-                            foreach (var pal in temp_list[i - 1])
+                            try
                             {
-                                NullToStringEmptyConversion(pal);
-                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
-                                else
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
-                                writer.Flush();
+                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                {
+
+                                    foreach (var pal in temp_list[i - 1])
+                                    {
+                                        NullToStringEmptyConversion(pal);
+                                        if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
+                                        else
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
+                                    }
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                     else
                     {
-                        StreamWriter writer = new StreamWriter(FileName);
-
-                        foreach (var pal in lista)
+                        try
                         {
-                            NullToStringEmptyConversion(pal);
-                            if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
-                            else
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
-                            writer.Flush();
+                            using (StreamWriter writer = new StreamWriter(FileName))
+                            {
+
+                                foreach (var pal in lista)
+                                {
+                                    NullToStringEmptyConversion(pal);
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
+                                    else
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
+                                }
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -720,31 +820,55 @@ namespace Migrator.Services
                         for (int i = 1; i <= temp_list.Count; i++)
                         {
                             string FileName2 = string.Format("{0}/{1}_{2}_MUND_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
-                            StreamWriter writer = new StreamWriter(FileName2);
-
-                            foreach (var mund in temp_list[i - 1])
+                            try
                             {
-                                NullToStringEmptyConversion(mund);
-                                if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
-                                else
-                                    writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
-                                writer.Flush();
+                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                {
+                                    foreach (var mund in temp_list[i - 1])
+                                    {
+                                        NullToStringEmptyConversion(mund);
+                                        if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
+                                        else
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
+                                    }
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                     else
                     {
-                        StreamWriter writer = new StreamWriter(FileName);
-
-                        foreach (var mund in lista)
+                        try
                         {
-                            NullToStringEmptyConversion(mund);
-                            if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
-                            else
-                                writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
-                            writer.Flush();
+                            using (StreamWriter writer = new StreamWriter(FileName))
+                            {
+
+
+                                foreach (var mund in lista)
+                                {
+                                    NullToStringEmptyConversion(mund);
+                                    if (TypWydruku == MagmatEWPB.EWPB_319_320)
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
+                                    else
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
+                                }
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -768,7 +892,7 @@ namespace Migrator.Services
             }
         }
         #endregion
-       
+
         public void SaveFile(string header)
         {
             switch (header)

@@ -76,64 +76,64 @@ namespace Migrator.Services
 
                 if (saveFile.ShowDialog() == true)
                 {
-                    using (Stream writeStream = saveFile.OpenFile())
+                    try
                     {
-                        try
+                        using (Stream writeStream = saveFile.OpenFile())
                         {
-                            StreamWriter writer = new StreamWriter(writeStream);
-                            foreach (Zestawienie zestawienie in Zestawienia)
+                            using (StreamWriter writer = new StreamWriter(writeStream))
                             {
-                                foreach (ZestawienieKlas zestawienieKlas in ZestawieniaKlas)
+                                foreach (Zestawienie zestawienie in Zestawienia)
                                 {
-                                    if (zestawienie.Jim.Equals(zestawienieKlas.Jim.Trim()) && zestawienieKlas.KlasaZaop != null)
+                                    foreach (ZestawienieKlas zestawienieKlas in ZestawieniaKlas)
                                     {
-                                        writer.Write("{0}\t", zestawienieKlas.Jim.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.KlasaZaop.Trim());
-                                        writer.Write("{0}\t", zestawienie.Zaklad.Trim());
-                                        writer.Write("{0}\t", zestawienie.Sklad.Trim());
-                                        writer.Write("{0}\t", zestawienie.Dzial.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.Nazwa.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.Jm.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.StaryNrInd.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.KlasyfikatorHier.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.GrupaKlasaKwo.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.WagaBrutto.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.WagaNetto.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.JednWagi.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.Objetosc.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.JednObj.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.Gestor.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.Norma.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.WyroznikProdNiebezp.Trim());
-                                        writer.Write("{0}\t", zestawienie.SymbolKat.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.KodCpv.Trim());
-                                        writer.Write("{0}\t", zestawienie.Wskaznik.Trim());
-                                        writer.Write("{0}\t", zestawienie.ZapasBezp.Trim());
-                                        writer.Write("{0}\t", zestawienie.TypWyceny.Trim());
-                                        writer.Write("{0}\t", zestawienie.Rodzaj.Trim());
-                                        writer.Write("{0}\t", zestawienie.MaterialKonto.Trim());
-                                        writer.Write("{0}\t", zestawienie.StarCena.Trim());
-                                        writer.Write("{0}\t", zestawienie.JednCena.Trim());
-                                        writer.Write("{0}\t", zestawienie.CenaSrednia.Trim());
-                                        writer.Write("{0}\t", zestawienie.CenaStand.Trim());
-                                        writer.Write("{0}\t", zestawienie.ZakladDost.Trim());
-                                        writer.Write("{0}\t", zestawienie.MaterialProf.Trim());
-                                        writer.Write("{0}\t", zestawienieKlas.WyroznikCpv.Trim());
-                                        writer.Write(writer.NewLine);
-                                        writer.Flush();
+                                        if (zestawienie.Jim.Equals(zestawienieKlas.Jim.Trim()) && zestawienieKlas.KlasaZaop != null)
+                                        {
+                                            writer.Write("{0}\t", zestawienieKlas.Jim.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.KlasaZaop.Trim());
+                                            writer.Write("{0}\t", zestawienie.Zaklad.Trim());
+                                            writer.Write("{0}\t", zestawienie.Sklad.Trim());
+                                            writer.Write("{0}\t", zestawienie.Dzial.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.Nazwa.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.Jm.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.StaryNrInd.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.KlasyfikatorHier.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.GrupaKlasaKwo.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.WagaBrutto.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.WagaNetto.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.JednWagi.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.Objetosc.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.JednObj.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.Gestor.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.Norma.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.WyroznikProdNiebezp.Trim());
+                                            writer.Write("{0}\t", zestawienie.SymbolKat.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.KodCpv.Trim());
+                                            writer.Write("{0}\t", zestawienie.Wskaznik.Trim());
+                                            writer.Write("{0}\t", zestawienie.ZapasBezp.Trim());
+                                            writer.Write("{0}\t", zestawienie.TypWyceny.Trim());
+                                            writer.Write("{0}\t", zestawienie.Rodzaj.Trim());
+                                            writer.Write("{0}\t", zestawienie.MaterialKonto.Trim());
+                                            writer.Write("{0}\t", zestawienie.StarCena.Trim());
+                                            writer.Write("{0}\t", zestawienie.JednCena.Trim());
+                                            writer.Write("{0}\t", zestawienie.CenaSrednia.Trim());
+                                            writer.Write("{0}\t", zestawienie.CenaStand.Trim());
+                                            writer.Write("{0}\t", zestawienie.ZakladDost.Trim());
+                                            writer.Write("{0}\t", zestawienie.MaterialProf.Trim());
+                                            writer.Write("{0}\t", zestawienieKlas.WyroznikCpv.Trim());
+                                            writer.Write(writer.NewLine);
+                                        }
                                     }
                                 }
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                        finally
-                        {
-                            writeStream.Flush();
-                            writeStream.Close();
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    finally
+                    {
+
                     }
                 }
 
@@ -141,32 +141,32 @@ namespace Migrator.Services
 
                 if (saveFile2.ShowDialog() == true)
                 {
-                    using (Stream writeStream = saveFile2.OpenFile())
+                    try
                     {
-                        try
+                        using (Stream writeStream = saveFile2.OpenFile())
                         {
-                            StreamWriter writer = new StreamWriter(writeStream);
-                            foreach (Zestawienie zestawienie in Zestawienia)
+                            using (StreamWriter writer = new StreamWriter(writeStream))
                             {
-                                foreach (ZestawienieKlas zestawienieKlas in ZestawieniaKlas)
+                                foreach (Zestawienie zestawienie in Zestawienia)
                                 {
-                                    if (zestawienie.Jim.Equals(zestawienieKlas.Jim.Trim()))
+                                    foreach (ZestawienieKlas zestawienieKlas in ZestawieniaKlas)
                                     {
-                                        writer.WriteLine("{0}\t022\t{1}", zestawienieKlas.Jim, zestawienieKlas.KlasyfikacjaPartii);
-                                        writer.Flush();
+                                        if (zestawienie.Jim.Equals(zestawienieKlas.Jim.Trim()))
+                                        {
+                                            writer.WriteLine("{0}\t022\t{1}", zestawienieKlas.Jim, zestawienieKlas.KlasyfikacjaPartii);
+                                        }
                                     }
                                 }
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                        finally
-                        {
-                            writeStream.Flush();
-                            writeStream.Close();
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    finally
+                    {
+
                     }
                 }
             }

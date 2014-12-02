@@ -107,6 +107,28 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         #endregion
 
+        #region ZapiszNiezlikwidowaneSrodkiCommand
+
+        private RelayCommand<string> _zapiszNiezlikwidowaneSrodkiCommand;
+        public RelayCommand<string> ZapiszNiezlikwidowaneSrodkiCommand
+        {
+            get
+            {
+                return _zapiszNiezlikwidowaneSrodkiCommand
+                    ?? (_zapiszNiezlikwidowaneSrodkiCommand = new RelayCommand<string>(
+                        title =>
+                        {
+                            string msg = _fSrtrToZwsironService.SaveNSTFile();
+
+                            Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msg));
+                        },
+                        m => ListNZlikKartoteka != null && ListNZlikKartoteka.Count > 0
+                ));
+            }
+        }
+
+        #endregion
+
         #endregion //Commands
 
         #region Properties

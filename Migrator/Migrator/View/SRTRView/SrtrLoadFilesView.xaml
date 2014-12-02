@@ -82,8 +82,11 @@
                     Width="238"
                     Command="{Binding PokazKartotekeCommand}"
                     HorizontalAlignment="Center" />
-            <Button  Grid.Row="2" HorizontalAlignment="Center" Width="238" Height="50" Margin="0,200,0, 0" Command="{Binding PokazNiezlikwidowaneSrodkiCommand}">
+            <Button  Grid.Row="2" HorizontalAlignment="Center" Width="238" Height="50" Margin="65,290,177,90" Command="{Binding PokazNiezlikwidowaneSrodkiCommand}">
                 <TextBlock TextWrapping="Wrap" TextAlignment="Center">POKAŻ NIEZLIKWIDOWANE ŚRODKI<LineBreak/>SKŁADOWANE W MAGAZYNIE</TextBlock>
+            </Button>
+            <Button  Grid.Row="2" HorizontalAlignment="Center" Width="90" Height="50" Margin="323,290,67,90" Command="{Binding ZapiszNiezlikwidowaneSrodkiCommand}">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center">ZAPISZ<LineBreak/>DO PLIKU</TextBlock>
             </Button>
             <Button Visibility="Hidden" 
                 Grid.Row="2" HorizontalAlignment="Center" Width="100" Height="30" Margin="-100,400,0, 0" Command="{Binding SerializujCommand}">

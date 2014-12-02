@@ -82,7 +82,7 @@ namespace Migrator.Services
         }
         private void SynchronizujDaneUzytkownika(List<Uzytkownik> slownik)
         {
-            Users.ForEach(x => 
+            Users.ForEach(x =>
                 {
                     slownik.ForEach(y =>
                         {
@@ -332,53 +332,94 @@ namespace Migrator.Services
 
             if (saveFile.ShowDialog() == true)
             {
-                using (Stream writeStream = saveFile.OpenFile())
+                try
                 {
-                    try
+                    using (Stream writeStream = saveFile.OpenFile())
                     {
-                        StreamWriter writer = new StreamWriter(writeStream);
-
-                        foreach (SrtrToZwsiron srtrToZwsiron in SrtrToZwsiron)
+                        using (StreamWriter writer = new StreamWriter(writeStream))
                         {
-                            if (CzyJimPoprawny(srtrToZwsiron))
+                            foreach (SrtrToZwsiron srtrToZwsiron in SrtrToZwsiron)
                             {
-                                writer.Write("{0}\t", srtrToZwsiron.GrupaAktywow.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.JednostkaGospodarcza.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.IndeksMaterialowy.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Nazwa.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.JednostkaMiary.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Jeden.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.KatSprzetu.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.NrSeryjny.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.NrInwentarzowy.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.DataNabycia2.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.WartoscPoczatkowa.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Umorzenie.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Zero.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.StawkaAmor.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.GrupaGus.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.DataNabycia.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.DataNabycia2.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Mpk.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.AmorCzasLata.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.AmorCzasMisiace.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.Kwo.Trim());
-                                writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron.Trim());
-                                writer.WriteLine("{0}\t", srtrToZwsiron.Zaklad.Trim());
-                                writer.Flush();
+                                if (CzyJimPoprawny(srtrToZwsiron))
+                                {
+                                    writer.Write("{0}\t", srtrToZwsiron.GrupaAktywow.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.JednostkaGospodarcza.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.IndeksMaterialowy.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Nazwa.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.JednostkaMiary.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Jeden.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.KatSprzetu.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.NrSeryjny.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.NrInwentarzowy.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.DataNabycia2.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.WartoscPoczatkowa.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Umorzenie.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Zero.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.StawkaAmor.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.GrupaGus.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.DataNabycia.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.DataNabycia2.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Mpk.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.AmorCzasLata.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.AmorCzasMisiace.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.Kwo.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron.Trim());
+                                    writer.WriteLine("{0}\t", srtrToZwsiron.Zaklad.Trim());
+                                }
                             }
                         }
                     }
-                    catch (Exception ex)
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
+                }
+            }
+
+            return success;
+        }
+        public string SaveNSTFile()
+        {
+            string success = "Plik zapisano poprawnie.";
+
+            SaveFileDialog saveFile = new SaveFileDialog() { FileName = "NiezlikwidowaneSrodkiTrwale", DefaultExt = ".text", Filter = "Dokumenty tekstowe (.txt)|*.txt" };
+
+            if (saveFile.ShowDialog() == true)
+            {
+                try
+                {
+                    using (Stream writeStream = saveFile.OpenFile())
                     {
-                        MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return string.Empty;
+                        using (StreamWriter writer = new StreamWriter(writeStream))
+                        {
+                            foreach (KartotekaSRTR kartoteka in KartotekaZlik)
+                            //foreach (KartotekaSRTR kartoteka in Kartoteka)
+                            {
+                                foreach (var prop in kartoteka.GetType().GetProperties())
+                                {
+                                    writer.Write("{0}\t", prop.GetValue(kartoteka, null));
+                                }
+
+                                writer.WriteLine();
+                            }
+                        }
                     }
-                    //finally
-                    //{
-                    //    writeStream.Flush();
-                    //    writeStream.Close();
-                    //}
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format("Błąd - {0}", ex), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
                 }
             }
 

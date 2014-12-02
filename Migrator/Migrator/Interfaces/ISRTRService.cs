@@ -54,6 +54,7 @@ namespace Migrator.Services
         void GetUsersID();
         void GetGrupaGus();
         string SaveFile();
+        string SaveNSTFile();
         void Clean();
     }
 }
