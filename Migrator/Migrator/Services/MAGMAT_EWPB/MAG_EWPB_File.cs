@@ -95,7 +95,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 material.Material = KodowanieZnakow.PolskieZnakiEWPB(subLines[2].Trim());
                                 //material.Material = KodowanieZnakow.PolskieZnaki(subLines[2].Trim(), Modul.MAGMAT_EWPB);
                                 material.Jm = subLines[3].Trim();
-                                material.Ilosc = Convert.ToDouble(subLines[4].Trim().Replace(".", string.Empty));
+                                material.Ilosc = Convert.ToDouble(subLines[5].Trim().Replace(".", string.Empty));
                                 material.Wartosc = "0";
                                 material.Cena = "X";
                                 material.Kategoria = PrzypiszKategorieEwpb319(subLines[1]);
