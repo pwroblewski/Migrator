@@ -119,7 +119,7 @@ namespace Migrator.Services.SRTR
                                 #endregion
                             };
 
-                            if (kartoteka.Konto_wpc != null && kartoteka.Konto_wpc.Substring(0, 4).Equals("3103") && kartoteka.Data_lik == null)
+                            if (kartoteka.Konto_wpc != null && kartoteka.Konto_wpc.Substring(0, 4).Equals("3103") && (kartoteka.Data_lik == null || kartoteka.Data_lik.Equals("")))
                                 listKartotekaZlik.Add(kartoteka);
                             else
                                 listKartoteka.Add(kartoteka);
