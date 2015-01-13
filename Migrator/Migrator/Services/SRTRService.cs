@@ -275,7 +275,7 @@ namespace Migrator.Services
                         x.Umorzenie = y.Umorzenie;
                         x.Zaklad = y.Zaklad;
 
-                        if (!string.IsNullOrEmpty(y.NazwaMaterialu))
+                        if (!string.IsNullOrEmpty(y.NazwaMaterialu) || y.IndeksMaterialowy.Equals("9999PL9999999"))
                             x.IndeksMaterialowy = y.IndeksMaterialowy;
                     }
                 });
