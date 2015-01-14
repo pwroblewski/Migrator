@@ -168,6 +168,7 @@ namespace Migrator.Services
                     NrSeryjny = kartoteka.Nr_seryjny.Trim(),
                     NrInwentarzowy = String.Format("{0}\\{1}\\{2}", kartoteka.Nr_kolejny.Trim().PadLeft(6, '0'), kartoteka.Kod_jed.Trim().PadLeft(4, '0'), kartoteka.Gr_gus.Trim()),
                     DataNabycia2 = Convert.ToDateTime(kartoteka.Data_nab2).ToString("dd.MM.yyyy").PadLeft(10, '0'),
+                    DataNabycia3 = Convert.ToDateTime(kartoteka.Data_nab2).ToString("ddMMyyyy").PadLeft(8, '0'),
                     DataNabycia = Convert.ToDateTime(kartoteka.Data_nab).ToString("ddMMyyyy").PadLeft(8, '0'),
                     IdUzytSrtr = kartoteka.Kod_uzyt,
                     Zero = "0",

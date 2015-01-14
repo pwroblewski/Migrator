@@ -18,14 +18,14 @@ namespace Migrator.Model
         public string KatSprzetu { get; set; }
         public string NrSeryjny { get; set; }
         public string NrInwentarzowy { get; set; }
-        public string DataNabycia2 { get; set; }
         public string WartoscPoczatkowa { get; set; }
         public string Umorzenie { get; set; }
         public string Zero { get; set; }
         public string StawkaAmor { get; set; }
         public string GrupaGus { get; set; }
         public string DataNabycia { get; set; }
-        public string DataNabycia2_2 { get; set; }
+        public string DataNabycia2 { get; set; }
+        public string DataNabycia3 { get; set; }
         public string Mpk { get; set; }
         public string AmorCzasLata { get; set; }
         public string AmorCzasMisiace { get; set; }
