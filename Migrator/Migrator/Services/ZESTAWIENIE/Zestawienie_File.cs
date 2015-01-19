@@ -64,11 +64,11 @@ namespace Migrator.Services.ZESTAWIENIE
                             }
                         }
                     }
-
-                    obj[0] = zestawienia;
-                    obj[1] = zestawieniaKlas;
                 }
             }
+
+            obj[0] = zestawienia;
+            obj[1] = zestawieniaKlas;
 
             return obj;
         }

@@ -359,12 +359,12 @@ namespace Migrator.Services
                                     writer.Write("{0}\t", srtrToZwsiron.StawkaAmor.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.GrupaGus.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.DataNabycia.Trim());
-                                    writer.Write("{0}\t", srtrToZwsiron.DataNabycia2.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.DataNabycia3.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.Mpk.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.AmorCzasLata.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.AmorCzasMisiace.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.Kwo.Trim());
-                                    writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron==null ? "" : srtrToZwsiron.IdUzytZwsiron.Trim());
                                     writer.WriteLine("{0}\t", srtrToZwsiron.Zaklad.Trim());
                                 }
                             }
