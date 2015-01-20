@@ -1,0 +1,14 @@
+================================================================
+   WYKAZ ZMIAN W APLIKACJI MIGRATOR DLA POSZCZEGÓLNYCH WERSJI
+================================================================
+
+WERSJA 3.10.7
+----------------------------------------------------------------
+- poprawiono format trzeciej daty dla SRTR (format bez kropek)
+- dodano do s³ownika stawkê amortyzacji 28%
+- poprawa czytania pustych ID u¿ytkowników ZWSIRON (SRTR)
+- dodano nowe pozycje do s³ownika grup sk³adników aktywów trwa³ych
+- poprawiono metodê wczytywania jednoczeœnie kilku plików do zestawienia
+
+WERSJA 3.11.0
+----------------------------------------------------------------
