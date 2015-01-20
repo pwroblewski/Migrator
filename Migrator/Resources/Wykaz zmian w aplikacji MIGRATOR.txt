@@ -12,3 +12,4 @@ WERSJA 3.10.7
 
 WERSJA 3.11.0
 ----------------------------------------------------------------
+- dodanie metody odczytywania numerów seryjnych i kategorii dla EWPB_351

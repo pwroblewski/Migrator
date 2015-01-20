@@ -20,7 +20,7 @@ namespace Migrator.Services.MAGMAT_EWPB
             {
                 string safeFileName = accessDialog.SafeFileName;
 
-                if((safeFileName.Contains("305") && wydruk.Contains("305")) ||
+                if ((safeFileName.Contains("305") && wydruk.Contains("305")) ||
                     ((safeFileName.Contains("319") || safeFileName.Contains("320")) && wydruk.Contains("319_320")) ||
                     (safeFileName.Contains("351") && wydruk.Contains("351")))
                 {
@@ -43,7 +43,6 @@ namespace Migrator.Services.MAGMAT_EWPB
                 List<MagmatEwpb> list = new List<MagmatEwpb>();
                 string line = null;
                 string[] prevSubLines = null;
-                int lp = 1;
 
                 try
                 {
@@ -60,7 +59,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 {
                                     MagmatEwpb material = new MagmatEwpb();
 
-                                    material.Lp = lp;
+                                    material.Lp = ZwiekszLp(list.Count);
                                     material.Jim = subLines[3].Trim().Substring(0, 13);
                                     material.Material = KodowanieZnakow.PolskieZnaki(subLines[4].Trim(), Modul.MAGMAT_EWPB);
                                     material.Jm = subLines[5].Trim();
@@ -74,7 +73,6 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.NrMagazynu = subLines[2].Trim();
 
                                     list.Add(material);
-                                    lp++;
                                 }
                             }
                         }
@@ -90,7 +88,7 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                                 MagmatEwpb material = new MagmatEwpb();
 
-                                material.Lp = lp;
+                                material.Lp = ZwiekszLp(list.Count);
                                 material.Jim = subLines[1].Substring(13, 13);
                                 material.Material = KodowanieZnakow.PolskieZnakiEWPB(subLines[2].Trim());
                                 //material.Material = KodowanieZnakow.PolskieZnaki(subLines[2].Trim(), Modul.MAGMAT_EWPB);
@@ -104,7 +102,6 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 material.Uzytkownik = subLines[1].Trim().Substring(0, 5).Trim().TrimStart('0');
 
                                 list.Add(material);
-                                lp++;
                             }
                         }
                         #endregion
@@ -120,7 +117,7 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                                     MagmatEwpb material = new MagmatEwpb();
 
-                                    material.Lp = lp;
+                                    material.Lp = ZwiekszLp(list.Count);
                                     material.Jim = subLines[2].Trim().Substring(0, 13);
                                     //material.Material = KodowanieZnakow.PolskieZnakiEWPB(prevSubLines[3].Trim());
                                     material.Material = KodowanieZnakow.PolskieZnaki(prevSubLines[3].Trim(), Modul.MAGMAT_EWPB);
@@ -133,12 +130,31 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Jednostka = prevSubLines[2].Trim();
 
                                     list.Add(material);
-                                    lp++;
 
                                 }
                                 else
                                 {
                                     prevSubLines = line.Split('|');
+                                }
+                            }
+
+                            list = RozdzielDane(list);
+
+                            if (line.Length > 0 && line[1].Equals('>'))
+                            {
+                                string[] subLines = line.Split('|');
+
+                                var nrSeryjny = subLines[1].Split(':')[1].Trim();
+                                var kategoria = subLines[3].Split(':')[1].Trim();
+
+                                for (int i = list.Count - 1; i >= 0; i--)
+                                {
+                                    if (string.IsNullOrEmpty(list[i].NrSeryjny))
+                                    {
+                                        list[i].NrSeryjny = nrSeryjny;
+                                        list[i].Kategoria = kategoria;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -155,6 +171,33 @@ namespace Migrator.Services.MAGMAT_EWPB
             }
         }
 
+        private static List<MagmatEwpb> RozdzielDane(List<MagmatEwpb> list)
+        {
+            if (list.Count > 0)
+            {
+                // rozdzielenie danych
+                var ilosc = list[list.Count - 1].Ilosc;
+                if (ilosc > 1)
+                {
+                    var material = list[list.Count - 1];
+                    list.Remove(material);
+
+                    for (int i = 0; i < ilosc; i++)
+                    {
+                        MagmatEwpb newMaterial = (MagmatEwpb)material.Clone();
+                        newMaterial.Ilosc = 1;
+                        newMaterial.Lp = ZwiekszLp(list.Count);
+                        list.Add(newMaterial);
+                    }
+                }
+            }
+
+            return list;
+        }
+        private static int ZwiekszLp(int count)
+        {
+            return count + 1;
+        }
         private static string PrzypiszKategorieMagmat(string indeks)
         {
             if (indeks.Trim().Contains("@"))
