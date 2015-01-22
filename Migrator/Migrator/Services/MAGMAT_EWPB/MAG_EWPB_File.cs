@@ -138,10 +138,10 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 }
                             }
 
-                            list = RozdzielDane(list);
-
                             if (line.Length > 0 && line[1].Equals('>'))
                             {
+                                list = RozdzielDane(list);
+
                                 string[] subLines = line.Split('|');
 
                                 var nrSeryjny = subLines[1].Split(':')[1].Trim();
