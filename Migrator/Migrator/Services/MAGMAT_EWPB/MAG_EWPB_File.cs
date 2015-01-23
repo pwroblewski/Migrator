@@ -103,6 +103,8 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                                 list.Add(material);
                             }
+
+                            list = PobierzNumerySeryjne(list, line);
                         }
                         #endregion
                         #region EWPB 351
@@ -138,25 +140,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 }
                             }
 
-                            if (line.Length > 0 && line[1].Equals('>'))
-                            {
-                                list = RozdzielDane(list);
-
-                                string[] subLines = line.Split('|');
-
-                                var nrSeryjny = subLines[1].Split(':')[1].Trim();
-                                var kategoria = subLines[3].Split(':')[1].Trim();
-
-                                for (int i = list.Count - 1; i >= 0; i--)
-                                {
-                                    if (string.IsNullOrEmpty(list[i].NrSeryjny))
-                                    {
-                                        list[i].NrSeryjny = nrSeryjny;
-                                        list[i].Kategoria = kategoria;
-                                        break;
-                                    }
-                                }
-                            }
+                            list = PobierzNumerySeryjne(list, line);
                         }
 
                         #endregion
@@ -169,6 +153,30 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                 return list;
             }
+        }
+
+        private static List<MagmatEwpb> PobierzNumerySeryjne(List<MagmatEwpb> list, string line)
+        {
+            if (line.Length > 0 && line[1].Equals('>'))
+            {
+                list = RozdzielDane(list);
+
+                string[] subLines = line.Split('|');
+
+                var nrSeryjny = subLines[1].Split(':')[1].Trim();
+                var kategoria = subLines[3].Split(':')[1].Trim();
+
+                for (int i = list.Count - 1; i >= 0; i--)
+                {
+                    if (string.IsNullOrEmpty(list[i].NrSeryjny))
+                    {
+                        list[i].NrSeryjny = nrSeryjny;
+                        list[i].Kategoria = kategoria;
+                        break;
+                    }
+                }
+            }
+            return list;
         }
 
         private static List<MagmatEwpb> RozdzielDane(List<MagmatEwpb> list)
