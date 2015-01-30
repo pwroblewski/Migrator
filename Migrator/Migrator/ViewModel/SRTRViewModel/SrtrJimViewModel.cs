@@ -26,7 +26,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         {
             //_fJimService = fJimService;
             _fSrtrToZwsironService = fSrtrToZwsironService;
-            
+
             Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
         }
@@ -118,9 +118,14 @@ namespace Migrator.ViewModel.SRTRViewModel
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }
-                catch (Exception ex)
+                catch (ArgumentOutOfRangeException)
                 {
-                    string msg = string.Format("BŁĄD! - {0}", ex.Message);
+                    string msg = "Wykryto niepoprawną strukturę pliku.";
+                    MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception)
+                {
+                    string msg = string.Format("Nieznany błąd. Sprawdź poprawność danych lub skontaktuj się z twórcą programu.");
                     MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -129,7 +134,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         private void UtworzPlik()
         {
             string msg = _fSrtrToZwsironService.SaveJimFile();
-            
+
             Messenger.Default.Send<Message, MainWizardViewModel>(new Message(msg));
         }
 
@@ -150,7 +155,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         internal override string GetPageName()
         {
             return SRTRPages.SrtrJim.ToString();
-        } 
+        }
 
         private void CallCleanUp(CleanUp cu)
         {

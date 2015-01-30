@@ -119,8 +119,7 @@ namespace Migrator.ViewModel.MagmatViewModel
             if (msg.MessageText.Equals("zapisz dane"))
             {
                 _fMagEwpbService.Materialy = ListMaterialy;
-                _fMagEwpbService.AddJim();
-                
+
                 Messenger.Default.Send<Message, MagmatEWPBSigmatViewModel>(new Message("synchronizuj dane"));
             }
         }
@@ -158,9 +157,15 @@ namespace Migrator.ViewModel.MagmatViewModel
                 {
                     // Czytanie pliku
                     _fMagEwpbService.AddJimData(WynikJimPath);
+                    _fMagEwpbService.AddJim();
                     ListMaterialy = _fMagEwpbService.Materialy;
-
+                    
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    string msg = "Niepoprawna struktura pliku. Sprawdź czy poprawnie użyto transakcji ZJIM08 (Transakcja ZJIM08A nie posiada wszystkich wymaganych danych).";
+                    MessageBox.Show(msg, "Bład odczytu danych", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (Exception ex)
                 {

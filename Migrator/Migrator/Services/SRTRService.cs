@@ -364,12 +364,18 @@ namespace Migrator.Services
                                     writer.Write("{0}\t", srtrToZwsiron.AmorCzasLata.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.AmorCzasMisiace.Trim());
                                     writer.Write("{0}\t", srtrToZwsiron.Kwo.Trim());
-                                    writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron==null ? "" : srtrToZwsiron.IdUzytZwsiron.Trim());
+                                    writer.Write("{0}\t", srtrToZwsiron.IdUzytZwsiron == null ? "" : srtrToZwsiron.IdUzytZwsiron.Trim());
                                     writer.WriteLine("{0}\t", srtrToZwsiron.Zaklad.Trim());
                                 }
                             }
                         }
                     }
+                }
+                catch (NullReferenceException)
+                {
+                    string msg = "Błąd odczytu danych. Sprawdź czy wszystkie dane są wypełnione poprawnie oraz czy nie ma pustych pól w kolumnach \"Grupa Aktywów Trwałych\" (1 kolumna) oraz \"Stawka Amortyzacji\" (14 kolumna)";
+                    MessageBox.Show(msg, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return string.Empty;
                 }
                 catch (IOException ex)
                 {

@@ -72,8 +72,8 @@
             <TabControl Grid.Row="2"  HorizontalAlignment="Stretch" Margin="5,10,5,5" VerticalAlignment="Stretch" SelectedItem="{Binding SelectedItem}">
                 <TabItem Header="ŻYWNOŚC (LEKARSTWA)">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListZywnosc}"
-                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                        <DataGrid Name="dg_Zywnosc" Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListZywnosc}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" KeyDown="dataGrid_KeyDown">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
@@ -105,8 +105,8 @@
                             <ColumnDefinition Width="14*"/>
                             <ColumnDefinition Width="25*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListAmunicja}"
-                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" Grid.ColumnSpan="2">
+                        <DataGrid  Name="Amunicja"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListAmunicja}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" Grid.ColumnSpan="2" KeyDown="dataGrid_KeyDown">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
@@ -177,8 +177,8 @@
                 </TabItem>
                 <TabItem Header="KAT">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListKat}"
-                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                        <DataGrid Name="Kat" Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListKat}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" KeyDown="dataGrid_KeyDown">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
@@ -215,8 +215,8 @@
                 </TabItem>
                 <TabItem Header="PALIWA">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListPaliwa}"
-                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                        <DataGrid Name="Paliwa" Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListPaliwa}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" KeyDown="dataGrid_KeyDown">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
@@ -245,8 +245,8 @@
                 </TabItem>
                 <TabItem Header="MUND">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListMund}"
-                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0">
+                        <DataGrid Name="Mund" Grid.Row="2"  VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding ListMund}"
+                            SelectionMode="Extended" SelectionUnit="Cell" RowDetailsVisibilityMode="Collapsed" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Padding="0" KeyDown="dataGrid_KeyDown">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="APP" Binding="{Binding App}" ClipboardContentBinding="{x:Null}" IsReadOnly="true" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Migrator.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace Migrator.View.MagmatView
         public MagmatEWPBSigmatView()
         {
             InitializeComponent();
+        }
+
+        private void dataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.V && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                CustomPaste.Paste(sender as DataGrid);
+            }
         }
     }
 }

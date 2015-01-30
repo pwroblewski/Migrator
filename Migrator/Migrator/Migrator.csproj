@@ -137,6 +137,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\CustomPaste.cs" />
     <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Helpers\MyWpfExtensions.cs" />
     <Compile Include="Helpers\Serializator.cs" />
