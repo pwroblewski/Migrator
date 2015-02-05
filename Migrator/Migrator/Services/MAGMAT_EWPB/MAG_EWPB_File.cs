@@ -70,7 +70,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Kategoria = null;
                                     material.NrSeryjny = null;
 
-                                    material.NrMagazynu = subLines[2].Trim();
+                                    material.NrMagazynu = KodowanieZnakow.PolskieZnaki(subLines[2].Trim(), Modul.MAGMAT_EWPB);
 
                                     list.Add(material);
                                 }
@@ -157,7 +157,7 @@ namespace Migrator.Services.MAGMAT_EWPB
 
         private static List<MagmatEwpb> PobierzNumerySeryjne(List<MagmatEwpb> list, string line)
         {
-            if (line.Length > 0 && line[1].Equals('>'))
+            if (line.Length > 2 && line[1].Equals('>'))
             {
                 list = RozdzielDane(list);
 

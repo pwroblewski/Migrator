@@ -53,7 +53,7 @@ namespace Migrator.Services.MAGMAT_EWPB
 
                             Magazyn magazyn = new Magazyn();
                             magazyn.NrMagazynu = rd["NR_MAG"].ToString();
-                            magazyn.NazwaMagazynu = KodowanieZnakow.PolskieZnaki(rd["NAZ_MAG"].ToString(), Modul.MAGMAT_EWPB);
+                            magazyn.NazwaMagazynu = KodowanieZnakow.PolskieZnakiEWPB(rd["NAZ_MAG"].ToString());
                             magazyn.Zaklad = rd["ZAKLAD"].ToString();
                             magazyn.Sklad = rd["SKLAD"].ToString();
 

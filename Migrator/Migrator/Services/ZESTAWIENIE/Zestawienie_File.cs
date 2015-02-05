@@ -29,7 +29,7 @@ namespace Migrator.Services.ZESTAWIENIE
         public static object[] LoadData(string[] paths)
         {
             object[] obj = new object[2];
-            List<string> list_jim = new List<string>();
+            
             List<Zestawienie> zestawienia = new List<Zestawienie>();
             List<ZestawienieKlas> zestawieniaKlas = new List<ZestawienieKlas>();
 
@@ -39,6 +39,7 @@ namespace Migrator.Services.ZESTAWIENIE
                 {
                     string fileName = Path.GetFileName(paths[i]);
                     string line = null;
+                    List<string> list_jim = new List<string>();
 
                     while ((line = sr.ReadLine()) != null)
                     {
