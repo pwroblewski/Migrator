@@ -402,7 +402,16 @@ namespace Migrator.Services
                                     {
                                         NullToStringEmptyConversion(zywnosc);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", 
+                                                zywnosc.Jim.PadRight(18), 
+                                                zywnosc.Ilosc.ToString().PadRight(17), 
+                                                zywnosc.Wartosc.ToString().PadRight(16), 
+                                                zywnosc.DataWaznosci.ToString().PadRight(10), 
+                                                zywnosc.NrPartiiProducenta.ToString().PadRight(15), 
+                                                zywnosc.Opakowanie.ToString().PadRight(10), 
+                                                zywnosc.Uzytkownik_ID.ToString().PadRight(10), 
+                                                zywnosc.DataWydania.ToString().PadRight(10), 
+                                                zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
                                         else
                                             writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
                                     }

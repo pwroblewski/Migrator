@@ -29,7 +29,7 @@ namespace Migrator.Services.ZESTAWIENIE
         public static object[] LoadData(string[] paths)
         {
             object[] obj = new object[2];
-            
+
             List<Zestawienie> zestawienia = new List<Zestawienie>();
             List<ZestawienieKlas> zestawieniaKlas = new List<ZestawienieKlas>();
 
@@ -57,7 +57,16 @@ namespace Migrator.Services.ZESTAWIENIE
                                 if (fileName[3].Equals('K'))
                                 {
                                     // Materiał z EWPB 319/320
-                                    uzytkownik = line.Split('\t')[line.Split('\t').Length - 1].Trim();
+                                    if (fileName.Contains("KAT"))
+                                        uzytkownik = line.Substring(126, 10);
+                                    else if (fileName.Contains("MUND"))
+                                        uzytkownik = line.Substring(71, 10);
+                                    else if (fileName.Contains("PALIWA"))
+                                        uzytkownik = line.Substring(102, 10);
+                                    else if (fileName.Contains("AMUNICJA"))
+                                        uzytkownik = line.Substring(101, 10);
+                                    else if (fileName.Contains("ZYWNOSC"))
+                                        uzytkownik = line.Substring(86, 10);
                                 }
 
                                 zestawienia.Add(new Zestawienie(jim, zaklad, sklad, uzytkownik));

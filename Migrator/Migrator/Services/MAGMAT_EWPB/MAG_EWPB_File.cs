@@ -218,6 +218,11 @@ namespace Migrator.Services.MAGMAT_EWPB
 
         private static string PrzypiszKategorieEwpb319(string indeks)
         {
+            if (indeks.Contains("@"))
+            {
+                return indeks.Split('@')[1];
+            }
+
             return "2";
         }
 
