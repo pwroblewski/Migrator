@@ -96,7 +96,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                 material.Ilosc = Convert.ToDouble(subLines[5].Trim().Replace(".", string.Empty));
                                 material.Wartosc = "0";
                                 material.Cena = "X";
-                                material.Kategoria = PrzypiszKategorieEwpb319(subLines[1]);
+                                material.Kategoria = PrzypiszKategorieEwpb(subLines[1]);
                                 material.NrSeryjny = string.Empty;
 
                                 material.Uzytkownik = subLines[1].Trim().Substring(0, 5).Trim().TrimStart('0');
@@ -127,7 +127,7 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Ilosc = Convert.ToDouble(prevSubLines[5].Trim().Replace(".", string.Empty));
                                     material.Wartosc = "0";
                                     material.Cena = "X";
-                                    material.Kategoria = PrzypiszKategorieEwpb351(subLines[2].Trim());
+                                    material.Kategoria = PrzypiszKategorieEwpb(subLines[2].Trim());
                                     material.NrSeryjny = string.Empty;
                                     material.Jednostka = prevSubLines[2].Trim();
 
@@ -208,29 +208,25 @@ namespace Migrator.Services.MAGMAT_EWPB
         }
         private static string PrzypiszKategorieMagmat(string indeks)
         {
-            if (indeks.Trim().Contains("@"))
+            var lastChar = indeks.Trim()[indeks.Trim().Length - 1];
+            var separator = indeks.Trim()[indeks.Trim().Length - 2];
+
+            if (separator.Equals('@') || separator.Equals('/'))
             {
-                return indeks.Trim().Split('@')[1];
+                return lastChar.ToString();
             }
 
             return "1";
         }
 
-        private static string PrzypiszKategorieEwpb319(string indeks)
+        private static string PrzypiszKategorieEwpb(string indeks)
         {
-            if (indeks.Contains("@"))
-            {
-                return indeks.Split('@')[1];
-            }
+            var lastChar = indeks.Trim()[indeks.Trim().Length - 1];
+            var separator = indeks.Trim()[indeks.Trim().Length - 2];
 
-            return "2";
-        }
-
-        private static string PrzypiszKategorieEwpb351(string indeks)
-        {
-            if (indeks.Contains("@"))
+            if (separator.Equals('@')||separator.Equals('/'))
             {
-                return indeks.Split('@')[1];
+                return lastChar.ToString();
             }
 
             return "2";
