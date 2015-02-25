@@ -15,6 +15,7 @@ namespace Migrator.Services
     public class MAG_EWPBService : IMAG_EWPBService
     {
         private MagmatEwpbState stan = new MagmatEwpbState();
+        private Encoding enc = Encoding.GetEncoding("Windows-1250");
 
         #region Properties
         public MagmatEwpbState MagmatEwpbState
@@ -395,7 +396,7 @@ namespace Migrator.Services
 
                             try
                             {
-                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                using (StreamWriter writer = new StreamWriter(FileName2, false, enc))
                                 {
 
                                     foreach (var zywnosc in temp_list[i - 1])
@@ -403,17 +404,23 @@ namespace Migrator.Services
                                         NullToStringEmptyConversion(zywnosc);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                             writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", 
-                                                zywnosc.Jim.PadRight(18), 
-                                                zywnosc.Ilosc.ToString().PadRight(17), 
-                                                zywnosc.Wartosc.ToString().PadRight(16), 
-                                                zywnosc.DataWaznosci.ToString().PadRight(10), 
-                                                zywnosc.NrPartiiProducenta.ToString().PadRight(15), 
-                                                zywnosc.Opakowanie.ToString().PadRight(10), 
-                                                zywnosc.Uzytkownik_ID.ToString().PadRight(10), 
-                                                zywnosc.DataWydania.ToString().PadRight(10), 
-                                                zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
+                                                zywnosc.Jim.PadRight(18).Substring(0,18), 
+                                                zywnosc.Ilosc.ToString().PadRight(17).Substring(0,17),
+                                                zywnosc.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                zywnosc.DataWaznosci.ToString().PadRight(10).Substring(0, 10),
+                                                zywnosc.NrPartiiProducenta.ToString().PadRight(15).Substring(0, 15),
+                                                zywnosc.Opakowanie.ToString().PadRight(10).Substring(0, 10),
+                                                zywnosc.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                                zywnosc.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                                zywnosc.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                         else
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}",
+                                                zywnosc.Jim.PadRight(18).Substring(0, 18),
+                                                zywnosc.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                zywnosc.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                zywnosc.DataWaznosci.ToString().PadRight(10).Substring(0, 10),
+                                                zywnosc.NrPartiiProducenta.ToString().PadRight(15).Substring(0, 15),
+                                                zywnosc.Opakowanie.ToString().PadRight(10).Substring(0, 10));
                                     }
                                 }
                             }
@@ -431,16 +438,31 @@ namespace Migrator.Services
                     {
                         try
                         {
-                            using (StreamWriter writer = new StreamWriter(FileName))
+                            using (StreamWriter writer = new StreamWriter(FileName, false, enc))
                             {
 
                                 foreach (var zywnosc in lista)
                                 {
                                     NullToStringEmptyConversion(zywnosc);
                                     if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10), zywnosc.Uzytkownik_ID.ToString().PadRight(10), zywnosc.DataWydania.ToString().PadRight(10), zywnosc.WyposazenieIndywidualne.ToString().PadRight(1));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}",
+                                            zywnosc.Jim.PadRight(18).Substring(0, 18),
+                                            zywnosc.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            zywnosc.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            zywnosc.DataWaznosci.ToString().PadRight(10).Substring(0, 10),
+                                            zywnosc.NrPartiiProducenta.ToString().PadRight(15).Substring(0, 15),
+                                            zywnosc.Opakowanie.ToString().PadRight(10).Substring(0, 10),
+                                            zywnosc.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                            zywnosc.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                            zywnosc.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                     else
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}", zywnosc.Jim.PadRight(18), zywnosc.Ilosc.ToString().PadRight(17), zywnosc.Wartosc.ToString().PadRight(16), zywnosc.DataWaznosci.ToString().PadRight(10), zywnosc.NrPartiiProducenta.ToString().PadRight(15), zywnosc.Opakowanie.ToString().PadRight(10));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}",
+                                            zywnosc.Jim.PadRight(18).Substring(0, 18),
+                                            zywnosc.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            zywnosc.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            zywnosc.DataWaznosci.ToString().PadRight(10).Substring(0, 10),
+                                            zywnosc.NrPartiiProducenta.ToString().PadRight(15).Substring(0, 15),
+                                            zywnosc.Opakowanie.ToString().PadRight(10).Substring(0, 10));
                                 }
                             }
                         }
@@ -488,7 +510,7 @@ namespace Migrator.Services
 
                             try
                             {
-                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                using (StreamWriter writer = new StreamWriter(FileName2, false, enc))
                                 {
 
                                     foreach (var amunicja in temp_list[i - 1])
@@ -496,54 +518,54 @@ namespace Migrator.Services
                                         NullToStringEmptyConversion(amunicja);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                             writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
-                                                amunicja.Jim.PadRight(18),
-                                                amunicja.Ilosc.ToString().PadRight(17),
-                                                amunicja.Wartosc.ToString().PadRight(16),
-                                                amunicja.Kategoria.ToString().PadRight(1),
-                                                amunicja.Kategoria2.ToString().PadRight(1),
-                                                amunicja.NrPartii.ToString().PadRight(17),
-                                                amunicja.DataProdukcji.ToString().PadRight(8),
-                                                amunicja.DataZablokowania.ToString().PadRight(8),
-                                                amunicja.Wyroznik.ToString().PadRight(1),
-                                                amunicja.DataGwarancji.ToString().PadRight(8),
-                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                                amunicja.NrSeryjny.ToString().PadRight(5),
-                                                amunicja.Uzytkownik_ID.ToString().PadRight(10),
-                                                amunicja.DataWydania.ToString().PadRight(8),
-                                                amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
+                                                amunicja.Jim.PadRight(18).Substring(0, 18),
+                                                amunicja.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                amunicja.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.Kategoria2.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.NrPartii.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.DataProdukcji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.DataZablokowania.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Wyroznik.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.DataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.NrSeryjny.ToString().PadRight(5).Substring(0, 5),
+                                                amunicja.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                                amunicja.DataWydania.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                         else
                                             writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
-                                                amunicja.Jim.PadRight(18),
-                                                amunicja.Ilosc.ToString().PadRight(17),
-                                                amunicja.Wartosc.ToString().PadRight(16),
-                                                amunicja.Kategoria.ToString().PadRight(1),
-                                                amunicja.Kategoria2.ToString().PadRight(1),
-                                                amunicja.NrPartii.ToString().PadRight(17),
-                                                amunicja.DataProdukcji.ToString().PadRight(8),
-                                                amunicja.DataZablokowania.ToString().PadRight(8),
-                                                amunicja.Wyroznik.ToString().PadRight(1),
-                                                amunicja.DataGwarancji.ToString().PadRight(8),
-                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                                amunicja.NrSeryjny.ToString().PadRight(5),
-                                                amunicja.DataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Zapalnik.ToString().PadRight(17),
-                                                amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
-                                                amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Zaplonnik.ToString().PadRight(17),
-                                                amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
-                                                amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Ladunek.ToString().PadRight(17),
-                                                amunicja.LadunekDataGwarancji.ToString().PadRight(8),
-                                                amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Pocisk.ToString().PadRight(17),
-                                                amunicja.PociskDataGwarancji.ToString().PadRight(8),
-                                                amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Zrodlo.ToString().PadRight(17),
-                                                amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
-                                                amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
-                                                amunicja.Smugacz.ToString().PadRight(17),
-                                                amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
-                                                amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
+                                                amunicja.Jim.PadRight(18).Substring(0, 18),
+                                                amunicja.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                amunicja.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.Kategoria2.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.NrPartii.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.DataProdukcji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.DataZablokowania.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Wyroznik.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.DataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.ZnacznikBlokowania.ToString().PadRight(1).Substring(0, 1),
+                                                amunicja.NrSeryjny.ToString().PadRight(5).Substring(0, 5),
+                                                amunicja.DataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Zapalnik.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.ZapalnikDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Zaplonnik.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Ladunek.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.LadunekDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Pocisk.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.PociskDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Zrodlo.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.ZrodloDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.Smugacz.ToString().PadRight(17).Substring(0, 17),
+                                                amunicja.SmugaczDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                                amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8));
                                     }
                                 }
                             }
@@ -562,7 +584,7 @@ namespace Migrator.Services
                         try
                         {
 
-                            using (StreamWriter writer = new StreamWriter(FileName))
+                            using (StreamWriter writer = new StreamWriter(FileName, false, enc))
                             {
 
                                 foreach (var amunicja in lista)
@@ -570,54 +592,54 @@ namespace Migrator.Services
                                     NullToStringEmptyConversion(amunicja);
                                     if (TypWydruku == MagmatEWPB.EWPB_319_320)
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}",
-                                            amunicja.Jim.PadRight(18),
-                                            amunicja.Ilosc.ToString().PadRight(17),
-                                            amunicja.Wartosc.ToString().PadRight(16),
-                                            amunicja.Kategoria.ToString().PadRight(1),
-                                            amunicja.Kategoria2.ToString().PadRight(1),
-                                            amunicja.NrPartii.ToString().PadRight(17),
-                                            amunicja.DataProdukcji.ToString().PadRight(8),
-                                            amunicja.DataZablokowania.ToString().PadRight(8),
-                                            amunicja.Wyroznik.ToString().PadRight(1),
-                                            amunicja.DataGwarancji.ToString().PadRight(8),
-                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                            amunicja.NrSeryjny.ToString().PadRight(5),
-                                            amunicja.Uzytkownik_ID.ToString().PadRight(10),
-                                            amunicja.DataWydania.ToString().PadRight(8),
-                                            amunicja.WyposazenieIndywidualne.ToString().PadRight(1));
+                                            amunicja.Jim.PadRight(18).Substring(0, 18),
+                                            amunicja.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            amunicja.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.Kategoria2.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.NrPartii.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.DataProdukcji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.DataZablokowania.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Wyroznik.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.DataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.NrSeryjny.ToString().PadRight(5).Substring(0, 5),
+                                            amunicja.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                            amunicja.DataWydania.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                     else
                                         writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}{25}{26}{27}{28}{29}{30}",
-                                            amunicja.Jim.PadRight(18),
-                                            amunicja.Ilosc.ToString().PadRight(17),
-                                            amunicja.Wartosc.ToString().PadRight(16),
-                                            amunicja.Kategoria.ToString().PadRight(1),
-                                            amunicja.Kategoria2.ToString().PadRight(1),
-                                            amunicja.NrPartii.ToString().PadRight(17),
-                                            amunicja.DataProdukcji.ToString().PadRight(8),
-                                            amunicja.DataZablokowania.ToString().PadRight(8),
-                                            amunicja.Wyroznik.ToString().PadRight(1),
-                                            amunicja.DataGwarancji.ToString().PadRight(8),
-                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1),
-                                            amunicja.NrSeryjny.ToString().PadRight(5),
-                                            amunicja.DataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Zapalnik.ToString().PadRight(17),
-                                            amunicja.ZapalnikDataGwarancji.ToString().PadRight(8),
-                                            amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Zaplonnik.ToString().PadRight(17),
-                                            amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8),
-                                            amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Ladunek.ToString().PadRight(17),
-                                            amunicja.LadunekDataGwarancji.ToString().PadRight(8),
-                                            amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Pocisk.ToString().PadRight(17),
-                                            amunicja.PociskDataGwarancji.ToString().PadRight(8),
-                                            amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Zrodlo.ToString().PadRight(17),
-                                            amunicja.ZrodloDataGwarancji.ToString().PadRight(8),
-                                            amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8),
-                                            amunicja.Smugacz.ToString().PadRight(17),
-                                            amunicja.SmugaczDataGwarancji.ToString().PadRight(8),
-                                            amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8));
+                                            amunicja.Jim.PadRight(18).Substring(0, 18),
+                                            amunicja.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            amunicja.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.Kategoria2.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.NrPartii.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.DataProdukcji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.DataZablokowania.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Wyroznik.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.DataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.ZnacznikBlokowania.ToString().PadRight(1).Substring(0, 1),
+                                            amunicja.NrSeryjny.ToString().PadRight(5).Substring(0, 5),
+                                            amunicja.DataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Zapalnik.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.ZapalnikDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.ZapalnikDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Zaplonnik.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.ZaplonnikDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.ZaplonnikDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Ladunek.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.LadunekDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.LadunekDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Pocisk.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.PociskDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.PociskDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Zrodlo.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.ZrodloDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.ZrodloDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.Smugacz.ToString().PadRight(17).Substring(0, 17),
+                                            amunicja.SmugaczDataGwarancji.ToString().PadRight(8).Substring(0, 8),
+                                            amunicja.SmugaczDataGwarancjiJBR.ToString().PadRight(8).Substring(0, 8));
                                 }
                             }
                         }
@@ -664,16 +686,46 @@ namespace Migrator.Services
                             string FileName2 = string.Format("{0}/{1}_{2}_KAT_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
                             try
                             {
-                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                using (StreamWriter writer = new StreamWriter(FileName2, false, enc))
                                 {
 
                                     foreach (var kat in temp_list[i - 1])
                                     {
                                         NullToStringEmptyConversion(kat);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}",
+                                                kat.Jim.PadRight(18).Substring(0, 18),
+                                                kat.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                kat.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                kat.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                kat.NrSeryjny.ToString().PadRight(15).Substring(0, 15),
+                                                kat.DataNabycia.ToString().PadRight(10).Substring(0, 10),
+                                                kat.WartoscPoczatkowa.ToString().PadRight(11).Substring(0, 11),
+                                                kat.WartoscUmorzenia.ToString().PadRight(11).Substring(0, 11),
+                                                kat.StawkaAmortyzacji.ToString().PadRight(4).Substring(0, 4),
+                                                kat.KlasSrodkowTrwalych.ToString().PadRight(3).Substring(0, 3),
+                                                kat.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                                kat.DataGwarancji.ToString().PadRight(10).Substring(0, 10),
+                                                kat.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                                kat.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                                kat.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1),
+                                                kat.Pododdzial.ToString().PadRight(20).Substring(0, 20),
+                                                kat.NrSeryjny.ToString().PadRight(20).Substring(0, 20));
                                         else
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", 
+                                                kat.Jim.PadRight(18).Substring(0,18),
+                                                kat.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                kat.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                kat.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                kat.NrSeryjny.ToString().PadRight(15).Substring(0, 15),
+                                                kat.DataNabycia.ToString().PadRight(10).Substring(0, 10),
+                                                kat.WartoscPoczatkowa.ToString().PadRight(11).Substring(0, 11),
+                                                kat.WartoscUmorzenia.ToString().PadRight(11).Substring(0, 11),
+                                                kat.StawkaAmortyzacji.ToString().PadRight(4).Substring(0, 4),
+                                                kat.KlasSrodkowTrwalych.ToString().PadRight(3).Substring(0, 3),
+                                                kat.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                                kat.DataGwarancji.ToString().PadRight(10).Substring(0, 10),
+                                                kat.KodStan.ToString().PadRight(1).Substring(0, 1));
                                     }
                                 }
                             }
@@ -691,16 +743,46 @@ namespace Migrator.Services
                     {
                         try
                         {
-                            using (StreamWriter writer = new StreamWriter(FileName))
+                            using (StreamWriter writer = new StreamWriter(FileName, false, enc))
                             {
 
                                 foreach (var kat in lista)
                                 {
                                     NullToStringEmptyConversion(kat);
                                     if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.Uzytkownik_ID.ToString().PadRight(10), kat.DataWydania.ToString().PadRight(10), kat.WyposazenieIndywidualne.ToString().PadRight(1), kat.Pododdzial.ToString().PadRight(20));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}",
+                                            kat.Jim.PadRight(18).Substring(0, 18),
+                                            kat.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            kat.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            kat.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            kat.NrSeryjny.ToString().PadRight(15).Substring(0, 15),
+                                            kat.DataNabycia.ToString().PadRight(10).Substring(0, 10),
+                                            kat.WartoscPoczatkowa.ToString().PadRight(11).Substring(0, 11),
+                                            kat.WartoscUmorzenia.ToString().PadRight(11).Substring(0, 11),
+                                            kat.StawkaAmortyzacji.ToString().PadRight(4).Substring(0, 4),
+                                            kat.KlasSrodkowTrwalych.ToString().PadRight(3).Substring(0, 3),
+                                            kat.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                            kat.DataGwarancji.ToString().PadRight(10).Substring(0, 10),
+                                            kat.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                            kat.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                            kat.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1),
+                                            kat.Pododdzial.ToString().PadRight(20).Substring(0, 20),
+                                            kat.NrSeryjny.ToString().PadRight(20).Substring(0, 20));
                                     else
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", kat.Jim.PadRight(18), kat.Ilosc.ToString().PadRight(17), kat.Wartosc.ToString().PadRight(16), kat.Kategoria.ToString().PadRight(1), kat.NrSeryjny.ToString().PadRight(15), kat.DataNabycia.ToString().PadRight(10), kat.WartoscPoczatkowa.ToString().PadRight(11), kat.WartoscUmorzenia.ToString().PadRight(11), kat.StawkaAmortyzacji.ToString().PadRight(4), kat.KlasSrodkowTrwalych.ToString().PadRight(3), kat.DataProdukcji.ToString().PadRight(10), kat.DataGwarancji.ToString().PadRight(10), kat.KodStan.ToString().PadRight(1));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}",
+                                            kat.Jim.PadRight(18).Substring(0, 18),
+                                            kat.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            kat.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            kat.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            kat.NrSeryjny.ToString().PadRight(15).Substring(0, 15),
+                                            kat.DataNabycia.ToString().PadRight(10).Substring(0, 10),
+                                            kat.WartoscPoczatkowa.ToString().PadRight(11).Substring(0, 11),
+                                            kat.WartoscUmorzenia.ToString().PadRight(11).Substring(0, 11),
+                                            kat.StawkaAmortyzacji.ToString().PadRight(4).Substring(0, 4),
+                                            kat.KlasSrodkowTrwalych.ToString().PadRight(3).Substring(0, 3),
+                                            kat.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                            kat.DataGwarancji.ToString().PadRight(10).Substring(0, 10),
+                                            kat.KodStan.ToString().PadRight(1).Substring(0, 1));
                                 }
                             }
                         }
@@ -748,16 +830,33 @@ namespace Migrator.Services
 
                             try
                             {
-                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                using (StreamWriter writer = new StreamWriter(FileName2, false, enc))
                                 {
 
                                     foreach (var pal in temp_list[i - 1])
                                     {
                                         NullToStringEmptyConversion(pal);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}",
+                                                pal.Jim.PadRight(18).Substring(0, 18),
+                                                pal.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                pal.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                pal.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                                pal.TypOpakowania.ToString().PadRight(10).Substring(0, 10),
+                                                pal.Wycena.ToString().PadRight(1).Substring(0, 1),
+                                                pal.Orzeczenie.ToString().PadRight(30).Substring(0, 30),
+                                                pal.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                                pal.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                                pal.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                         else
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}",
+                                                pal.Jim.PadRight(18).Substring(0, 18),
+                                                pal.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                pal.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                pal.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                                pal.TypOpakowania.ToString().PadRight(10).Substring(0, 10),
+                                                pal.Wycena.ToString().PadRight(1).Substring(0, 1),
+                                                pal.Orzeczenie.ToString().PadRight(30).Substring(0, 30));
                                     }
                                 }
                             }
@@ -775,16 +874,33 @@ namespace Migrator.Services
                     {
                         try
                         {
-                            using (StreamWriter writer = new StreamWriter(FileName))
+                            using (StreamWriter writer = new StreamWriter(FileName, false, enc))
                             {
 
                                 foreach (var pal in lista)
                                 {
                                     NullToStringEmptyConversion(pal);
                                     if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30), pal.Uzytkownik_ID.ToString().PadRight(10), pal.DataWydania.ToString().PadRight(10), pal.WyposazenieIndywidualne.ToString().PadRight(1));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}",
+                                            pal.Jim.PadRight(18).Substring(0, 18),
+                                            pal.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            pal.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            pal.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                            pal.TypOpakowania.ToString().PadRight(10).Substring(0, 10),
+                                            pal.Wycena.ToString().PadRight(1).Substring(0, 1),
+                                            pal.Orzeczenie.ToString().PadRight(30).Substring(0, 30),
+                                            pal.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                            pal.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                            pal.WyposazenieIndywidualne.ToString().PadRight(1).Substring(0, 1));
                                     else
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", pal.Jim.PadRight(18), pal.Ilosc.ToString().PadRight(17), pal.Wartosc.ToString().PadRight(16), pal.DataProdukcji.ToString().PadRight(10), pal.TypOpakowania.ToString().PadRight(10), pal.Wycena.ToString().PadRight(1), pal.Orzeczenie.ToString().PadRight(30));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}",
+                                            pal.Jim.PadRight(18).Substring(0, 18),
+                                            pal.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            pal.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            pal.DataProdukcji.ToString().PadRight(10).Substring(0, 10),
+                                            pal.TypOpakowania.ToString().PadRight(10).Substring(0, 10),
+                                            pal.Wycena.ToString().PadRight(1).Substring(0, 1),
+                                            pal.Orzeczenie.ToString().PadRight(30).Substring(0, 30));
                                 }
                             }
                         }
@@ -831,15 +947,35 @@ namespace Migrator.Services
                             string FileName2 = string.Format("{0}/{1}_{2}_MUND_{3}.txt", dlg.SelectedPath, lista[0].Zaklad, lista[0].Sklad, i);
                             try
                             {
-                                using (StreamWriter writer = new StreamWriter(FileName2))
+                                using (StreamWriter writer = new StreamWriter(FileName2, false, enc))
                                 {
                                     foreach (var mund in temp_list[i - 1])
                                     {
                                         NullToStringEmptyConversion(mund);
                                         if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}",
+                                                mund.Jim.PadRight(18).Substring(0, 18),
+                                                mund.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                mund.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                mund.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                mund.Rozmiar.ToString().PadRight(11).Substring(0, 11),
+                                                mund.RokProdukcji.ToString().PadRight(4).Substring(0, 4),
+                                                mund.RokGwarancji.ToString().PadRight(4).Substring(0, 4),
+                                                mund.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                                mund.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                                mund.WyposazenieInduwidualne.ToString().PadRight(1).Substring(0, 1),
+                                                mund.Pododdzial.ToString().PadRight(20).Substring(0, 20),
+                                                mund.OkresUzywalnosci.ToString().PadRight(3).Substring(0, 3),
+                                                mund.TypPozycjiPodzestawu.ToString().PadRight(1).Substring(0, 1));
                                         else
-                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
+                                            writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}",
+                                                mund.Jim.PadRight(18).Substring(0, 18),
+                                                mund.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                                mund.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                                mund.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                                mund.Rozmiar.ToString().PadRight(11).Substring(0, 11),
+                                                mund.RokProdukcji.ToString().PadRight(4).Substring(0, 4),
+                                                mund.RokGwarancji.ToString().PadRight(4).Substring(0, 4));
                                     }
                                 }
                             }
@@ -857,7 +993,7 @@ namespace Migrator.Services
                     {
                         try
                         {
-                            using (StreamWriter writer = new StreamWriter(FileName))
+                            using (StreamWriter writer = new StreamWriter(FileName, false, enc))
                             {
 
 
@@ -865,9 +1001,29 @@ namespace Migrator.Services
                                 {
                                     NullToStringEmptyConversion(mund);
                                     if (TypWydruku == MagmatEWPB.EWPB_319_320)
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4), mund.Uzytkownik_ID.ToString().PadRight(10), mund.DataWydania.ToString().PadRight(10), mund.WyposazenieInduwidualne.ToString().PadRight(1), mund.Pododdzial.ToString().PadRight(20), mund.OkresUzywalnosci.ToString().PadRight(3), mund.TypPozycjiPodzestawu.ToString().PadRight(1));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}",
+                                            mund.Jim.PadRight(18).Substring(0, 18),
+                                            mund.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            mund.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            mund.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            mund.Rozmiar.ToString().PadRight(11).Substring(0, 11),
+                                            mund.RokProdukcji.ToString().PadRight(4).Substring(0, 4),
+                                            mund.RokGwarancji.ToString().PadRight(4).Substring(0, 4),
+                                            mund.Uzytkownik_ID.ToString().PadRight(10).Substring(0, 10),
+                                            mund.DataWydania.ToString().PadRight(10).Substring(0, 10),
+                                            mund.WyposazenieInduwidualne.ToString().PadRight(1).Substring(0, 1),
+                                            mund.Pododdzial.ToString().PadRight(20).Substring(0, 20),
+                                            mund.OkresUzywalnosci.ToString().PadRight(3).Substring(0, 3),
+                                            mund.TypPozycjiPodzestawu.ToString().PadRight(1).Substring(0, 1));
                                     else
-                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}", mund.Jim.PadRight(18), mund.Ilosc.ToString().PadRight(17), mund.Wartosc.ToString().PadRight(16), mund.Kategoria.ToString().PadRight(1), mund.Rozmiar.ToString().PadRight(11), mund.RokProdukcji.ToString().PadRight(4), mund.RokGwarancji.ToString().PadRight(4));
+                                        writer.WriteLine("{0}{1}{2}{3}{4}{5}{6}",
+                                            mund.Jim.PadRight(18).Substring(0, 18),
+                                            mund.Ilosc.ToString().PadRight(17).Substring(0, 17),
+                                            mund.Wartosc.ToString().PadRight(16).Substring(0, 16),
+                                            mund.Kategoria.ToString().PadRight(1).Substring(0, 1),
+                                            mund.Rozmiar.ToString().PadRight(11).Substring(0, 11),
+                                            mund.RokProdukcji.ToString().PadRight(4).Substring(0, 4),
+                                            mund.RokGwarancji.ToString().PadRight(4).Substring(0, 4));
                                 }
                             }
                         }

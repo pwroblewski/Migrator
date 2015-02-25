@@ -17,18 +17,22 @@ namespace Migrator.Services
             {
                 double temp;
 
-                if (amor.StawkaAmor != 0.0)
+                if (amor.StawkaAmor == 0.0)
                 {
-                    amor.CzasLata = Convert.ToInt32(Math.Floor(Convert.ToDecimal(1 / amor.StawkaAmor)));
-                    temp = (1 / amor.StawkaAmor) - amor.CzasLata;
+                    amor.CzasLata = 0;
+                    amor.CzasMiesiace = 0;
+                }
+                else if(amor.StawkaAmor == 1.0)
+                {
+                    amor.CzasLata = 0;
+                    amor.CzasMiesiace = 1;
                 }
                 else
                 {
-                    amor.CzasLata = 0;
-                    temp = 0;
+                    amor.CzasLata = Convert.ToInt32(Math.Floor(Convert.ToDecimal(1 / amor.StawkaAmor)));
+                    temp = (1 / amor.StawkaAmor) - amor.CzasLata;
+                    amor.CzasMiesiace = Convert.ToInt32(Math.Ceiling(temp * 12));
                 }
-
-                amor.CzasMiesiace = Convert.ToInt32(Math.Ceiling(temp * 12));
             }
 
             return amorList;

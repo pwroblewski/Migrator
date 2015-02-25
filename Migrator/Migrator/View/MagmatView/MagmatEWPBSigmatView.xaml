@@ -79,21 +79,75 @@
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA WAŻNOŚCI" Binding="{Binding DataWaznosci}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="NR PARTI PROD" Binding="{Binding NrPartiiProducenta}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="OPAKOWANIE" Binding="{Binding Opakowanie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Visible"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="18"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="16"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA WAŻNOŚCI" Binding="{Binding DataWaznosci}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="NR PARTI PROD" Binding="{Binding NrPartiiProducenta}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="15"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="OPAKOWANIE" Binding="{Binding Opakowanie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -112,65 +166,269 @@
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Visible"/>
                                 <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="KATEGORIA2" Binding="{Binding Kategoria2}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="NR PARTII" Binding="{Binding NrPartii}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA ZABLOKOWANIA" Binding="{Binding DataZablokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WYRÓŻNIK" Binding="{Binding Wyroznik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ZNACZNIK BLOKOWANIA" Binding="{Binding ZnacznikBlokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="18"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="16"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="KATEGORIA2" Binding="{Binding Kategoria2}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="NR PARTII" Binding="{Binding NrPartii}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA ZABLOKOWANIA" Binding="{Binding DataZablokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WYRÓŻNIK" Binding="{Binding Wyroznik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ZNACZNIK BLOKOWANIA" Binding="{Binding ZnacznikBlokowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="5"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA GWARANCJI JBR" Binding="{Binding DataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPALNIK" Binding="{Binding Zapalnik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPALNIK DAWA GWAR." Binding="{Binding ZapalnikDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPALNIK DATA GWAR. JBR" Binding="{Binding ZapalnikDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPŁONNIK" Binding="{Binding Zaplonnik}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPŁONNIK DATA GWAR." Binding="{Binding ZaplonnikDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ZAPŁONNIK DATA GWAR. JBR" Binding="{Binding ZaplonnikDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŁADUNEK" Binding="{Binding Ladunek}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŁADUNEK DATA GWAR." Binding="{Binding LadunekDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŁADUNEK DATA GWAR. JBR" Binding="{Binding LadunekDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="POCISK" Binding="{Binding Pocisk}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="POCISK DATA GWAR." Binding="{Binding PociskDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="POCISK DATA GWAR. JBR" Binding="{Binding PociskDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA" Binding="{Binding Zrodlo}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA DATA GWAR." Binding="{Binding ZrodloDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="ŹRÓDŁO ZASILANIA DATA GWAR. JBR" Binding="{Binding ZrodloDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="SMUGACZ" Binding="{Binding Smugacz}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="SMUGACZ DATA GWAR." Binding="{Binding SmugaczDataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="SMUGACZ DATA GWAR. JBR" Binding="{Binding SmugaczDataGwarancjiJBR}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="8"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -184,31 +442,133 @@
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Visible"/>
                                 <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA NABYCIA" Binding="{Binding DataNabycia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ POCZĄTKOWA" Binding="{Binding WartoscPoczatkowa}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ UMORZENIA" Binding="{Binding WartoscUmorzenia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="STAWKA AMORTYZACJI" Binding="{Binding StawkaAmortyzacji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="KLASYFIKACJA SRTR" Binding="{Binding KlasSrodkowTrwalych}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="18"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="16"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="NR SERYJNY" Binding="{Binding NrSeryjny}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="15"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA NABYCIA" Binding="{Binding DataNabycia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ POCZĄTKOWA" Binding="{Binding WartoscPoczatkowa}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="11"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ UMORZENIA" Binding="{Binding WartoscUmorzenia}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="11"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="STAWKA AMORTYZACJI" Binding="{Binding StawkaAmortyzacji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="4"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="KLASYFIKACJA SRTR" Binding="{Binding KlasSrodkowTrwalych}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="3"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA GWARANCJI" Binding="{Binding DataGwarancji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="KOD STAN" Binding="{Binding KodStan}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserNotVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="PODODDZIAL" Binding="{Binding Pododdzial}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="20"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -222,23 +582,83 @@
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Visible"/>
                                 <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="TYP OPAKOWANIA" Binding="{Binding TypOpakowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WYCENA" Binding="{Binding Wycena}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ORZECZENIE" Binding="{Binding Orzeczenie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="18"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="16"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="DATA PRODUKCJI" Binding="{Binding DataProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="TYP OPAKOWANIA" Binding="{Binding TypOpakowania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WYCENA" Binding="{Binding Wycena}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ORZECZENIE" Binding="{Binding Orzeczenie}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="30"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieIndywidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -252,28 +672,106 @@
                                 <DataGridTextColumn Header="KTO" Binding="{Binding Kto}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="LP" Binding="{Binding Lp}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="MAG ID" Binding="{Binding Magazyn_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
+                                <DataGridTextColumn Header="MATERIAŁ" Binding="{Binding Material}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Visible"/>
                                 <DataGridTextColumn Header="ZAKŁAD" Binding="{Binding Zaklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="SKŁAD" Binding="{Binding Sklad}" ClipboardContentBinding="{x:Null}" IsReadOnly="false" Visibility="Collapsed"/>
-                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ROZMIAR" Binding="{Binding Rozmiar}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ROK PRODUKCJI" Binding="{Binding RokProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"/>
-                                <DataGridTextColumn Header="ROK GWARANCJI" Binding="{Binding RokGwarancji}" ClipboardContentBinding="{x:Null}"  IsReadOnly="false"/>
+                                <DataGridTextColumn Header="INDEKS" Binding="{Binding Jim}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="18"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ILOŚĆ" Binding="{Binding Ilosc}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="17"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="WARTOŚĆ" Binding="{Binding Wartosc, StringFormat={}{0:0.00}}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="16"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="KATEGORIA" Binding="{Binding Kategoria}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ROZMIAR" Binding="{Binding Rozmiar}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="11"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ROK PRODUKCJI" Binding="{Binding RokProdukcji}" ClipboardContentBinding="{x:Null}" IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="4"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="ROK GWARANCJI" Binding="{Binding RokGwarancji}" ClipboardContentBinding="{x:Null}"  IsReadOnly="false">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="4"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="UZYTKOWNIK" Binding="{Binding Uzytkownik_ID}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="DATA WYDANIA" Binding="{Binding DataWydania}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="10"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="WYPOSAŻ. IND." Binding="{Binding WyposazenieInduwidualne}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="PODODDZIAŁ" Binding="{Binding Pododdzial}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="20"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="OKRES UŻYWAL." Binding="{Binding OkresUzywalnosci}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="3"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="TYP POZ. PODZEST." Binding="{Binding TypPozycjiPodzestawu}" ClipboardContentBinding="{x:Null}" IsReadOnly="false"
-                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}"/>
+                                                    Visibility="{Binding DataContext.UserVis, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisConv}}">
+                                    <DataGridTextColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="MaxLength" Value="1"/>
+                                        </Style>
+                                    </DataGridTextColumn.EditingElementStyle>
+                                </DataGridTextColumn>
                                 
                             </DataGrid.Columns>
                         </DataGrid>

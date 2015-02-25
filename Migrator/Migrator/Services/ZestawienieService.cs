@@ -16,6 +16,7 @@ namespace Migrator.Services
     public class ZestawienieService : IZestawienieService
     {
         private ZestawienieState stan = new ZestawienieState();
+        private Encoding enc = Encoding.GetEncoding("Windows-1250");
 
         #region Properties
         public ZestawienieState ZestawienieState
@@ -80,7 +81,7 @@ namespace Migrator.Services
                     {
                         using (Stream writeStream = saveFile.OpenFile())
                         {
-                            using (StreamWriter writer = new StreamWriter(writeStream))
+                            using (StreamWriter writer = new StreamWriter(writeStream, enc))
                             {
                                 foreach (Zestawienie zestawienie in Zestawienia)
                                 {
@@ -145,7 +146,7 @@ namespace Migrator.Services
                     {
                         using (Stream writeStream = saveFile2.OpenFile())
                         {
-                            using (StreamWriter writer = new StreamWriter(writeStream))
+                            using (StreamWriter writer = new StreamWriter(writeStream, enc))
                             {
                                 foreach (Zestawienie zestawienie in Zestawienia)
                                 {

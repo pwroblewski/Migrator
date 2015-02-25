@@ -61,7 +61,7 @@ namespace Migrator.Services.SRTR
                                 {
                                     NrInwentarzowy = subLines[2].Trim(),
                                     WartoscPoczatkowa = temp,
-                                    IndeksMaterialowy = subLines2[0].Trim(),
+                                    IndeksMaterialowy = subLines2[0].Trim().Substring(0,13),
                                     Umorzenie = temp2
 
                                 });

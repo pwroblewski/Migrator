@@ -8,6 +8,7 @@ using Migrator.Helpers;
 using System.Linq;
 using Migrator.Model.State;
 using Migrator.Services.SRTR;
+using System.Text;
 
 namespace Migrator.Services
 {
@@ -328,6 +329,7 @@ namespace Migrator.Services
         public string SaveFile()
         {
             string success = "Plik zapisano poprawnie.";
+            Encoding enc = Encoding.GetEncoding("Windows-1250");
 
             SaveFileDialog saveFile = new SaveFileDialog() { FileName = "dane_SRTR", DefaultExt = ".text", Filter = "Dokumenty tekstowe (.txt)|*.txt" };
 
@@ -337,7 +339,7 @@ namespace Migrator.Services
                 {
                     using (Stream writeStream = saveFile.OpenFile())
                     {
-                        using (StreamWriter writer = new StreamWriter(writeStream))
+                        using (StreamWriter writer = new StreamWriter(writeStream, enc))
                         {
                             foreach (SrtrToZwsiron srtrToZwsiron in SrtrToZwsiron)
                             {
@@ -394,6 +396,7 @@ namespace Migrator.Services
         public string SaveNSTFile()
         {
             string success = "Plik zapisano poprawnie.";
+            Encoding enc = Encoding.GetEncoding("Windows-1250");
 
             SaveFileDialog saveFile = new SaveFileDialog() { FileName = "NiezlikwidowaneSrodkiTrwale", DefaultExt = ".text", Filter = "Dokumenty tekstowe (.txt)|*.txt" };
 
@@ -403,7 +406,7 @@ namespace Migrator.Services
                 {
                     using (Stream writeStream = saveFile.OpenFile())
                     {
-                        using (StreamWriter writer = new StreamWriter(writeStream))
+                        using (StreamWriter writer = new StreamWriter(writeStream, enc))
                         {
                             foreach (KartotekaSRTR kartoteka in KartotekaZlik)
                             //foreach (KartotekaSRTR kartoteka in Kartoteka)
