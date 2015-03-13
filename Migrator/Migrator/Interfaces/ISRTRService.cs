@@ -44,6 +44,7 @@ namespace Migrator.Services
         #endregion
 
         void AddKartotekaFile(List<KartotekaSRTR> listKartoteka);
+        void AddSlJed(List<Jednostka> jednostki);
         void AddJednosktaGospodarcza(string JednsotkaGosp);
         void AddJednostkiMiary(List<JednostkaMiary> listJM);
         void AddGrupaAktywow(List<GrupaAktywow> listGrupaAktywow);

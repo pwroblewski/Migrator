@@ -32,6 +32,7 @@ namespace Migrator.Services
         void FillDictionaryData();
         string OpenDictionaryFile();
         void LoadDictionaryData(string path);
+        List<Jednostka> LoadSlJedData(string path);
         #endregion
         #region Jim
         string SaveJimFile();

@@ -95,7 +95,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Zaklad}" ClipboardContentBinding="{Binding Zaklad}" Header="Zakład" IsReadOnly="True">
+                    <DataGridTextColumn Binding="{Binding Zaklad}" ClipboardContentBinding="{Binding Zaklad}" Header="Zakład" IsReadOnly="True" Visibility="Hidden">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Right" />

@@ -140,16 +140,7 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         internal override bool IsValid()
         {
-            // sprawdzenie wypełnienia wszystkich Mpk oraz Id ZWSI RON
-            if (ListWykazIlosciowySRTR != null)
-            {
-                bool isValid = ListWykazIlosciowySRTR.Exists(x => string.IsNullOrEmpty(x.Zaklad));
-                return isValid ? false : true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
 
         internal override string GetPageName()

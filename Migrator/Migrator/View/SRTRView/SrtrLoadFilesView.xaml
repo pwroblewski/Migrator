@@ -76,6 +76,17 @@
                     Margin="400,-125,0,0"
                     Width="80"
                     Command="{Binding WczytajPlikKartotekiCommand}" HorizontalAlignment="Center" />
+            <TextBox Grid.Row="2"
+                Height="23"
+                     HorizontalAlignment="Center"
+                     Width="400"
+                     Text="{Binding SlJedPath}"
+                     Margin="0,171,80,236" />
+            <Button Grid.Row="2" Content="SL JED"
+                    Height="23"
+                    Margin="400,171,0,236"
+                    Width="80"
+                    Command="{Binding WczytajPlikSlJedCommand}" HorizontalAlignment="Center" />
             <Button Grid.Row="2" Content="Pokaż Kartotekę Środków Trwałych"
                     Height="41"
                     Margin="0,50,0,0"

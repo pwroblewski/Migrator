@@ -158,6 +158,10 @@ namespace Migrator.Services
                     break;
             }
         }
+        public List<Jednostka> LoadSlJedData(string path)
+        {
+            return MAG_EWPB_Jednostka.LoadData(path);
+        }
         private void SynchronizujDaneJednostek(List<Jednostka> jednostki)
         {
             Dictionaries.ForEach(x =>

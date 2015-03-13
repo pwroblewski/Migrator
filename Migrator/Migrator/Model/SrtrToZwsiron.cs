@@ -40,5 +40,6 @@ namespace Migrator.Model
         public string WartoscPoczatkowaSRTR { get; set; }
         public string WspolczynnikAmortyzacjiSRTR { get; set; }
         public string GrupaGusSRTR { get; set; }
+        public string KodJednostki { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace Migrator.ViewModel.SRTRViewModel
             _fSrtrToZwsironService = fSrtrToZwsironService;
 
             SelectedCells = new List<DataGridCellInfo>();
-            
+
             Messenger.Default.Register<Message>(this, HandleMessage);
             Messenger.Default.Register<CleanUp>(this, CallCleanUp);
         }
@@ -103,7 +103,7 @@ namespace Migrator.ViewModel.SRTRViewModel
                     ?? (_keyDownCommand = new RelayCommand<KeyEventArgs>(
                         user =>
                         {
-                            if(user.Key == Key.V && (Keyboard.Modifiers == ModifierKeys.Control)) // Paste
+                            if (user.Key == Key.V && (Keyboard.Modifiers == ModifierKeys.Control)) // Paste
                             {
                                 WklejDaneZeSchowkaSystemowego();
                             }
@@ -278,12 +278,9 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         internal override bool IsValid()
         {
-            // sprawdzenie wypełnienia wszystkich Mpk oraz Id ZWSI RON
-            if (ListWykazIlosciowySRTR != null)
-            {
-                bool isValid = ListWykazIlosciowySRTR.Exists(x => string.IsNullOrEmpty(x.Zaklad));
-                return isValid ? false : true;
-            }
+            if (!string.IsNullOrEmpty(WykazIlosciowyPath))
+                return true;
+
             return false;
         }
 

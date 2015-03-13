@@ -179,8 +179,18 @@ namespace Migrator.Services
                     JednsotkaMiarySRTR = kartoteka.Jed_miary,
                     WspolczynnikAmortyzacjiSRTR = kartoteka.Wsp_am_1,
                     WartoscPoczatkowaSRTR = kartoteka.War_pocz,
-                    GrupaGusSRTR = kartoteka.Gr_gus
+                    GrupaGusSRTR = kartoteka.Gr_gus,
+                    KodJednostki = kartoteka.Kod_jed
                 });
+            }
+        }
+
+        public void AddSlJed(List<Jednostka> jednostki)
+        {
+            foreach (var item in SrtrToZwsiron)
+            {
+                item.Zaklad = jednostki.Where(x => x.KodJednostki.Trim().Equals(item.KodJednostki.Trim()))
+                                .Select(y => y.OsobaUpowazniona.Trim()).FirstOrDefault();
             }
         }
 
@@ -275,7 +285,6 @@ namespace Migrator.Services
                     {
                         x.WartoscPoczatkowa = y.WartoscPoczatkowa;
                         x.Umorzenie = y.Umorzenie;
-                        x.Zaklad = y.Zaklad;
 
                         if (!string.IsNullOrEmpty(y.NazwaMaterialu) || y.IndeksMaterialowy.Equals("9999PL9999999"))
                             x.IndeksMaterialowy = y.IndeksMaterialowy;
@@ -283,6 +292,7 @@ namespace Migrator.Services
                 });
             });
         }
+
         #endregion
 
         #region Helpers

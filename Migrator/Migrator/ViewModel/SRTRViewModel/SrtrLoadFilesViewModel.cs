@@ -17,6 +17,7 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         private KartotekaWindow kartotekaWindow;
         private readonly ISRTRService _fSrtrToZwsironService;
+        private readonly IMAG_EWPBService _fMagmatService;
         private readonly IDBJmService _dbJmService;
         private readonly IDBGrupaAktywowService _dbGrupaAktywowService;
         private readonly IDBAmorService _dbAmorService;
@@ -27,9 +28,10 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         #region Constructor
 
-        public SrtrLoadFilesViewModel(ISRTRService fSrtrToZwsironService, IDBJmService dbJmService, IDBGrupaAktywowService dbGrupaAktywowService, IDBAmorService dbAmorService)
+        public SrtrLoadFilesViewModel(ISRTRService fSrtrToZwsironService, IMAG_EWPBService fMagmatService, IDBJmService dbJmService, IDBGrupaAktywowService dbGrupaAktywowService, IDBAmorService dbAmorService)
         {
             _fSrtrToZwsironService = fSrtrToZwsironService;
+            _fMagmatService = fMagmatService;
             _dbJmService = dbJmService;
             _dbGrupaAktywowService = dbGrupaAktywowService;
             _dbAmorService = dbAmorService;
@@ -52,6 +54,23 @@ namespace Migrator.ViewModel.SRTRViewModel
                     ?? (_wczytajPlikKartotekiCommand = new RelayCommand<string>(
                         title => WczytajKartoteke(),
                         title => !string.IsNullOrEmpty(JednostkaGosp)
+                ));
+            }
+        }
+
+        #endregion
+
+        #region WczytajPlikSlJedCommand
+
+        private RelayCommand<string> _wczytajPlikSlJedCommand;
+        public RelayCommand<string> WczytajPlikSlJedCommand
+        {
+            get
+            {
+                return _wczytajPlikSlJedCommand
+                    ?? (_wczytajPlikSlJedCommand = new RelayCommand<string>(
+                        title => WczytajSlJed(),
+                        title => !string.IsNullOrEmpty(KartotekaPath)
                 ));
             }
         }
@@ -139,7 +158,12 @@ namespace Migrator.ViewModel.SRTRViewModel
             get { return _kartotekaPath; }
             set { _kartotekaPath = value; RaisePropertyChanged(() => KartotekaPath); }
         }
-
+        private string _slJedPath;
+        public string SlJedPath
+        {
+            get { return _slJedPath; }
+            set { _slJedPath = value; RaisePropertyChanged(() => SlJedPath); }
+        }
         private string _jednostkaGosp;
         public string JednostkaGosp
         {
@@ -198,6 +222,25 @@ namespace Migrator.ViewModel.SRTRViewModel
 
         }
 
+        private void WczytajSlJed()
+        {
+            try
+            {
+                _fMagmatService.TypWydruku = MagmatEWPB.EWPB_351;
+                SlJedPath = _fMagmatService.OpenDictionaryFile();
+                if (!string.IsNullOrEmpty(SlJedPath))
+                {
+                    var jednostki = _fMagmatService.LoadSlJedData(SlJedPath);
+                    _fSrtrToZwsironService.AddSlJed(jednostki);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.Message, ex.Message, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
         private async void ConvertJednostkiMiary()
         {
             List<JednostkaMiary> listJM = await _dbJmService.GetAll();
@@ -238,6 +281,7 @@ namespace Migrator.ViewModel.SRTRViewModel
         private void CallCleanUp(CleanUp cu)
         {
             if (KartotekaPath != null) KartotekaPath = string.Empty;
+            if (SlJedPath != null) SlJedPath = string.Empty;
             if (JednostkaGosp != null) JednostkaGosp = string.Empty;
             ListKartoteka = null;
             ListNZlikKartoteka = null;
