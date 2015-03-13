@@ -54,7 +54,7 @@ namespace Migrator.Services.ZESTAWIENIE
                                 // TO DO obsługa czytania z pliku uzytkownika
                                 string uzytkownik = string.Empty;
 
-                                if (fileName[3].Equals('K'))
+                                if (fileName[3].ToString().ToUpper().Equals("K"))
                                 {
                                     // Materiał z EWPB 319/320
                                     if (fileName.Contains("KAT"))
