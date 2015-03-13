@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace Migrator.ViewModel.SRTRViewModel
 {
@@ -113,6 +114,15 @@ namespace Migrator.ViewModel.SRTRViewModel
                 }
                 else
                     ListGrGusSRTR = _fSrtrToZwsironService.GrGus;
+
+                // automatyczne przypisywanie GUS
+                foreach (var item in ListGrGusSRTR)
+                {
+                    item.KodGrRodzZWSIRON = ListGrGusZWSIRON
+                                                .Where(y => y.KodGrRodzZWSIRON.Trim() == item.KodGrRodzSRTR.PadRight(4, '0'))
+                                                .Select(x => x.KodGrRodzZWSIRON)
+                                                .FirstOrDefault();
+                }
             }
             if (msg.MessageText.Equals("zapisz dane"))
             {
