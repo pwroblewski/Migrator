@@ -179,9 +179,10 @@ namespace Migrator.ViewModel.SRTRViewModel
 
                     Messenger.Default.Send<Message, MainWizardViewModel>(new Message("Plik wczytano poprawnie."));
                 }
-                catch (Exception ex)
+                catch 
                 {
-                    Messenger.Default.Send<Message, MainWizardViewModel>(new Message(string.Format("BŁĄD! - {0}", ex.Message)));
+                    throw;
+                    //Messenger.Default.Send<Message, MainWizardViewModel>(new Message(string.Format("BŁĄD! - {0}", ex.Message)));
                 }
             }
         }

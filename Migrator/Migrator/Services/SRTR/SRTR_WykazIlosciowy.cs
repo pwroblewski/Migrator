@@ -57,14 +57,18 @@ namespace Migrator.Services.SRTR
                                     temp2 = String.Format("{0:0.00}", Convert.ToDouble(subLines2[4].Trim().Replace('.', ' ')));
                                 }
 
-                                list.Add(new WykazIlosciowy()
+                                if(subLines2[0].Trim().Length < 13)
                                 {
-                                    NrInwentarzowy = subLines[2].Trim(),
-                                    WartoscPoczatkowa = temp,
-                                    IndeksMaterialowy = subLines2[0].Trim().Substring(0,13),
-                                    Umorzenie = temp2
+                                    throw new Exception("Wykryto nieprawidłowy indeks na pozycji " + "");
+                                }
 
-                                });
+                                var wykaz = new WykazIlosciowy();
+                                wykaz.NrInwentarzowy = subLines[2].Trim();
+                                wykaz.WartoscPoczatkowa = temp;
+                                wykaz.IndeksMaterialowy = subLines2[0].Trim().Substring(0, 13);
+                                wykaz.Umorzenie = temp2;
+
+                                list.Add(wykaz);
                             }
                             else
                             {
