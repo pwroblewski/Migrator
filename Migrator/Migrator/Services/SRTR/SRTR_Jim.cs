@@ -102,11 +102,20 @@ namespace Migrator.Services.SRTR
                             zestawienie.Objetosc = line.Substring(162, 17);
                             zestawienie.JednObj = line.Substring(179, 3);
                             zestawienie.Wymiary = line.Substring(182, 32);
-                            zestawienie.KodCpv = line.Substring(214, 18);
-                            zestawienie.WyroznikCpv = line.Substring(232, 2);
                             zestawienie.Norma = line.Substring(234, 18);
                             zestawienie.WyroznikProdNiebezp = line.Substring(252, 3);
                             zestawienie.KlasyfikacjaPartii = line.Substring(255);
+
+                            if(!line.Substring(232,2).Equals("WY") && !string.IsNullOrEmpty(line.Substring(232,2)))
+                            {
+                                zestawienie.WyroznikCpv = string.Empty;
+                                zestawienie.KodCpv = string.Empty;
+                            }
+                            else
+                            {
+                                zestawienie.WyroznikCpv = line.Substring(232, 2);
+                                zestawienie.KodCpv = line.Substring(214, 18);
+                            }
                         }
                     }
 
