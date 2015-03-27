@@ -59,7 +59,7 @@ namespace Migrator.Services.SRTR
 
                                 if(subLines2[0].Trim().Length < 13)
                                 {
-                                    throw new Exception("Wykryto nieprawidłowy indeks na pozycji " + "");
+                                    throw new Exception("Wykryto nieprawidłowy indeks na pozycji " + subLines[1]);
                                 }
 
                                 var wykaz = new WykazIlosciowy();

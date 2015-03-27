@@ -140,7 +140,7 @@
                        FontWeight="Normal"
                        FontSize="20"
                        HorizontalContentAlignment="Center" />
-                <Label Content="v. 3.16"
+                <Label Content="v. 3.17"
                        Height="25"
                        HorizontalAlignment="Right"
                        Margin="0,0,0,0"

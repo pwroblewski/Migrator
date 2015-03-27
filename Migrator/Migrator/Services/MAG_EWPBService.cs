@@ -270,6 +270,7 @@ namespace Migrator.Services
             {
                 switch (x.Klasyfikacja)
                 {
+                    #region ZYWNOSC
                     case "ZYWNOSC":
                         // SIGMAT ZYWNOSC LEKARSTWA
                         SigmatZywnosc zywnosc = new SigmatZywnosc();
@@ -287,7 +288,8 @@ namespace Migrator.Services
 
                         Zywnosc.Add(zywnosc);
                         break;
-
+                    #endregion
+                    #region AMUNICJA
                     case "AMUNICJA":
                         // SIGMAT AMUNICJA
                         SigmatAmunicja amunicja = new SigmatAmunicja();
@@ -306,7 +308,8 @@ namespace Migrator.Services
 
                         Amunicja.Add(amunicja);
                         break;
-
+                    #endregion
+                    #region KAT
                     case "KAT":
                         // SIGMAT KAT
                         SigmatKat kat = new SigmatKat();
@@ -325,7 +328,8 @@ namespace Migrator.Services
 
                         Kat.Add(kat);
                         break;
-
+                    #endregion
+                    #region PALIWA
                     case "PALIWA":
                         // SIGMAT PALIWA
                         SigmatPaliwa paliwa = new SigmatPaliwa();
@@ -343,7 +347,8 @@ namespace Migrator.Services
 
                         Paliwa.Add(paliwa);
                         break;
-
+                    #endregion
+                    #region MUND
                     case "MUND":
                         // SIGMAT MUNDUROWKA
                         SigmatMund mund = new SigmatMund();
@@ -361,12 +366,117 @@ namespace Migrator.Services
 
                         Mund.Add(mund);
                         break;
-
+                    #endregion
                     default:
                         break;
                 }
             });
 
+        }
+        public void UpdateJim()
+        {
+            #region ZYWNOSC
+            if (Zywnosc != null)
+            {
+                Zywnosc.ForEach(x =>
+                    {
+                        var material = Materialy.Find(y => y.Klasyfikacja.Equals("ZYWNOSC") && y.Jim == x.Jim);
+                        x.App = TypWydruku.ToString();
+                        x.Lp = material.Lp;
+                        x.Magazyn_ID = material.NrMagazynu;
+                        x.Jim = material.Jim;
+                        x.Material = material.Material;
+                        x.Kategoria = material.Kategoria;
+                        x.Ilosc = material.Ilosc;
+                        x.Wartosc = material.Wartosc;
+                        x.Zaklad = material.Zaklad;
+                        x.Sklad = material.Sklad;
+                        x.Uzytkownik_ID = material.UzytkownikZwsiron;
+                    });
+            }
+            #endregion
+            #region AMUNICJA
+            if (Amunicja != null)
+            {
+                Amunicja.ForEach(x =>
+                {
+                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("AMUNICJA") && y.Jim == x.Jim);
+                    x.App = TypWydruku.ToString();
+                    x.Lp = material.Lp;
+                    x.Magazyn_ID = material.NrMagazynu;
+                    x.Jim = material.Jim;
+                    x.Material = material.Material;
+                    x.Kategoria = material.Kategoria;
+                    x.NrSeryjny = material.NrSeryjny;
+                    x.Ilosc = material.Ilosc;
+                    x.Wartosc = material.Wartosc;
+                    x.Zaklad = material.Zaklad;
+                    x.Sklad = material.Sklad;
+                    x.Uzytkownik_ID = material.UzytkownikZwsiron;
+                });
+            }
+            #endregion
+            #region KAT
+            if (Kat != null)
+            {
+                Kat.ForEach(x =>
+                {
+                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("KAT") && y.Jim == x.Jim);
+                    x.App = TypWydruku.ToString();
+                    x.Lp = material.Lp;
+                    x.Magazyn_ID = material.NrMagazynu;
+                    x.Jim = material.Jim;
+                    x.Material = material.Material;
+                    x.Kategoria = material.Kategoria;
+                    x.NrSeryjny = material.NrSeryjny;
+                    x.Ilosc = material.Ilosc;
+                    x.Wartosc = material.Wartosc;
+                    x.Zaklad = material.Zaklad;
+                    x.Sklad = material.Sklad;
+                    x.Uzytkownik_ID = material.UzytkownikZwsiron;
+                });
+            }
+            #endregion
+            #region PALIWA
+            if (Paliwa != null)
+            {
+                Paliwa.ForEach(x =>
+                {
+                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("PALIWA") && y.Jim == x.Jim);
+                    x.App = TypWydruku.ToString();
+                    x.Lp = material.Lp;
+                    x.Magazyn_ID = material.NrMagazynu;
+                    x.Jim = material.Jim;
+                    x.Material = material.Material;
+                    x.Kategoria = material.Kategoria;
+                    x.Ilosc = material.Ilosc;
+                    x.Wartosc = material.Wartosc;
+                    x.Zaklad = material.Zaklad;
+                    x.Sklad = material.Sklad;
+                    x.Uzytkownik_ID = material.UzytkownikZwsiron;
+                });
+            }
+            #endregion
+            #region MUND
+            if (Mund != null)
+            {
+                Mund.ForEach(x =>
+                {
+                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("MUND") && y.Jim == x.Jim);
+                    x.App = TypWydruku.ToString();
+                    x.Lp = material.Lp;
+                    x.Magazyn_ID = material.NrMagazynu;
+                    x.Jim = material.Jim;
+                    x.Material = material.Material;
+                    x.Kategoria = material.Kategoria;
+                    x.Ilosc = material.Ilosc;
+                    x.Wartosc = material.Wartosc;
+                    x.Zaklad = material.Zaklad;
+                    x.Sklad = material.Sklad;
+                    x.Uzytkownik_ID = material.UzytkownikZwsiron;
+                });
+            }
+            #endregion
         }
         private void ZapiszZywnosc()
         {

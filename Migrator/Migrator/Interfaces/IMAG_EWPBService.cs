@@ -41,6 +41,7 @@ namespace Migrator.Services
 
         void AddDictionary();
         void AddJim();
+        void UpdateJim();
         void SaveFile(string header);
         void Clean();
     }
