@@ -380,7 +380,10 @@ namespace Migrator.Services
             {
                 Zywnosc.ForEach(x =>
                     {
-                        var material = Materialy.Find(y => y.Klasyfikacja.Equals("ZYWNOSC") && y.Jim == x.Jim);
+                        var material = Materialy.Find(y => y.Klasyfikacja != null 
+                                                        && y.Klasyfikacja.Equals("ZYWNOSC")
+                                                        && y.Jim == x.Jim
+                                                        && y.Lp == x.Lp);
                         x.App = TypWydruku.ToString();
                         x.Lp = material.Lp;
                         x.Magazyn_ID = material.NrMagazynu;
@@ -400,7 +403,10 @@ namespace Migrator.Services
             {
                 Amunicja.ForEach(x =>
                 {
-                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("AMUNICJA") && y.Jim == x.Jim);
+                    var material = Materialy.Find(y => y.Klasyfikacja != null 
+                                                        && y.Klasyfikacja.Equals("AMUNICJA") 
+                                                        && y.Jim == x.Jim
+                                                        && y.Lp == x.Lp);
                     x.App = TypWydruku.ToString();
                     x.Lp = material.Lp;
                     x.Magazyn_ID = material.NrMagazynu;
@@ -421,9 +427,11 @@ namespace Migrator.Services
             {
                 Kat.ForEach(x =>
                 {
-                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("KAT") && y.Jim == x.Jim);
+                    var material = Materialy.Find(y => y.Klasyfikacja != null 
+                                                    && y.Klasyfikacja.Equals("KAT") 
+                                                    && y.Jim == x.Jim
+                                                    && y.Lp == x.Lp);
                     x.App = TypWydruku.ToString();
-                    x.Lp = material.Lp;
                     x.Magazyn_ID = material.NrMagazynu;
                     x.Jim = material.Jim;
                     x.Material = material.Material;
@@ -442,7 +450,10 @@ namespace Migrator.Services
             {
                 Paliwa.ForEach(x =>
                 {
-                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("PALIWA") && y.Jim == x.Jim);
+                    var material = Materialy.Find(y => y.Klasyfikacja != null 
+                                                    && y.Klasyfikacja.Equals("PALIWA")
+                                                    && y.Jim == x.Jim
+                                                    && y.Lp == x.Lp);
                     x.App = TypWydruku.ToString();
                     x.Lp = material.Lp;
                     x.Magazyn_ID = material.NrMagazynu;
@@ -462,7 +473,10 @@ namespace Migrator.Services
             {
                 Mund.ForEach(x =>
                 {
-                    var material = Materialy.Find(y => y.Klasyfikacja.Equals("MUND") && y.Jim == x.Jim);
+                    var material = Materialy.Find(y => y.Klasyfikacja != null 
+                                                    && y.Klasyfikacja.Equals("MUND") 
+                                                    && y.Jim == x.Jim
+                                                    && y.Lp == x.Lp);
                     x.App = TypWydruku.ToString();
                     x.Lp = material.Lp;
                     x.Magazyn_ID = material.NrMagazynu;
