@@ -67,7 +67,6 @@ namespace Migrator.Services.MAGMAT_EWPB
                                     material.Kategoria = PrzypiszKategorieMagmat(subLines[3]);
                                     material.Wartosc = subLines[8].Trim().Replace(".", String.Empty);
                                     material.Cena = subLines[7].Trim().Replace(".", String.Empty);
-                                    material.Kategoria = null;
                                     material.NrSeryjny = null;
 
                                     material.NrMagazynu = KodowanieZnakow.PolskieZnaki(subLines[2].Trim(), Modul.MAGMAT_EWPB);

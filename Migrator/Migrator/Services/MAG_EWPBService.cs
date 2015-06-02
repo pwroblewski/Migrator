@@ -499,6 +499,10 @@ namespace Migrator.Services
                 var dlg = new System.Windows.Forms.FolderBrowserDialog();
                 System.Windows.Forms.DialogResult result = dlg.ShowDialog();
 
+                // po co jest where(konsygnacja) ???
+                //var list_zyw = Zywnosc.Where(x => x.Zaklad.Substring(3).Equals("K")).GroupBy(x => new { x.Zaklad, x.Sklad })
+                //    .Select(x => x.ToList())
+                //    .ToList();
                 var list_zyw = Zywnosc.GroupBy(x => new { x.Zaklad, x.Sklad })
                     .Select(x => x.ToList())
                     .ToList();
@@ -613,6 +617,9 @@ namespace Migrator.Services
                 var dlg = new System.Windows.Forms.FolderBrowserDialog();
                 System.Windows.Forms.DialogResult result = dlg.ShowDialog();
 
+                //var lista_list = Amunicja.Where(x => x.Zaklad.Substring(3).Equals("K")).GroupBy(x => new { x.Zaklad, x.Sklad })
+                //    .Select(x => x.ToList())
+                //    .ToList();
                 var lista_list = Amunicja.GroupBy(x => new { x.Zaklad, x.Sklad })
                     .Select(x => x.ToList())
                     .ToList();
@@ -790,6 +797,9 @@ namespace Migrator.Services
                 var dlg = new System.Windows.Forms.FolderBrowserDialog();
                 System.Windows.Forms.DialogResult result = dlg.ShowDialog();
 
+                //var lista_list = Kat.Where(x => x.Zaklad.Substring(3).Equals("K")).GroupBy(x => new { x.Zaklad, x.Sklad })
+                //    .Select(x => x.ToList())
+                //    .ToList();
                 var lista_list = Kat.GroupBy(x => new { x.Zaklad, x.Sklad })
                     .Select(x => x.ToList())
                     .ToList();
@@ -933,6 +943,9 @@ namespace Migrator.Services
                 var dlg = new System.Windows.Forms.FolderBrowserDialog();
                 System.Windows.Forms.DialogResult result = dlg.ShowDialog();
 
+                //var lista_list = Paliwa.Where(x => x.Zaklad.Substring(3).Equals("K")).GroupBy(x => new { x.Zaklad, x.Sklad })
+                //    .Select(x => x.ToList())
+                //    .ToList();
                 var lista_list = Paliwa.GroupBy(x => new { x.Zaklad, x.Sklad })
                     .Select(x => x.ToList())
                     .ToList();
@@ -1051,6 +1064,9 @@ namespace Migrator.Services
                 var dlg = new System.Windows.Forms.FolderBrowserDialog();
                 System.Windows.Forms.DialogResult result = dlg.ShowDialog();
 
+                //var lista_list = Mund.Where(x => x.Zaklad.Substring(3).Equals("K")).GroupBy(x => new { x.Zaklad, x.Sklad })
+                //    .Select(x => x.ToList())
+                //    .ToList();
                 var lista_list = Mund.GroupBy(x => new { x.Zaklad, x.Sklad })
                     .Select(x => x.ToList())
                     .ToList();
